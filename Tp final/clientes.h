@@ -24,7 +24,7 @@ void mostrarCliente(stCliente client);
 
 //////////////////////////////Funciones de Carga/////////////////////////////////////////////
 
-stCliente crearCliente();  //Ingresa los datos por teclado los datos para crear un cliente.
+stCliente crearCliente(char nombreArchivo[]);  //Ingresa los datos por teclado los datos para crear un cliente.
 
 void registrarCliente(char nombreArchivo[], stCliente client); //Registra un cliente en un archivo.
 

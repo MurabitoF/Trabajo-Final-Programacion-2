@@ -3,7 +3,7 @@
 
 //////////// Funciones de carga ////////////
 
-stCliente crearCliente()
+stCliente crearCliente(char nombreArchivo[])
 {
     stCliente client;
 
