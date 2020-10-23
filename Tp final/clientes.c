@@ -19,7 +19,7 @@ stCliente crearCliente()
     }
     printf("Apellido: ");
     fflush(stdin);
-    gets(client.nombre);
+    gets(client.apellido);
     while (strlen(client.apellido)>30)
     {
         printf("Error! Apellido muy largo.");
