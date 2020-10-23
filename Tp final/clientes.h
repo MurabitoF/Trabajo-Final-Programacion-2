@@ -3,8 +3,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include "gotoxy.h"
 
-typedef struct
+typedef struct _stCliente
 {
     int idCliente;
     char nombre[30];
@@ -18,6 +20,16 @@ typedef struct
     int eliminado; // indica 1 o 0 si el cliente fue eliminado
 } stCliente;
 
-void mostrarCliente(stCliente dato);
+void mostrarCliente(stCliente client);
+
+//////////////////////////////Funciones de Carga/////////////////////////////////////////////
+
+stCliente crearCliente();  //Ingresa los datos por teclado los datos para crear un cliente.
+
+void registrarCliente(char nombreArchivo[], stCliente client); //Registra un cliente en un archivo.
+
+//////////// Funciones de modificación ////////////
+
+void modificarCliente(stCliente cliente, FILE * nombreArchivo);
 
 #endif // CLIENTES_H_INCLUDED
