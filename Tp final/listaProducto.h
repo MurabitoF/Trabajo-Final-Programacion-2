@@ -17,6 +17,9 @@ nodoListaProducto * inicListaProducto ();
 
 nodoListaProducto * crearNodoProducto (nodoListaProducto * lista);
 
+nodoListaProducto * pasaArchivoAListaProducto(nodoListaProducto * listaProducto, char nombreArchivo[]);
+
+
 
 
 #endif // LISTAPRODUCTO_H_INCLUDED

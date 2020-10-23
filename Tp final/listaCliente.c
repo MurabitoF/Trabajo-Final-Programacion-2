@@ -11,10 +11,10 @@ nodoListaCliente * pasaArchivoALista(nodoListaCliente * listaCliente, char nombr
     {
         while(fread(&aux,sizeof(stCliente),1,arch)>0)
         {
-            lista = agregarAlFinalR(listaCliente, crearNodoCliente(aux));
+            listaCliente = agregarAlFinalCliente(listaCliente, crearNodoCliente(aux));
         }
         fclose(arch);
     }
 
-    return lista;
+    return listaCliente;
 }

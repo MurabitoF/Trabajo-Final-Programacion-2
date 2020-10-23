@@ -14,7 +14,7 @@ typedef struct _nodoListaCliente
     float costoTotalDelPedido;
 } nodoListaCliente;
 
-nodoListaCliente * pasaArchivoALista(nodoListaCliente * listaCliente, char nombreArchivo[]);
+nodoListaCliente * pasaArchivoAListaCliente(nodoListaCliente * listaCliente, char nombreArchivo[]);
 
 
 
