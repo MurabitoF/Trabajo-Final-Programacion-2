@@ -78,7 +78,7 @@ printf("Password: ");
         gets(client.genero);
     }
     client.rol = 0;
-    client.eliminado = 1;
+    client.activo = 1;
     client.idCliente = contadorDatos(nombreArchivo, sizeof(stCliente)) + 1;
 
     return client;

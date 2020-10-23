@@ -17,7 +17,7 @@ typedef struct _stCliente
     char domicilio[30];
     char genero;
     int rol; // 1: es admin - 0: cliente
-    int eliminado; // indica 1 o 0 si el cliente fue eliminado
+    int activo; // indica 1 o 0 si el cliente fue eliminado
 } stCliente;
 
 void mostrarCliente(stCliente client);
