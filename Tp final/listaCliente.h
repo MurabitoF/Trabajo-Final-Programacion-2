@@ -16,6 +16,8 @@ typedef struct _nodoListaCliente
 
 nodoListaCliente * pasaArchivoAListaCliente(nodoListaCliente * listaCliente, char nombreArchivo[]);
 
+nodoListaCliente * crearNodoCliente (stCliente aux);
+
 
 
 

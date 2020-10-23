@@ -52,7 +52,7 @@ void registrarProducto(char nombreArchivo[], stProducto prod)  //Registra un pro
 
 void mostrarProducto(stProducto product)
 {
-    printf("Id #%d", product.idProducto)
+    printf("Id #%d", product.idProducto);
     printf("Nombre del producto: %s", product.nombre);
     printf("Marca del producto: %s", product.marca);
     printf("Precio del producto: %f", product.precio);

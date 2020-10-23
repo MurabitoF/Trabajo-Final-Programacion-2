@@ -1,11 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define A_PRODUCTOS "numeros.dat"
+
 int contadorDatos(char nombreArchivo[], int byte);
 
 int main()
 {
     printf("Hello world!\n");
+
+    int val = contadorDatos(A_PRODUCTOS, sizeof(int));
+    int i;
+
+    int * numeros = pasarArchivoArray(A_PRODUCTOS);
+
+    for (i=0; i<val; i++)
+    {
+        printf("%d", numeros[i]);
+    }
+
     return 0;
 }
 

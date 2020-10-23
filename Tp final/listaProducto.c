@@ -1,4 +1,5 @@
 #include "listaProducto.h"
+#include "clientes.h"
 
 nodoListaProducto * pasaArchivoAListaProducto(nodoListaProducto * listaProducto, char nombreArchivo[])
 {
@@ -11,7 +12,7 @@ nodoListaProducto * pasaArchivoAListaProducto(nodoListaProducto * listaProducto,
     {
         while(fread(&aux,sizeof(stProducto),1,arch)>0)
         {
-            listaProducto = agregarAlFinalProducto(listaProducto, crearNodoProducto(aux));
+            listaProducto = agregarAlFinalProducto(listaProducto, crearNodoProducto(&aux));
         }
         fclose(arch);
     }
