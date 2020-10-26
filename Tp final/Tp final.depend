@@ -1,0 +1,46 @@
+# depslib dependency file v1.0
+1603746969 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\clientes.c
+	"clientes.h"
+
+1603746115 c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\clientes.h
+	<stdio.h>
+	<stdlib.h>
+
+1603746409 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1603745604 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\arbolproducto.c
+
+1603746874 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\listaproducto.c
+	"listaProducto.h"
+	"clientes.h"
+
+1603745604 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\pedidos.c
+
+1603745604 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\productos.c
+
+1603747011 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\listaclientes.c
+	"listaClientes.h"
+	"listaProducto.h"
+
+1603746444 c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\listaclientes.h
+	<stdio.h>
+	<stdlib.h>
+	"clientes.h"
+	"listaProducto.h"
+
+1603746505 c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\listaproducto.h
+	<stdio.h>
+	<stdlib.h>
+	"productos.h"
+
+1603745604 c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\productos.h
+	<stdio.h>
+	<stdlib.h>
+
+1491400450 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+

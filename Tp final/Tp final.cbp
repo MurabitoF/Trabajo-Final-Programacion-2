@@ -31,13 +31,37 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="arbolProducto.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="arbolProducto.h" />
 		<Unit filename="clientes.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="clientes.h" />
+		<Unit filename="gotoxy.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="gotoxy.h" />
+		<Unit filename="listaClientes.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="listaClientes.h" />
+		<Unit filename="listaProducto.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="listaProducto.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="pedidos.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="pedidos.h" />
+		<Unit filename="productos.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="productos.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
