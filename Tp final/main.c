@@ -9,14 +9,15 @@ int main()
 {
     printf("Hello world!\n");
 
-    int val = contadorDatos(A_PRODUCTOS, sizeof(int));
-    int i;
+    int val, dim, i;
+    dim = contadorDatos(A_PRODUCTOS, sizeof(int));
 
-    int * numeros = pasarArchivoArray(A_PRODUCTOS);
+    int arrayInt [dim];
+    val = pasarArchivoArrayInt(A_PRODUCTOS, dim, arrayInt);
 
     for (i=0; i<val; i++)
     {
-        printf("%d", numeros[i]);
+        printf("%d ", arrayInt[i]);
     }
 
     return 0;
@@ -33,8 +34,8 @@ int contadorDatos(char nombreArchivo[], int byte) //Cuenta cuantos bloques de da
     {
         fseek(arch, 0, SEEK_END);
         cant = ftell(arch)/ byte;
-        fclose(arch);
     }
+    fclose(arch);
 
     return cant;
 }
