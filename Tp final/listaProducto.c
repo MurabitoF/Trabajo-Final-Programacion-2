@@ -59,7 +59,7 @@ nodoListaProducto * buscarUltimoProducto (nodoListaProducto * listaProdcuto)
     return seg;
 }
 
-nodoListaProducto * agregarFinalProducto (nodoListaProducto * listaProducto, nodoListaProducto * nuevoProducto);
+nodoListaProducto * agregarFinalProducto (nodoListaProducto * listaProducto, nodoListaProducto * nuevoProducto)
 {
     if(!listaProducto)
     {
@@ -69,7 +69,7 @@ nodoListaProducto * agregarFinalProducto (nodoListaProducto * listaProducto, nod
         nodoListaProducto * ult = buscarUltimoProducto(listaProducto);
         ult->sig = nuevoProducto;
     }
-    return lista;
+    return listaProducto;
 }
 
 nodoListaProducto * agregarOrdenProducto(nodoListaProducto * listaProducto, nodoListaProducto * nuevoProducto)
@@ -120,7 +120,7 @@ nodoListaProducto * borrarProductoId (nodoListaProducto * listaProducto, int id)
         if (listaProducto->p.idProducto == id)
         {
             nodoListaProducto * aux = listaProducto;
-            listaProducto = listaProducto->sig
+            listaProducto = listaProducto->sig;
             free(aux);
         } else
         {

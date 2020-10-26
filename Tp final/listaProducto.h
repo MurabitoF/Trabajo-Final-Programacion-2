@@ -13,7 +13,7 @@ typedef struct _nodoListaProducto
 
 //////////// Funciones Basicas ////////////
 
-nodoListaProducto * inicListaProducto ();
+nodoListaProducto * inicListaProducto();
 
 nodoListaProducto * crearNodoProducto (stProducto dato);
 
@@ -36,10 +36,8 @@ void mostrarListaProducto(nodoListaProducto * aux);
 
 //////////// Funciones de Borrado de Datos ////////////
 
-nodoListaProducto * borrarProductoId (nodoListaProducto * listaProducto, int id);
 
 nodoListaProducto * borrarProductoNombre (nodoListaProducto * listaProducto, char nombre[]);
 
 nodoListaProducto * borrarListaProducto (nodoListaProducto * listaProducto);
 
-#endif // LISTAPRODUCTO_H_INCLUDED

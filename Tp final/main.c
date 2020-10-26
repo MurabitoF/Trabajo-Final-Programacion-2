@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define A_PRODUCTOS "numeros.dat"
+const char A_Productos[] = "numeros.dat";
 
 int contadorDatos(char nombreArchivo[], int byte);
 
@@ -10,10 +10,10 @@ int main()
     printf("Hello world!\n");
 
     int val, dim, i;
-    dim = contadorDatos(A_PRODUCTOS, sizeof(int));
+    dim = contadorDatos(A_Productos, sizeof(int));
 
     int arrayInt [dim];
-    val = pasarArchivoArrayInt(A_PRODUCTOS, dim, arrayInt);
+    val = pasarArchivoArrayInt(A_Productos, dim, arrayInt);
 
     for (i=0; i<val; i++)
     {

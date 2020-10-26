@@ -43,10 +43,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="gotoxy.h" />
-		<Unit filename="listaCliente.c">
+		<Unit filename="listaClientes.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="listaCliente.h" />
+		<Unit filename="listaClientes.h" />
 		<Unit filename="listaProducto.c">
 			<Option compilerVar="CC" />
 		</Unit>

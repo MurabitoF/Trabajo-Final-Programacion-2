@@ -109,7 +109,7 @@ void mostrarCliente(stCliente client)
     printf("Genero: %c", client.genero);
 }
 
-//////////// Funciones de modificación ////////////
+//////////// Funciones de modificaciï¿½n ////////////
 
 void modificarCliente(stCliente cliente, FILE * nombreArchivo)
 {
