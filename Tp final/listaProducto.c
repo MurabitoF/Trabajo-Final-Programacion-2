@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 #include "listaProducto.h"
 #include "clientes.h"
 
@@ -81,14 +79,14 @@ nodoListaProducto * agregarOrdenProducto(nodoListaProducto * listaProducto, nodo
         listaProducto = nuevoProducto;
     } else
     {
-        if (listaProducto->p.idProducto > nuevoProducto->p.idProducto)
+        if (strcmp(listaProducto->p.nombre, nuevoProducto->p.nombre) > 0)
         {
             listaProducto = agregarPrpioProducto(listaProducto, nuevoProducto);
         } else
         {
             nodoListaProducto * seg = listaProducto->sig;
             nodoListaProducto * ante = listaProducto;
-            while (seg != NULL && listaProducto->p.idProducto < nuevoProducto->p.idProducto)
+            while (seg != NULL && strcmp(listaProducto->p.nombre, nuevoProducto->p.nombre) < 0)
             {
                 ante = seg;
                 seg = seg->sig;
@@ -100,5 +98,65 @@ nodoListaProducto * agregarOrdenProducto(nodoListaProducto * listaProducto, nodo
     return listaProducto;
 }
 
+void mostrarNodoProducto (nodoListaProducto * aux)
+{
+    mostrarProducto(aux->p);
+}
 
->>>>>>> Stashed changes
+void mostrarListaProducto(nodoListaProducto * aux)
+{
+    nodoListaProducto * seg = aux;
+    while (seg->sig != NULL)
+    {
+        mostrarNodoProducto(seg);
+        seg = seg->sig;
+    }
+}
+
+nodoListaProducto * borrarProductoId (nodoListaProducto * listaProducto, int id)
+{
+    if (listaProducto)
+    {
+        if (listaProducto->p.idProducto == id)
+        {
+            nodoListaProducto * aux = listaProducto;
+            listaProducto = listaProducto->sig
+            free(aux);
+        } else
+        {
+            listaProducto->sig = borrarProductoId(listaProducto->sig, id);
+        }
+    }
+    return listaProducto;
+}
+
+nodoListaProducto * borrarProductoNombre (nodoListaProducto * listaProducto, char nombre[])
+{
+    if (listaProducto)
+    {
+        if (strcmp(listaProducto->p.nombre, nombre) == 0)
+        {
+            nodoListaProducto * aux = listaProducto;
+            listaProducto = listaProducto->sig;
+            free(aux);
+        } else
+        {
+            listaProducto->sig = borrarProductoNombre(listaProducto->sig, nombre);
+        }
+    }
+    return listaProducto;
+}
+
+nodoListaProducto * borrarListaProducto (nodoListaProducto * listaProducto)
+{
+    nodoListaProducto * seg = listaProducto;
+    nodoListaProducto * prox;
+    while (seg != NULL)
+    {
+        prox = seg->sig;
+        free(seg);
+        seg = prox;
+    }
+    return seg;
+}
+

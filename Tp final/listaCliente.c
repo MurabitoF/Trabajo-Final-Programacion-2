@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 #include "listaCliente.h"
 
 nodoListaCliente * pasaArchivoALista(nodoListaCliente * listaCliente, char nombreArchivo[])
@@ -20,4 +18,16 @@ nodoListaCliente * pasaArchivoALista(nodoListaCliente * listaCliente, char nombr
 
     return listaCliente;
 }
->>>>>>> Stashed changes
+
+nodoListaCliente * crearNodoCliente (char nombreArchivo[], stCliente aux)
+{
+    FILE * archi = fopen(nombreArchivo, "rb");
+
+    nodoListaCliente * clienteAux = (nodoListaCliente*) malloc(sizeof(nodoListaCliente));
+    clienteAux->client = aux;
+    clienteAux->sig = NULL;
+}
+
+
+
+

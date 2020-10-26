@@ -17,8 +17,6 @@ nodoListaProducto * inicListaProducto ();
 
 nodoListaProducto * crearNodoProducto (stProducto dato);
 
-<<<<<<< Updated upstream
-=======
 nodoListaProducto * pasaArchivoAListaProducto(nodoListaProducto * listaProducto, char nombreArchivo[]);
 
 nodoListaProducto * agregarPrpioProducto (nodoListaProducto * listaProducto, nodoListaProducto * nuevoProducto);
@@ -30,7 +28,18 @@ nodoListaProducto * agregarFinalProducto (nodoListaProducto * listaProducto, nod
 nodoListaProducto * agregarOrdenProducto (nodoListaProducto * listaProducto, nodoListaProducto * nuevoProducto);
 
 
->>>>>>> Stashed changes
+//////////// Funciones de Muestra ////////////
 
+void mostrarNodoProducto(nodoListaProducto * aux);
+
+void mostrarListaProducto(nodoListaProducto * aux);
+
+//////////// Funciones de Borrado de Datos ////////////
+
+nodoListaProducto * borrarProductoId (nodoListaProducto * listaProducto, int id);
+
+nodoListaProducto * borrarProductoNombre (nodoListaProducto * listaProducto, char nombre[]);
+
+nodoListaProducto * borrarListaProducto (nodoListaProducto * listaProducto);
 
 #endif // LISTAPRODUCTO_H_INCLUDED
