@@ -3,7 +3,7 @@
 
 nodoListaProducto * pasaArchivoAListaProducto(nodoListaProducto * listaProducto, char nombreArchivo[])
 {
-    stCliente aux;
+    stProducto aux;
     FILE * arch = NULL;
 
     arch = fopen(nombreArchivo, "rb");
@@ -12,7 +12,7 @@ nodoListaProducto * pasaArchivoAListaProducto(nodoListaProducto * listaProducto,
     {
         while(fread(&aux,sizeof(stProducto),1,arch)>0)
         {
-            //listaProducto = agregarAlFinalProducto(listaProducto, crearNodoProducto(&aux));
+            listaProducto = agregarFinalProducto(listaProducto, crearNodoProducto(aux));
         }
         fclose(arch);
     }

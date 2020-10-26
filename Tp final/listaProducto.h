@@ -41,3 +41,4 @@ nodoListaProducto * borrarProductoNombre (nodoListaProducto * listaProducto, cha
 
 nodoListaProducto * borrarListaProducto (nodoListaProducto * listaProducto);
 
+#endif // LISTAPRODUCTO_H_INCLUDED
