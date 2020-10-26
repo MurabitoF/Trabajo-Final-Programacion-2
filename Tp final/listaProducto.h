@@ -15,8 +15,22 @@ typedef struct _nodoListaProducto
 
 nodoListaProducto * inicListaProducto ();
 
-nodoListaProducto * crearNodoProducto (nodoListaProducto * lista);
+nodoListaProducto * crearNodoProducto (stProducto dato);
 
+<<<<<<< Updated upstream
+=======
+nodoListaProducto * pasaArchivoAListaProducto(nodoListaProducto * listaProducto, char nombreArchivo[]);
+
+nodoListaProducto * agregarPrpioProducto (nodoListaProducto * listaProducto, nodoListaProducto * nuevoProducto);
+
+nodoListaProducto * buscarUltimoProducto (nodoListaProducto * listaProdcuto);
+
+nodoListaProducto * agregarFinalProducto (nodoListaProducto * listaProducto, nodoListaProducto * nuevoProducto);
+
+nodoListaProducto * agregarOrdenProducto (nodoListaProducto * listaProducto, nodoListaProducto * nuevoProducto);
+
+
+>>>>>>> Stashed changes
 
 
 #endif // LISTAPRODUCTO_H_INCLUDED
