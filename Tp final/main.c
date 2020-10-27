@@ -13,7 +13,7 @@ int main()
     dim = contadorDatos(A_Productos, sizeof(int));
 
     int arrayInt [dim];
-    val = pasarArchivoArrayInt(A_Productos, dim, arrayInt);
+//    val = pasarArchivoArrayInt(A_Productos, dim, arrayInt);
 
     for (i=0; i<val; i++)
     {

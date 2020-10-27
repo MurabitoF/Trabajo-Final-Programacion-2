@@ -48,6 +48,23 @@ void registrarProducto(char nombreArchivo[], stProducto prod)  //Registra un pro
     }
 }
 
+//////////// Funciones de descarga ////////////
+stProducto * pasarArchivoArray (char nombreArchivo)  //// Implementar con punteros dobles
+{
+    stProducto * arrayProducto;
+    int totalProductos;
+    int i = 0;
+
+    FILE * archi = fopen(nombreArchivo, "rb");
+
+    totalProductos = contadorDatos(nombreArchivo, sizeof(stProducto));
+    arrayProducto = (stProducto*) malloc (sizeof(stProducto) * totalProductos);
+
+    fread(&arrayProducto[i], sizeof(stProducto), totalProductos, archi);
+
+    return arrayProducto;
+}
+
 //////////// Funciones de muestra ////////////
 
 void mostrarProducto(stProducto product)

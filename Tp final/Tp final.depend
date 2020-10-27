@@ -75,3 +75,70 @@
 	"clientes.h"
 	"listaProducto.h"
 
+1603825995 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\arbolproducto.c
+	"arbolProducto.h"
+
+1603825897 c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\arbolproducto.h
+	<stdio.h>
+	<stdlib.h>
+	"productos.h"
+
+1603821724 c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\productos.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"gotoxy.h"
+
+1491399896 c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\gotoxy.h
+
+1603750720 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\clientes.c
+	"clientes.h"
+
+1603750720 c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\clientes.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"gotoxy.h"
+
+1491400450 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1603747434 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\listaclientes.c
+	"listaClientes.h"
+	"listaProducto.h"
+
+1603747434 c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\listaclientes.h
+	<stdio.h>
+	<stdlib.h>
+	"clientes.h"
+	"listaProducto.h"
+
+1603750720 c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\listaproducto.h
+	<stdio.h>
+	<stdlib.h>
+	"productos.h"
+
+1603750720 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\listaproducto.c
+	"listaProducto.h"
+	"clientes.h"
+
+1603747915 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1603750720 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\pedidos.c
+	"pedidos.h"
+
+1603750720 c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\pedidos.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"gotoxy.h"
+	"clientes.h"
+	"productos.h"
+
+1603820997 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\productos.c
+	"productos.h"
+
