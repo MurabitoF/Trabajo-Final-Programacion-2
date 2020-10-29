@@ -105,11 +105,11 @@
 	<stdlib.h>
 	<windows.h>
 
-1603747434 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\listaclientes.c
+1604013651 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\listaclientes.c
 	"listaClientes.h"
 	"listaProducto.h"
 
-1603747434 c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\listaclientes.h
+1604013434 c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\listaclientes.h
 	<stdio.h>
 	<stdlib.h>
 	"clientes.h"
@@ -124,7 +124,7 @@
 	"listaProducto.h"
 	"clientes.h"
 
-1603747915 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\main.c
+1603826008 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\main.c
 	<stdio.h>
 	<stdlib.h>
 

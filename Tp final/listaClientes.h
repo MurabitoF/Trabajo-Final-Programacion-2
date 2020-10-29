@@ -22,6 +22,7 @@ nodoListaClientes * crearNodoCliente(stCliente cliente);
 nodoListaClientes * agregarClientePpio(nodoListaClientes * lista, nodoListaClientes * nuevo);
 nodoListaClientes * agregarClienteFinal(nodoListaClientes * lista, nodoListaClientes * nuevo);
 nodoListaClientes * agregarClienteEnOrden(nodoListaClientes * lista, nodoListaClientes * nuevo);
+void agregarProductoListaClientes(nodoListaClientes * lista, int id, stProducto producto);
 
 ///Funciones de Busqueda
 nodoListaClientes * buscarUltimoNodoClientes(nodoListaClientes * lista);

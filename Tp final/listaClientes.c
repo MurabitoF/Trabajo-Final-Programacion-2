@@ -70,6 +70,21 @@ nodoListaClientes * agregarClienteEnOrden(nodoListaClientes * lista, nodoListaCl
     return lista;
 }
 
+void agregarProductoListaClientes(nodoListaClientes * lista, int id, stProducto producto)
+{
+    if(lista)
+    {
+        if(lista->cliente.idCliente == id)
+        {
+            lista->listaProductos = agregarFinalProducto(lista->listaProductos, crearNodoProducto(producto));
+        }
+        else
+        {
+            agregarProductoListaClientes(lista->siguiente, id, producto);
+        }
+    }
+}
+
 nodoListaClientes * buscarUltimoNodoClientes(nodoListaClientes * lista)
 {
     nodoListaClientes * ultimo;
