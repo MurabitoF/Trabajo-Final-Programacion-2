@@ -239,6 +239,7 @@ void mostrarListaCliente(nodoListaClientes * lista)
     while(seg != NULL)
     {
         mostrarNodoCliente(seg);
+        mostrarListaProducto(lista->listaProductos);
         seg = seg->siguiente;
     }
 }

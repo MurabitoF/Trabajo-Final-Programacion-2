@@ -101,12 +101,27 @@ void registrarCliente(char nombreArchivo[], stCliente client)
 
 void mostrarCliente(stCliente client)
 {
+    int posX = whereX(), posY = whereY() + 1;
+
+    gotoxy(posX, posY);
     printf("Id #%d", client.idCliente);
+    posY++;
+    gotoxy(posX, posY);
     printf("Nombre y Apellido: %s %s", client.nombre, client.apellido);
+    posY++;
+    gotoxy(posX, posY);
     printf("Nombre de usuario: %s", client.userName);
+    posY++;
+    gotoxy(posX, posY);
     printf("Email: %s", client.mail);
+    posY++;
+    gotoxy(posX, posY);
     printf("Domicilio: %s", client.domicilio);
+    posY++;
+    gotoxy(posX, posY);
     printf("Genero: %c", client.genero);
+    posY++;
+    gotoxy(posX, posY);
 }
 
 //////////// Funciones de modificaci�n ////////////
