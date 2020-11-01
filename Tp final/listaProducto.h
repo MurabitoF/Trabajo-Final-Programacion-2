@@ -9,6 +9,7 @@ typedef struct _nodoListaProducto
 {
     stProducto p;
     int idPedido;
+    char fecha[20];
     struct _nodoListaProducto * sig;
 } nodoListaProducto;
 
@@ -41,5 +42,11 @@ void mostrarListaProducto(nodoListaProducto * aux);
 nodoListaProducto * borrarProductoNombre (nodoListaProducto * listaProducto, char nombre[]);
 
 nodoListaProducto * borrarListaProducto (nodoListaProducto * listaProducto);
+
+///Funciones contar productos comprados
+
+int * contarCategorias(nodoListaProducto * listaProductos);
+
+int buscaMayor (int comprasProducto[]);
 
 #endif // LISTAPRODUCTO_H_INCLUDED

@@ -1,6 +1,8 @@
 #include "listaProducto.h"
 #include "clientes.h"
 
+//////////// Funciones Basicas ////////////
+
 nodoListaProducto * pasaArbol2Lista(nodoArbolProducto * arbolProducto ,nodoListaProducto * listaProducto, stPedidos * pedido)
 {
 
@@ -84,6 +86,8 @@ nodoListaProducto * agregarOrdenProducto(nodoListaProducto * listaProducto, nodo
     return listaProducto;
 }
 
+//////////// Funciones de Muestra ////////////
+
 void mostrarNodoProducto (nodoListaProducto * aux)
 {
     mostrarProducto(aux->p);
@@ -98,6 +102,8 @@ void mostrarListaProducto(nodoListaProducto * aux)
         seg = seg->sig;
     }
 }
+
+//////////// Funciones de Borrado de Datos ////////////
 
 nodoListaProducto * borrarProductoId (nodoListaProducto * listaProducto, int id)
 {
@@ -144,4 +150,64 @@ nodoListaProducto * borrarListaProducto (nodoListaProducto * listaProducto)
         seg = prox;
     }
     return seg;
+}
+
+///Funciones contar productos comprados
+
+int * contarCategorias (nodoListaProducto * listaProductos)
+{
+    int comprasProducto[7] = {0};
+
+    char categorias[15];
+
+    nodoListaProducto * seg = listaProductos;
+
+    while (seg)
+    {
+        categorias = listaProductos->p.categoria
+        switch (categorias)
+        {
+            case 'Televisores'
+            comprasProducto [0] = comprasProducto [0] + 1;
+            break;
+
+            case 'Computadoras'
+            comprasProducto [1] = comprasProducto [1] + 1;
+            break;
+
+            case 'Celulares'
+            comprasProducto [2] = comprasProducto [2] + 1;
+            break;
+
+            case 'Accesorios'
+            comprasProducto [3] = comprasProducto [3] + 1;
+            break;
+
+            case 'Heladeras'
+            comprasProducto [4] = comprasProducto [4] + 1;
+            break;
+
+            case 'Aires'
+            comprasProducto [5] = comprasProducto [5] + 1;
+            break;
+
+            case 'Cocina'
+            comprasProducto [6] = comprasProducto [6] + 1;
+            break;
+        }
+        seg = seg->sig;
+    }
+    return comprasProducto;
+}
+
+int buscaMayor(int comprasProducto[])
+{
+    int may = 0;
+    int i;
+    for (i=0; i<7; i++)
+    {
+        if (comprasProducto[i] > comprasProducto[i+1])
+            may = i;
+    }
+    return may;
 }

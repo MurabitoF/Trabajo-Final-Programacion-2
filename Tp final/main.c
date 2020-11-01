@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+const char categorias[7] = {"Televisores", "Computadoras", "Celulares", "Accesorios", "Heladeras", "Aires", "Cocina"};
+
 const char A_Productos[] = "numeros.dat";
 
 int contadorDatos(char nombreArchivo[], int byte);
@@ -29,4 +31,11 @@ int contadorDatos(char nombreArchivo[], int byte) //Cuenta cuantos bloques de da
     fclose(arch);
 
     return cant;
+}
+
+void muestraRecomendados(nodoListaClientes * clientes, nodoArbolProducto * arbolProductos)
+{
+    int masVendido;
+    masVendido = buscaMayor(contarCategorias(clientes->listaProductos));
+    mostrarPorCategoria(arbolProductos, categorias);
 }

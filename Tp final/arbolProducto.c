@@ -91,6 +91,19 @@ void mostrarPosOrden(nodoArbolProducto * arbol)
     }
 }
 
+void mostrarPorCategoria (nodoArbolProducto * arbol, char categoria)
+{
+    if (arbol)
+    {
+        mostrarPorCategoria(arbol->izq, categoria);
+
+        if (strcmp(arbol->producto.categoria, categoria) == 0)
+            mostrarNodoArbolProd(arbol);
+
+        mostrarPorCategoria(arbol->der, categoria);
+    }
+}
+
 ///Funciones de busqueda
 nodoArbolProducto * buscarNodoPorId(nodoArbolProducto * arbol, int id)
 {

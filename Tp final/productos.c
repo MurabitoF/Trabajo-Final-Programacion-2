@@ -73,9 +73,11 @@ stProducto * pasarArchivoArray (stProducto arrayProducto [], char nombreArchivo[
 void mostrarProducto(stProducto product)
 {
     printf("Id #%d", product.idProducto);
+    printf("Categoria: %s", product.categoria);
     printf("Nombre del producto: %s", product.nombre);
     printf("Marca del producto: %s", product.marca);
     printf("Precio del producto: %f", product.precio);
+
 }
 
 
