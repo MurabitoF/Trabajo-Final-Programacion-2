@@ -42,5 +42,6 @@ void mostrarListaCliente(nodoListaClientes * lista);
 
 ///Funciones de archivos
 nodoListaClientes * pasaArchivoALista(nodoListaClientes * listaCliente, char nombreArchivo[]);
+void generarPedidos(nodoListaClientes * lista, char nombreArchivo[]);
 
 #endif // LISTASCLIENTES_H_INCLUDED

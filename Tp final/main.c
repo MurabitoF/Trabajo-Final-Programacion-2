@@ -4,6 +4,7 @@
 const char A_Productos[] = "numeros.dat";
 
 int contadorDatos(char nombreArchivo[], int byte);
+void fechaHora(char * fecha[]);
 
 int main()
 {
@@ -38,4 +39,13 @@ int contadorDatos(char nombreArchivo[], int byte) //Cuenta cuantos bloques de da
     fclose(arch);
 
     return cant;
+}
+
+void fechaHora(char * fecha[]) //Devuelve la fecha y la hora del sistema.
+{
+    time_t tiempo = time(0);
+    struct tm *tlocal = localtime(&tiempo);
+    char formato[] = {"%d/%m/%y %H:%M"};
+
+    strftime(fecha,20,formato,tlocal);
 }

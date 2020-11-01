@@ -17,6 +17,7 @@ nodoListaClientes * crearNodoCliente(stCliente cliente)
     return aux;
 }
 
+///Funciones Agregar
 nodoListaClientes * agregarClientePpio(nodoListaClientes * lista, nodoListaClientes * nuevo)
 {
     nuevo->siguiente = lista;
@@ -85,6 +86,7 @@ void agregarProductoListaClientes(nodoListaClientes * lista, int id, stProducto 
     }
 }
 
+///Funciones de Busqueda
 nodoListaClientes * buscarUltimoNodoClientes(nodoListaClientes * lista)
 {
     nodoListaClientes * ultimo;
@@ -161,6 +163,7 @@ nodoListaClientes * buscarClientePorEmail(nodoListaClientes * lista, char busque
     return busca;
 }
 
+///Funciones de Borrado
 nodoListaClientes * borrarPrimerCliente(nodoListaClientes * lista)
 {
     nodoListaClientes * borrado = lista;
@@ -227,9 +230,11 @@ nodoListaClientes * borrarListaClientes(nodoListaClientes * lista)
     return lista;
 }
 
+///Funciones de muestra
 void mostrarNodoCliente(nodoListaClientes * cliente)
 {
     mostrarCliente(cliente->cliente);
+    mostrarListaProducto(lista->listaProductos);
 }
 
 void mostrarListaCliente(nodoListaClientes * lista)
@@ -239,7 +244,6 @@ void mostrarListaCliente(nodoListaClientes * lista)
     while(seg != NULL)
     {
         mostrarNodoCliente(seg);
-        mostrarListaProducto(lista->listaProductos);
         seg = seg->siguiente;
     }
 }
@@ -266,4 +270,29 @@ nodoListaClientes * pasaArchivoALista(nodoListaClientes * listaCliente, char nom
     }
 
     return listaCliente;
+}
+
+void generarPedidos(nodoListaClientes * lista, char nombreArchivo[])
+{
+    nodoListaProducto * productos = lista->listaProductos;
+    stPedidos aux;
+    FILE * arch = NULL;
+
+    arch = fopen(nombreArchivo, "wb");
+
+    if(arch)
+    {
+        while(lista)
+        {
+          while(productos)
+          {
+            aux.idCliente = lista->cliente.idCliente;
+            aux.idProducto = productos->p.idProducto;
+            aux.idPedido = 0;//pensar como
+            productos = productos->sig;
+
+          }
+          lista = lista
+        }
+    }
 }
