@@ -8,6 +8,7 @@
 typedef struct _nodoListaProducto
 {
     stProducto p;
+    int idPedido;
     struct _nodoListaProducto * sig;
 } nodoListaProducto;
 
@@ -17,7 +18,7 @@ nodoListaProducto * inicListaProducto();
 
 nodoListaProducto * crearNodoProducto (stProducto dato);
 
-nodoListaProducto * pasaArchivoAListaProducto(nodoListaProducto * listaProducto, char nombreArchivo[]);
+nodoListaProducto * pasaArbol2Lista(nodoArbolProducto * arbolProducto ,nodoListaProducto * listaProducto, stPedidos * pedido);
 
 nodoListaProducto * agregarPrpioProducto (nodoListaProducto * listaProducto, nodoListaProducto * nuevoProducto);
 

@@ -9,16 +9,7 @@ int main()
 {
     printf("Hello world!\n");
 
-    int val, dim, i;
-    dim = contadorDatos(A_Productos, sizeof(int));
 
-    int arrayInt [dim];
-//    val = pasarArchivoArrayInt(A_Productos, dim, arrayInt);
-
-    for (i=0; i<val; i++)
-    {
-        printf("%d ", arrayInt[i]);
-    }
 
     return 0;
 }

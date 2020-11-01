@@ -1,23 +1,9 @@
 #include "listaProducto.h"
 #include "clientes.h"
 
-nodoListaProducto * pasaArchivoAListaProducto(nodoListaProducto * listaProducto, char nombreArchivo[])
+nodoListaProducto * pasaArbol2Lista(nodoArbolProducto * arbolProducto ,nodoListaProducto * listaProducto, stPedidos * pedido)
 {
-    stProducto aux;
-    FILE * arch = NULL;
 
-    arch = fopen(nombreArchivo, "rb");
-
-    if(arch != NULL)
-    {
-        while(fread(&aux,sizeof(stProducto),1,arch)>0)
-        {
-            listaProducto = agregarFinalProducto(listaProducto, crearNodoProducto(aux));
-        }
-        fclose(arch);
-    }
-
-    return listaProducto;
 }
 
 nodoListaProducto * inicListaProducto()
