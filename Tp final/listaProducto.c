@@ -1,6 +1,7 @@
 #include "listaProducto.h"
 #include "clientes.h"
 
+<<<<<<< Updated upstream
 nodoListaProducto * pasaArchivoAListaProducto(nodoListaProducto * listaProducto, char nombreArchivo[])
 {
     stCliente aux;
@@ -19,17 +20,21 @@ nodoListaProducto * pasaArchivoAListaProducto(nodoListaProducto * listaProducto,
 
     return listaProducto;
 }
+=======
+//////////// Funciones Basicas ////////////
+>>>>>>> Stashed changes
 
 nodoListaProducto * inicListaProducto()
 {
     return NULL;
 }
 
-nodoListaProducto * crearNodoProducto (stProducto dato)
+nodoListaProducto * crearNodoProducto (stProducto producto, int idPedido)
 {
     nodoListaProducto * aux = (nodoListaProducto*) malloc(sizeof(nodoListaProducto));
 
-    aux->p = dato;
+    aux->p = producto;
+    aux->idPedido = idPedido;
     aux->sig = NULL;
 
     return aux;
@@ -160,3 +165,75 @@ nodoListaProducto * borrarListaProducto (nodoListaProducto * listaProducto)
     return seg;
 }
 
+<<<<<<< Updated upstream
+=======
+///Funciones contar productos comprados
+
+int * contarCategorias (nodoListaProducto * listaProductos)
+{
+    int comprasProducto[7] = {0};
+
+    char categorias[15];
+
+    nodoListaProducto * seg = listaProductos;
+
+    while (seg)
+    {
+        strcpy(categorias, seg->p.categoria);
+        if (strcmp(categorias ,"Televisores") == 0)
+            {
+                comprasProducto [0] = comprasProducto [0] + 1;
+            } else
+            {
+                if (strcmp(categorias ,"Computadoras") == 0)
+                    {
+                        comprasProducto [1] = comprasProducto [1] + 1;
+                    } else
+                    {
+                        if (strcmp(categorias ,"Celulares") == 0)
+                            {
+                                comprasProducto [2] = comprasProducto [2] + 1;
+                            } else
+                            {
+                                if (strcmp(categorias ,"Accesorios") == 0)
+                                    {
+                                        comprasProducto [3] = comprasProducto [3] + 1;
+                                    } else
+                                    {
+                                        if (strcmp(categorias ,"Heladeras") == 0)
+                                            {
+                                                comprasProducto [4] = comprasProducto [4] + 1;
+                                            } else
+                                            {
+                                                if (strcmp(categorias ,"Aires") == 0)
+                                                    {
+                                                        comprasProducto [5] = comprasProducto [5] + 1;
+                                                    } else
+                                                    {
+                                                        if (strcmp(categorias ,"Cocina") == 0)
+                                                            {
+                                                                comprasProducto [6] = comprasProducto [6] + 1;
+                                                            }
+                                                    }
+                                            }
+                                    }
+                            }
+                    }
+            }
+            seg = seg->sig;
+        }
+    return comprasProducto;
+}
+
+int buscaMayor(int comprasProducto[])
+{
+    int may = 0;
+    int i;
+    for (i=0; i<7; i++)
+    {
+        if (comprasProducto[i] > comprasProducto[i+1])
+            may = i;
+    }
+    return may;
+}
+>>>>>>> Stashed changes

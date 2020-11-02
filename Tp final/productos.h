@@ -15,5 +15,16 @@ typedef struct _stProductos
 
 
 
+<<<<<<< Updated upstream
+=======
+void registrarProducto(char nombreArchivo[], stProducto prod);  //Registra un producto en un archivo.
+
+//////////// Funciones de descarga ////////////
+int pasarArchivoArray (stProducto arrayProducto [], char nombreArchivo[], int dim); // Descarga los datos de un archivo a un arreglo.
+
+//////////// Funciones de muestra ////////////
+
+void mostrarProducto(stProducto product);
+>>>>>>> Stashed changes
 
 #endif // PRODUCTOS_H_INCLUDED
