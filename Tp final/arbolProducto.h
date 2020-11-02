@@ -34,6 +34,6 @@ nodoArbolProducto * buscaNodoMasDer(nodoArbolProducto * arbol);
 nodoArbolProducto * borrarnodoArbolProducto(nodoArbolProducto * arbol, nodoArbolProducto * borrado);
 nodoArbolProducto * borrarArbolProductos(nodoArbolProducto * arbol);
 ///Subprogramas
-
+void subProgramaModificarProducto(nodoArbolProducto * nodoProducto, char nombreArchivo[]);
 
 #endif // ARBOLPRODUCTO_H_INCLUDED

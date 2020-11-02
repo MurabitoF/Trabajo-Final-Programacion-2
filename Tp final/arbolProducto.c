@@ -272,3 +272,9 @@ nodoArbolProducto * borrarArbolProductos(nodoArbolProducto * arbol)
 
     return arbol;
 }
+
+///Subprogramas
+void subProgramaModificarProducto(nodoArbolProducto * nodoProducto, char nombreArchivo[])
+{
+
+}

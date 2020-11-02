@@ -3,7 +3,7 @@
 
 //////////// Funciones de carga ////////////
 
-stCliente crearCliente(char nombreArchivo[])
+stCliente crearCliente(char nombreArchivo)
 {
     stCliente client;
 
@@ -37,7 +37,7 @@ stCliente crearCliente(char nombreArchivo[])
         fflush(stdin);
         gets(client.userName);
     }
-printf("Password: ");
+    printf("Password: ");
     fflush(stdin);
     gets(client.password);
     while(strlen(client.password)>20)
@@ -84,20 +84,7 @@ printf("Password: ");
     return client;
 }
 
-void registrarCliente(char nombreArchivo[], stCliente client)
-{
-    FILE * arch = NULL;
-
-    arch = fopen(nombreArchivo,"ab");
-
-    if(arch != NULL)
-    {
-        fwrite(&client,sizeof(stCliente),1,arch);
-        fclose(arch);
-    }
-}
-
-//////////// Funciones de muestra ////////////
+///Funciones de muestra
 
 void mostrarCliente(stCliente client)
 {
@@ -124,9 +111,215 @@ void mostrarCliente(stCliente client)
     gotoxy(posX, posY);
 }
 
-//////////// Funciones de modificaci�n ////////////
-
-void modificarCliente(stCliente cliente, FILE * nombreArchivo)
+///Funciones de Archivos
+void registrarCliente(char nombreArchivo[], stCliente cliente)
 {
+    FILE * arch = NULL;
 
+    arch = fopen(nombreArchivo,"ab");
+    escribirCliente(arch, cliente);
+    fclose(arch);
+}
+
+void escribirCliente(FILE * arch, stCliente cliente)
+{
+    if(arch != NULL)
+    {
+        fwrite(&cliente,sizeof(stCliente),1,arch);
+    }
+}
+
+void registrarClienteModificado(char nombreArchivo, stCliente cliente)
+{
+    FILE * arch = NULL;
+
+    fopen(nombreArchivo,"r+b");
+
+    if(arch)
+    {
+        fseek(arch,cliente.idCliente,SEEK_SET);
+        escribirCliente(arch, cliente);
+        fclose(arch);
+    }
+
+}
+
+///Funciones de modificación
+stCliente modificarCliente(stCliente cliente)
+{
+    int op = 0;
+    char opcion = 'n';
+    stCliente aux;
+
+    do
+    {
+        system("cls");
+        header();
+        menuEditarDatosClientes();
+        footer();
+        scanf("%d", &op);
+
+        switch (op)
+        {
+        case 1:
+            system("cls");
+            header();
+            printf("Ingrese el nombre: ");
+            footer();
+            fflush(stdin);
+            gets(&aux.nombre);
+            while(strlen(aux.nombre)>30)
+            {
+                system("cls");
+                header();
+                printf("El nombre es demaciado largo\n");
+                printf("Ingrese el nombre: ");
+                footer();
+                fflush(stdin);
+                gets(&aux.nombre);
+            }
+            break;
+        case 2:
+            system("cls");
+            header();
+            printf("Ingrese el apellido: ");
+            footer();
+            fflush(stdin);
+            gets(&aux.apellido);
+            while(strlen(aux.apellido)>30)
+            {
+                system("cls");
+                header();
+                printf("El apellido es demaciado largo\n");
+                printf("Ingrese el apellido: ");
+                footer();
+                fflush(stdin);
+                gets(&aux.apellido);
+            }
+            break;
+        case 3:
+            system("cls");
+            header();
+            printf("Ingrese el username: ");
+            footer();
+            fflush(stdin);
+            gets(&aux.userName);
+            while(strlen(aux.userName)>20)
+            {
+                system("cls");
+                header();
+                printf("El username es demaciado largo\n");
+                printf("Ingrese el username: ");
+                footer();
+                fflush(stdin);
+                gets(&aux.userName);
+            }
+            break;
+        case 4:
+            system("cls");
+            header();
+            printf("Ingrese el password: ");
+            footer();
+            fflush(stdin);
+            gets(&aux.password);
+            while(strlen(aux.password)>20)
+            {
+                system("cls");
+                header();
+                printf("El password es demaciado largo\n");
+                printf("Ingrese el password: ");
+                footer();
+                fflush(stdin);
+                gets(&aux.password);
+            }
+            break;
+        case 5:
+            system("cls");
+            header();
+            printf("Ingrese el mail: ");
+            footer();
+            fflush(stdin);
+            gets(&aux.mail);
+            while(strlen(aux.mail)>30)
+            {
+                system("cls");
+                header();
+                printf("El mail es demaciado largo\n");
+                printf("Ingrese el mail: ");
+                footer();
+                fflush(stdin);
+                gets(&aux.mail);
+            }
+            break;
+        case 6:
+            system("cls");
+            header();
+            printf("Ingrese el domicilio: ");
+            footer();
+            fflush(stdin);
+            gets(&aux.domicilio);
+            while(strlen(aux.domicilio)>30)
+            {
+                system("cls");
+                header();
+                printf("El domicilio es demaciado largo\n");
+                printf("Ingrese el domicilio: ");
+                footer();
+                fflush(stdin);
+                gets(&aux.domicilio);
+            }
+            break;
+        case 7:
+            system("cls");
+            header();
+            printf("Ingrese el genero(f/m/o): ");
+            footer();
+            fflush(stdin);
+            scanf("%c", &opcion);
+            while(aux.genero != 'f' && aux.genero != 'm' && aux.genero != 'o')
+            {
+                printf("Error! Genero no valido");
+                printf("Genero: ");
+                fflush(stdin);
+                scanf("%c", &opcion);
+            }
+            break;
+        case 8:
+            system("cls");
+            header();
+            printf("Esta seguro que quiere darse de baja?(s/n): ");
+            footer();
+            fflush(stdin);
+            scanf("%c", &opcion);
+            if(opcion == 's')
+            {
+                aux.activo = 0;
+            }
+            break;
+            if(cliente.rol == 1)
+            {
+            case 9:
+                system("cls");
+                header();
+                printf("Esta seguro que quiere hacer admin a este usuario?(s/n): ");
+                footer();
+                fflush(stdin);
+                scanf("%c", &opcion);
+                if(opcion == 's')
+                {
+                    aux.rol = 1;
+                }
+                break;
+            }
+        default:
+
+            break;
+
+        }
+    }
+    while(op != 0);
+
+    cliente = aux;
+
+    return cliente;
 }

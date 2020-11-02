@@ -4,10 +4,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "productos.h"
+#include "pedidos.h"
+#include "arbolProducto.h"
 
 typedef struct _nodoListaProducto
 {
     stProducto p;
+<<<<<<< Updated upstream
+=======
+    int idPedido;
+    char fecha[20];
+>>>>>>> Stashed changes
     struct _nodoListaProducto * sig;
 } nodoListaProducto;
 
