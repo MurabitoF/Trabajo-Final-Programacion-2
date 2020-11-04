@@ -1,7 +1,8 @@
 # depslib dependency file v1.0
 1966080 
 
-1604349047 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\clientes.c
+1604515037 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\clientes.c
+	"clientes.h"
 
 1603820997 shed changes
 	"clientes.h"
@@ -47,24 +48,37 @@
 
 1604264716 ated upstream
 
-1604515203 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaproducto.h
+1604516065 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaproducto.h
 	<stdio.h>
 	<stdlib.h>
 	"productos.h"
 	<time.h>
 
-1604515281 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\productos.h
+1604516046 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\productos.h
 	<stdio.h>
 	<stdlib.h>
 
-1603483145 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\pedidos.c
+1604515437 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\pedidos.c
 	"pedidos.h"
 
-1604261920 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\pedidos.h
-
-1603654293 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\main.c
+1604515423 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\pedidos.h
 	<stdio.h>
 	<stdlib.h>
+	<string.h>
+	"gotoxy.h"
+	"clientes.h"
+	"productos.h"
+
+1604514857 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\main.c
+	<stdio.h>
+	<stdlib.h>
+	"productos.h"
+	"clientes.h"
+	"pedidos.h"
+	"listaClientes.h"
+	"listaProducto.h"
+	"arbolProducto.h"
+	"gotoxy.h"
 
 1604347136 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaproducto.c
 	"listaProducto.h"
@@ -72,11 +86,13 @@
 	"listaProducto.h"
 	"clientes.h"
 
-1604345361 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\arbolproducto.c
-	"arbolProducto.h"
+1604515993 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\arbolproducto.c
 	"arbolProducto.h"
 
-1604264716 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\arbolproducto.h
+1604516026 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\arbolproducto.h
+	<stdio.h>
+	<stdlib.h>
+	"productos.h"
 
 1604350369 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\productos.c
 	"productos.h"

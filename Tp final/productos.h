@@ -7,6 +7,7 @@
 typedef struct _stProductos
 {
     int idProducto;
+    char categoria[15];
     char nombre[30];
     char marca[20];
     float precio;
