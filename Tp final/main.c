@@ -16,24 +16,24 @@ const char A_Clientes[] = "clientes.dat";
 const char A_Pedidos[] = "pedidos.dat";
 
 int contadorDatos(char nombreArchivo[], int byte);
-void pasarProductoaCliente(nodoListaClientes * lista, stProducto producto, stPedidos pedido);
-void bajarPedidos (char nombreArchivo[], nodoListaClientes * clientes, nodoArbolProducto * productos);
+nodoListaClientes * pasarProductoaCliente(nodoListaClientes * lista, stProducto producto, stPedidos pedido);
+nodoListaClientes * bajarPedidos (char nombreArchivo[], nodoListaClientes * clientes, nodoArbolProducto * productos);
 
 int main()
 {
 
-    int i, val;
+    int i, val, j;
     int dim;
 
     nodoArbolProducto * arbolProductos = inicArbol();
     nodoListaClientes * clientes = inicListaClientes();
 
-    /*for (i = 1; i<2; i++)
+    for (i = 1; i<2; i++)
     {
-        crearProducto(A_Productos);
-        crearCliente(A_Clientes);
-        cargarPedido(A_Pedidos, &i, &i);
-    }*/
+        //crearProducto(A_Productos);
+        //crearCliente(A_Clientes);
+        cargarPedido(A_Pedidos, i, i);
+    }
     FILE * productos = fopen(A_Productos, "rb");
     stProducto p;
 
@@ -47,22 +47,35 @@ int main()
     }
     fclose(productos);
 
-    system("pause");
-
     dim = contadorDatos(A_Productos, sizeof(stProducto));
-    printf("%d", dim);
+    printf("%d\n", dim);
 
     system("pause");
 
-    stProducto aProductos [dim];
+    stProducto * aProductos = (stProducto*) malloc(sizeof(stProducto) * dim);
 
-    val = pasarArchivoArray(&aProductos, A_Productos, dim);
+    val = pasarArchivoArray(aProductos, A_Productos, dim);
 
-    arbolProductos = arregloOrd2arbol(arbolProductos, aProductos, 0, val);
+    for (j=0; j<val; j++)
+    {
+        mostrarProducto(aProductos[j]);
+    }
 
-    pasaArchivoALista(clientes, A_Clientes);
+    printf("\n");
+    printf("\n");
 
-    bajarPedidos(A_Pedidos, clientes, arbolProductos);
+    arbolProductos = arregloOrd2arbol(arbolProductos, aProductos, 0, val-1);
+
+    clientes = pasaArchivoALista(clientes, A_Clientes);
+
+    mostrarInOrden(arbolProductos);
+
+    printf("\n");
+
+    mostrarListaCliente(clientes);
+    mostrarListaProducto(clientes->listaProductos);
+
+    clientes = bajarPedidos(A_Pedidos, clientes, arbolProductos);
 
     mostrarListaCliente(clientes);
     return 0;
@@ -92,12 +105,12 @@ void muestraRecomendados(nodoListaClientes * clientes, nodoArbolProducto * arbol
     mostrarPorCategoria(arbolProductos, categorias);
 }
 
-void bajarPedidos (char nombreArchivo[], nodoListaClientes * clientes, nodoArbolProducto * productos)
+nodoListaClientes * bajarPedidos (char nombreArchivo[], nodoListaClientes * clientes, nodoArbolProducto * productos)
 {
     FILE * archi = fopen(nombreArchivo, "rb");
 
     stPedidos pedido;
-    nodoArbolProducto * p;
+    nodoArbolProducto * p = inicArbol();
     nodoListaClientes * aux = inicListaClientes();
 
     if (archi)
@@ -105,15 +118,16 @@ void bajarPedidos (char nombreArchivo[], nodoListaClientes * clientes, nodoArbol
         while (fread(&pedido, sizeof(stPedidos), 1, archi) > 0)
         {
             p = buscarNodoPorId(productos, pedido.idProducto);
-            pasarProductoaCliente(clientes, p->producto, pedido);
+            clientes = pasarProductoaCliente(clientes, p->producto, pedido);
             //aux = buscarClientePorId(clientes, pedido.idCliente);
             //aux->listaProductos = agregarFinalProducto(aux->listaProductos, crearNodoProducto(buscarNodoPorId(productos, pedido.idProducto), pedido.idPedido, pedido.fecha));
         }
         fclose(archi);
     }
+    return clientes;
 }
 
-void pasarProductoaCliente(nodoListaClientes * lista, stProducto producto, stPedidos pedido)
+nodoListaClientes * pasarProductoaCliente(nodoListaClientes * lista, stProducto producto, stPedidos pedido)
 {
     if(lista)
     {
@@ -123,7 +137,8 @@ void pasarProductoaCliente(nodoListaClientes * lista, stProducto producto, stPed
         }
         else
         {
-            pasarProductoaCliente(lista->siguiente, producto, pedido);
+            lista->siguiente = pasarProductoaCliente(lista->siguiente, producto, pedido);
         }
     }
+    return lista;
 }

@@ -44,4 +44,8 @@ nodoListaProducto * borrarProductoNombre (nodoListaProducto * listaProducto, cha
 
 nodoListaProducto * borrarListaProducto (nodoListaProducto * listaProducto);
 
+//////////// Funciones de Calculo ////////////
+
+float cuentaPrecios (nodoListaProducto * listaProducto);
+
 #endif // LISTAPRODUCTO_H_INCLUDED

@@ -232,3 +232,16 @@ int buscaMayor(int comprasProducto[])
     }
     return may;
 }
+
+float cuentaPrecios (nodoListaProducto * listaProducto)
+{
+    nodoListaProducto * seg = listaProducto;
+    float precio;
+
+    while (seg != NULL)
+    {
+        precio = precio + seg->p.precio;
+        seg = seg->sig;
+    }
+    return precio;
+}

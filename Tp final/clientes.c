@@ -81,6 +81,8 @@ stCliente crearCliente(char nombreArchivo[])
     client.activo = 1;
     client.idCliente = contadorDatos(nombreArchivo, sizeof(stCliente)) + 1;
 
+    registrarCliente(nombreArchivo, client);
+
     return client;
 }
 

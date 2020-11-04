@@ -1,7 +1,7 @@
 # depslib dependency file v1.0
 1966080 
 
-1604517225 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\clientes.c
+1604518872 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\clientes.c
 	"clientes.h"
 
 1603820997 shed changes
@@ -49,7 +49,7 @@
 
 1604264716 ated upstream
 
-1604516392 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaproducto.h
+1604518157 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaproducto.h
 	<stdio.h>
 	<stdlib.h>
 	"productos.h"
@@ -70,7 +70,7 @@
 	"clientes.h"
 	"productos.h"
 
-1604516719 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\main.c
+1604521056 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\main.c
 	<stdio.h>
 	<stdlib.h>
 	"productos.h"
@@ -81,7 +81,7 @@
 	"arbolProducto.h"
 	"gotoxy.h"
 
-1604516809 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaproducto.c
+1604518239 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaproducto.c
 	"listaProducto.h"
 	"clientes.h"
 
