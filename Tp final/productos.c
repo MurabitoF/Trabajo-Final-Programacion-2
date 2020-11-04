@@ -1,5 +1,4 @@
-<<<<<<< Updated upstream
-=======
+
 #include "productos.h"
 
 //////////// Funciones de carga ////////////
@@ -90,11 +89,3 @@ void mostrarProducto(stProducto product)
     printf("Precio del producto: %f", product.precio);
 
 }
-
-
-
-
-
-
-
->>>>>>> Stashed changes

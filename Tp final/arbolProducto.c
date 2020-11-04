@@ -1,28 +1,4 @@
-<<<<<<< Updated upstream
-=======
 #include "arbolProducto.h"
-
-stProducto * pasarArchivoArray (char nombreArchivo[], int dim, stProducto arrayProducto[])  //// Implementar con punteros dobles
-{
-    stProducto aux;
-    int i = 0;
-
-    FILE * archi = fopen(nombreArchivo, "rb");
-    if (archi != NULL)
-    {
-        while (fread(&aux, sizeof(stProducto), 1, archi) > 0 && i<dim)
-        {
-            arrayProducto[i] = aux;
-            i++;
-        }
-    }
-
-<<<<<<< Updated upstream
-    fclose(archi);
-    return i;
-=======
-    return arbol;
-}
 
 nodoArbolProducto * arregloOrd2arbol(stProducto arr[], int inic, int cantVal)
 {
@@ -112,7 +88,6 @@ nodoArbolProducto * buscarNodoPorId(nodoArbolProducto * arbol, int id)
         }
     }
     return aux;
->>>>>>> Stashed changes
 }
 
 int pasarArchivoArrayInt (char nombreArchivo[], int val, int arrayInt[])  //// Implementar con punteros dobles
@@ -133,4 +108,3 @@ int pasarArchivoArrayInt (char nombreArchivo[], int val, int arrayInt[])  //// I
 
     return i;
 }
->>>>>>> Stashed changes

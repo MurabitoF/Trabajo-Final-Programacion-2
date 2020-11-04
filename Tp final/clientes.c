@@ -1,6 +1,4 @@
 #include "clientes.h"
-<<<<<<< Updated upstream
-=======
 
 
 //////////// Funciones de carga ////////////
@@ -126,10 +124,6 @@ void mostrarCliente(stCliente client)
     gotoxy(posX, posY);
 }
 
-//////////// Funciones de modificaci�n ////////////
+//////////// Funciones de modificacion ////////////
 
-void modificarCliente(stCliente cliente, FILE * nombreArchivo)
-{
 
-}
->>>>>>> Stashed changes

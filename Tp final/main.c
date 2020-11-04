@@ -1,26 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-<<<<<<< Updated upstream
-int main()
-{
-    printf("Hello world!\n");
-<<<<<<< Updated upstream
-    return 0;
-}
-=======
-
-    int val, dim, i;
-    dim = contadorDatos(A_PRODUCTOS, sizeof(int));
-
-    int arrayInt [dim];
-    val = pasarArchivoArrayInt(A_PRODUCTOS, dim, arrayInt);
-
-    for (i=0; i<val; i++)
-    {
-        printf("%d ", arrayInt[i]);
-    }
-=======
 #include "productos.h"
 #include "clientes.h"
 #include "pedidos.h"
@@ -81,7 +61,6 @@ int main()
     arbolProductos = arregloOrd2arbol(aProductos, 0, val);
 
     pasaArchivoALista(clientes, A_Clientes);
->>>>>>> Stashed changes
 
     bajarPedidos(A_Pedidos, clientes, arbolProductos);
 
@@ -105,9 +84,6 @@ int contadorDatos(char nombreArchivo[], int byte) //Cuenta cuantos bloques de da
 
     return cant;
 }
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 
 void muestraRecomendados(nodoListaClientes * clientes, nodoArbolProducto * arbolProductos)
 {
@@ -151,4 +127,3 @@ void pasarProductoaCliente(nodoListaClientes * lista, stProducto producto, stPed
         }
     }
 }
->>>>>>> Stashed changes

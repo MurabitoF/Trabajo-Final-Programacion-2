@@ -16,13 +16,9 @@ typedef struct _nodoListaProducto
 
 nodoListaProducto * inicListaProducto ();
 
-<<<<<<< Updated upstream
-nodoListaProducto * crearNodoProducto (stProducto dato);
-
 nodoListaProducto * pasaArchivoAListaProducto(nodoListaProducto * listaProducto, char nombreArchivo[]);
-=======
+
 nodoListaProducto * crearNodoProducto (stProducto producto, int idPedido);
->>>>>>> Stashed changes
 
 nodoListaProducto * agregarPrpioProducto (nodoListaProducto * listaProducto, nodoListaProducto * nuevoProducto);
 

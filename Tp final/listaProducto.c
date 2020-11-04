@@ -1,7 +1,7 @@
 #include "listaProducto.h"
 #include "clientes.h"
 
-<<<<<<< Updated upstream
+
 nodoListaProducto * pasaArchivoAListaProducto(nodoListaProducto * listaProducto, char nombreArchivo[])
 {
     stCliente aux;
@@ -20,9 +20,8 @@ nodoListaProducto * pasaArchivoAListaProducto(nodoListaProducto * listaProducto,
 
     return listaProducto;
 }
-=======
+
 //////////// Funciones Basicas ////////////
->>>>>>> Stashed changes
 
 nodoListaProducto * inicListaProducto()
 {
