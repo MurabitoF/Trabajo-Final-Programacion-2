@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "gotoxy.h"
 
 typedef struct
 {
@@ -18,6 +19,12 @@ typedef struct
     int activo; // indica 1 o 0 si el cliente fue eliminado
 } stCliente;
 
+///Funcion de muestra
 void mostrarCliente(stCliente dato);
+
+///Funciones de carga
+stCliente crearCliente(char nombreArchivo[]);
+
+void registrarCliente(char nombreArchivo[], stCliente client);
 
 #endif // CLIENTES_H_INCLUDED

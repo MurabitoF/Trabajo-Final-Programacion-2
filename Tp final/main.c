@@ -58,7 +58,7 @@ int main()
 
     val = pasarArchivoArray(&aProductos, A_Productos, dim);
 
-    arbolProductos = arregloOrd2arbol(aProductos, 0, val);
+    arbolProductos = arregloOrd2arbol(arbolProductos, aProductos, 0, val);
 
     pasaArchivoALista(clientes, A_Clientes);
 

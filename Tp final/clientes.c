@@ -37,7 +37,7 @@ stCliente crearCliente(char nombreArchivo[])
         fflush(stdin);
         gets(client.userName);
     }
-printf("Password: ");
+    printf("Password: ");
     fflush(stdin);
     gets(client.password);
     while(strlen(client.password)>20)

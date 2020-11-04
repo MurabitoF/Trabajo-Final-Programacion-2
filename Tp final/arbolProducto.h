@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "productos.h"
 
 typedef struct _nodoArbolstProducto
@@ -17,12 +18,13 @@ nodoArbolProducto * inicArbol();
 nodoArbolProducto * crearNodoArbolProducto(stProducto prod);
 ///Funciones de carga del arbol
 nodoArbolProducto * agregarNodoEnOrden(nodoArbolProducto *arbol, nodoArbolProducto *nuevo);
-nodoArbolProducto * arregloOrd2arbol(stProducto arr[], int inic, int cantVal);
+nodoArbolProducto * arregloOrd2arbol(nodoArbolProducto * arbol, stProducto arr[], int inic, int cantVal);
 ///Funciones de muestra del arbol
 void mostrarNodoArbolProd(nodoArbolProducto * nodo);
 void mostrarPreOrden(nodoArbolProducto * arbol);
 void mostrarInOrden(nodoArbolProducto * arbol);
 void mostrarPosOrden(nodoArbolProducto * arbol);
+void mostrarPorCategoria(nodoArbolProducto * arbol, char categorias[]);
 ///Funciones de busqueda
 nodoArbolProducto * buscarNodoPorId(nodoArbolProducto * arbol, int id);
 nodoArbolProducto * buscarNodoPorMarca(nodoArbolProducto * arbol, char marca[]);
