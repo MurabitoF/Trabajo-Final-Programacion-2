@@ -1,16 +1,33 @@
 # depslib dependency file v1.0
-<<<<<<< Updated upstream
-1603484364 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\clientes.c
-=======
-1604349047 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\clientes.c
->>>>>>> Stashed changes
-	"clientes.h"
+1966080 
 
-1603484362 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\clientes.h
+1604349047 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\clientes.c
+
+1603820997 shed changes
+	"clientes.h"
+	<stdio.h>
+	<stdlib.h>
+	"productos.h"
+	<time.h>
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"gotoxy.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"gotoxy.h"
+	"clientes.h"
+	"productos.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"productos.h"
+	"productos.h"
+
+1604515713 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\clientes.h
+	<stdio.h>
+	<stdlib.h>
 
 1491399896 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\gotoxy.h
 
@@ -28,80 +45,47 @@
 	"clientes.h"
 	"listaProducto.h"
 
-<<<<<<< Updated upstream
-1603484616 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaproducto.h
-=======
-1604346266 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaproducto.h
->>>>>>> Stashed changes
+1604264716 ated upstream
+
+1604515203 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaproducto.h
 	<stdio.h>
 	<stdlib.h>
 	"productos.h"
 	<time.h>
 
-<<<<<<< Updated upstream
-1603482710 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\productos.h
-=======
-1604350377 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\productos.h
->>>>>>> Stashed changes
+1604515281 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\productos.h
 	<stdio.h>
 	<stdlib.h>
-	<string.h>
-	"gotoxy.h"
 
 1603483145 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\pedidos.c
 	"pedidos.h"
 
-<<<<<<< Updated upstream
-1603483114 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\pedidos.h
-=======
 1604261920 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\pedidos.h
->>>>>>> Stashed changes
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	"gotoxy.h"
-	"clientes.h"
-	"productos.h"
 
 1603654293 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\main.c
 	<stdio.h>
 	<stdlib.h>
 
-<<<<<<< Updated upstream
-1603652517 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaproducto.c
+1604347136 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaproducto.c
 	"listaProducto.h"
 	"clientes.h"
-
-1603654081 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\arbolproducto.c
-	"arbolProducto.h"
-
-1603653954 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\arbolproducto.h
-=======
-1604347136 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaproducto.c
 	"listaProducto.h"
 	"clientes.h"
 
 1604345361 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\arbolproducto.c
 	"arbolProducto.h"
+	"arbolProducto.h"
 
 1604264716 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\arbolproducto.h
->>>>>>> Stashed changes
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	"productos.h"
 
-<<<<<<< Updated upstream
-1603486179 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\productos.c
-=======
 1604350369 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\productos.c
 	"productos.h"
 
-1604346098 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaclientes.c
+1604514685 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaclientes.c
 	"listaClientes.h"
 	"listaProducto.h"
 
-1604346242 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaclientes.h
+1604514685 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaclientes.h
 	<stdio.h>
 	<stdlib.h>
 	"clientes.h"
@@ -172,6 +156,4 @@
 	"productos.h"
 
 1603820997 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\productos.c
->>>>>>> Stashed changes
-	"productos.h"
 

@@ -90,17 +90,17 @@ nodoArbolProducto * buscarNodoPorId(nodoArbolProducto * arbol, int id)
     return aux;
 }
 
-int pasarArchivoArrayInt (char nombreArchivo[], int val, int arrayInt[])  //// Implementar con punteros dobles
+int pasarArchivoArray (char nombreArchivo[], int dim, int arrayProductos[])  //// Implementar con punteros dobles
 {
     int i = 0;
-    int aux;
+    stProducto aux;
     FILE * archi = fopen(nombreArchivo, "rb");
 
     if (archi != NULL)
     {
-        while (fread(&aux, sizeof(int), 1, archi) > 0 && i<val)
+        while (fread(&aux, sizeof(int), 1, archi) > 0 && i<dim)
         {
-            arrayInt [i] = aux;
+            arrayProductos [i] = aux;
             i++;
         }
     }

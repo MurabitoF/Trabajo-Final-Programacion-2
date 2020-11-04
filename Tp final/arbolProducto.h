@@ -10,9 +10,7 @@ typedef struct _nodoArbolstProducto
     stProducto p;
     struct _nodoArbolstProducto * izq;
     struct _nodoArbolstProducto * der;
-} nodoArbolstProducto;
-
-stProducto * pasarArchivoArray (char nombreArchivo[]);
+} nodoArbolProducto;
 
 ///Funciones Basicas
 nodoArbolProducto * inicArbol();
@@ -37,5 +35,8 @@ nodoArbolProducto * borrarnodoArbolProducto(nodoArbolProducto * arbol, nodoArbol
 nodoArbolProducto * borrarArbolProductos(nodoArbolProducto * arbol);
 ///Subprogramas
 void subProgramaModificarProducto(nodoArbolProducto * nodoProducto, char nombreArchivo[]);
+
+///Funcione de Archivo
+int pasarArchivoArray (char nombreArchivo[], int dim, int arrayProductos[]);
 
 #endif // ARBOLPRODUCTO_H_INCLUDED
