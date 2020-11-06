@@ -24,7 +24,11 @@ void footer();
 void loading();
 
 ///Menús
-
-void menuEditarDatosClientes();
+void menuIngresoG(int x);
+void menuLoginG(int x);
+void menuPrincipalAdminG(int x);
+void menuPrincipalClientesG(int x);
+void menuDatosClienteG(int x);
+void menuMostrarArbolG(int x);
 
 #endif // GRAFICOS_H_INCLUDED

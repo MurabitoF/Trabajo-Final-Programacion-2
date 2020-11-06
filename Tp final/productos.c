@@ -2,7 +2,7 @@
 
 //////////// Funciones de carga ////////////
 
-void crearProducto(char nombreArchivo[])
+stProducto crearProducto(char nombreArchivo[])
 {
     stProducto product;
 
@@ -41,8 +41,6 @@ void crearProducto(char nombreArchivo[])
 
     product.eliminado = 1;
     product.idProducto = contadorDatos(nombreArchivo, sizeof(stProducto) + 1);
-
-    registrarProducto(nombreArchivo, product);
 }
 
 void registrarProducto(char nombreArchivo[], stProducto prod)  //Registra un producto en un archivo.
@@ -58,10 +56,9 @@ void registrarProducto(char nombreArchivo[], stProducto prod)  //Registra un pro
     }
 }
 
-<<<<<<< Updated upstream
 //////////// Funciones de descarga ////////////
-stProducto * pasarArchivoArray (char nombreArchivo)  //// Implementar con punteros dobles
-=======
+//stProducto * pasarArchivoArray (char nombreArchivo)  //// Implementar con punteros dobles
+
 void registrarProductoModificado(char nombreArchivo[], stProducto prod)
 {
     FILE * arch = NULL;
@@ -76,16 +73,14 @@ void registrarProductoModificado(char nombreArchivo[], stProducto prod)
 }
 
 ///Funciones de descarga
-stProducto * pasarArchivoArray (stProducto arrayProducto [], char nombreArchivo[], int dim)  //// Implementar con punteros dobles
->>>>>>> Stashed changes
+/*stProducto * pasarArchivoArray (stProducto arrayProducto [], char nombreArchivo[], int dim)  //// Implementar con punteros dobles
 {
-    stProducto * arrayProducto;
+    stProducto aux;
     int totalProductos;
     int i = 0;
 
     FILE * archi = fopen(nombreArchivo, "rb");
-<<<<<<< Updated upstream
-=======
+
     if (archi!=NULL)
     {
         while (fread(&aux, sizeof(stProducto), 1, archi) > 0 && i<dim)
@@ -95,7 +90,6 @@ stProducto * pasarArchivoArray (stProducto arrayProducto [], char nombreArchivo[
         }
         fclose(archi);
     }
->>>>>>> Stashed changes
 
     totalProductos = contadorDatos(nombreArchivo, sizeof(stProducto));
     arrayProducto = (stProducto*) malloc (sizeof(stProducto) * totalProductos);
@@ -103,7 +97,7 @@ stProducto * pasarArchivoArray (stProducto arrayProducto [], char nombreArchivo[
     fread(&arrayProducto[i], sizeof(stProducto), totalProductos, archi);
 
     return arrayProducto;
-}
+}*/
 
 ///Funciones de muestra
 void mostrarProducto(stProducto product)
@@ -124,7 +118,7 @@ stProducto modificarProducto(stProducto producto)
     {
         system("cls");
         header();
-        menuEditarDatosClientes();
+        //menuDatosProducto();
         footer();
         scanf("%d", &op);
 

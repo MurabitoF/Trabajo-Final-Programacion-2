@@ -43,12 +43,9 @@ void mostrarListaCliente(nodoListaClientes * lista);
 ///Funciones de archivos
 nodoListaClientes * pasaArchivoALista(nodoListaClientes * listaCliente, char nombreArchivo[]);
 void generarPedidos(nodoListaClientes * lista, char nombreArchivo[]);
-<<<<<<< Updated upstream
-=======
 
 ///Subprogramas
 void subProgramaModificarCliente(nodoListaClientes * nodoCliente, char nombreArchivo[]);
 
->>>>>>> Stashed changes
 
 #endif // LISTASCLIENTES_H_INCLUDED

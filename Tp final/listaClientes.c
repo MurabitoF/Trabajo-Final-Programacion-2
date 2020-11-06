@@ -234,7 +234,7 @@ nodoListaClientes * borrarListaClientes(nodoListaClientes * lista)
 void mostrarNodoCliente(nodoListaClientes * cliente)
 {
     mostrarCliente(cliente->cliente);
-    mostrarListaProducto(lista->listaProductos);
+    mostrarListaProducto(cliente->listaProductos);
 }
 
 void mostrarListaCliente(nodoListaClientes * lista)
@@ -274,59 +274,37 @@ nodoListaClientes * pasaArchivoALista(nodoListaClientes * listaCliente, char nom
 
 void generarPedidos(nodoListaClientes * lista, char nombreArchivo[])
 {
-<<<<<<< Updated upstream
     nodoListaProducto * productos = lista->listaProductos;
     stPedidos aux;
-=======
     int ultimoID = contadorDatos(nombreArchivo, sizeof(stPedidos)) + 1;
 
-    stPedidos aux;
-    nodoListaProducto * productos = lista->listaProductos;
->>>>>>> Stashed changes
     FILE * arch = NULL;
 
     arch = fopen(nombreArchivo, "wb");
 
     if(arch)
     {
-        while(lista)
+        while(productos)
         {
-<<<<<<< Updated upstream
-          while(productos)
-          {
             aux.idCliente = lista->cliente.idCliente;
             aux.idProducto = productos->p.idProducto;
-            aux.idPedido = 0;//pensar como
-            productos = productos->sig;
-
-          }
-          lista = lista
-        }
-    }
-}
-=======
-            while(productos)
+            strcpy(aux.fecha, productos->fecha);
+            if(productos->idPedido != 0)
             {
-                aux.idCliente = lista->cliente.idCliente;
-                aux.idProducto = productos->p.idProducto;
-                strcpy(aux.fecha, productos->fecha);
-                if(productos->idPedido != 0)
-                {
-                    aux.idPedido = productos->idPedido;
-                }
-                else
-                {
-                    aux.idPedido = ultimoID;
-                    ultimoID++;
-                }
-                productos = productos->sig;
-                fwrite(&aux,sizeof(stPedidos), 1, arch);
+                aux.idPedido = productos->idPedido;
             }
-            lista = lista->siguiente;
-            productos = lista->listaProductos;
+            else
+            {
+                aux.idPedido = ultimoID;
+                ultimoID++;
+            }
+            productos = productos->sig;
+            fwrite(&aux,sizeof(stPedidos), 1, arch);
         }
-        fclose(arch);
+        lista = lista->siguiente;
+        productos = lista->listaProductos;
     }
+    fclose(arch);
 }
 
 ///Subprogramas
@@ -338,4 +316,3 @@ void subProgramaModificarCliente(nodoListaClientes * nodoCliente, char nombreArc
     registrarClienteModificado(nombreArchivo, aux);
 
 }
->>>>>>> Stashed changes
