@@ -55,38 +55,38 @@ nodoArbolProducto * arregloOrd2arbol(nodoArbolProducto * arbol, stProducto arr[]
 }
 
 ///Funciones de muestra del arbol
-void mostrarNodoArbolProd(nodoArbolProducto * nodo)
+void mostrarNodoArbolProd(nodoArbolProducto * nodo, int x)
 {
-    mostrarProducto(nodo->producto);
+    mostrarProducto(nodo->producto, x);
 }
 
-void mostrarPreOrden(nodoArbolProducto * arbol)
+void mostrarPreOrden(nodoArbolProducto * arbol, int x)
 {
     if(arbol)
     {
-        mostrarNodoArbolProd(arbol);
-        mostrarPreOrden(arbol->izq);
-        mostrarPreOrden(arbol->der);
+        mostrarNodoArbolProd(arbol, x);
+        mostrarPreOrden(arbol->izq, x);
+        mostrarPreOrden(arbol->der, x);
     }
 }
 
-void mostrarInOrden(nodoArbolProducto * arbol)
+void mostrarInOrden(nodoArbolProducto * arbol, int x)
 {
     if(arbol)
     {
-        mostrarInOrden(arbol->izq);
-        mostrarNodoArbolProd(arbol);
-        mostrarInOrden(arbol->der);
+        mostrarInOrden(arbol->izq, x);
+        mostrarNodoArbolProd(arbol, x);
+        mostrarInOrden(arbol->der, x);
     }
 }
 
-void mostrarPosOrden(nodoArbolProducto * arbol)
+void mostrarPosOrden(nodoArbolProducto * arbol, int x)
 {
     if(arbol)
     {
-        mostrarPosOrden(arbol->izq);
-        mostrarPosOrden(arbol->der);
-        mostrarNodoArbolProd(arbol);
+        mostrarPosOrden(arbol->izq, x);
+        mostrarPosOrden(arbol->der, x);
+        mostrarNodoArbolProd(arbol, x);
     }
 }
 

@@ -1,14 +1,14 @@
 # depslib dependency file v1.0
-1604620448 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\clientes.c
+1604946081 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\clientes.c
 	"clientes.h"
 
-1604620364 c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\clientes.h
+1604943188 c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\clientes.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"graficos.h"
 
-1604618352 c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\graficos.h
+1604943639 c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\graficos.h
 	<stdlib.h>
 	<stdio.h>
 	<windows.h>
@@ -21,21 +21,21 @@
 	<stdlib.h>
 	<windows.h>
 
-1604620558 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\graficos.c
+1604943648 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\graficos.c
 	"graficos.h"
 
-1604351218 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\listaproducto.c
+1604884570 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\listaproducto.c
 	"listaProducto.h"
 	"clientes.h"
 
-1604539140 c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\listaproducto.h
+1604884576 c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\listaproducto.h
 	<stdio.h>
 	<stdlib.h>
 	"productos.h"
 	"pedidos.h"
 	"arbolProducto.h"
 
-1604617526 c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\productos.h
+1604884501 c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\productos.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -49,12 +49,12 @@
 	"clientes.h"
 	"productos.h"
 
-1604351219 c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\arbolproducto.h
+1604884289 c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\arbolproducto.h
 	<stdio.h>
 	<stdlib.h>
 	"productos.h"
 
-1604620629 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\main.c
+1604951267 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\main.c
 	<stdio.h>
 	<stdlib.h>
 	"listaClientes.h"
@@ -63,17 +63,17 @@
 1603750720 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\pedidos.c
 	"pedidos.h"
 
-1604351219 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\arbolproducto.c
+1604884359 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\arbolproducto.c
 	"arbolProducto.h"
 
-1604618034 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\productos.c
+1604884487 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\productos.c
 	"productos.h"
 
-1604446399 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\listaclientes.c
+1604944016 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\listaclientes.c
 	"listaClientes.h"
 	"listaProducto.h"
 
-1604445665 c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\listaclientes.h
+1604944620 c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\listaclientes.h
 	<stdio.h>
 	<stdlib.h>
 	"clientes.h"

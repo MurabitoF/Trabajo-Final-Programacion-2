@@ -100,12 +100,16 @@ void registrarProductoModificado(char nombreArchivo[], stProducto prod)
 }*/
 
 ///Funciones de muestra
-void mostrarProducto(stProducto product)
+void mostrarProducto(stProducto product, int x)
 {
-    printf("Id #%d", product.idProducto);
-    printf("Nombre del producto: %s", product.nombre);
-    printf("Marca del producto: %s", product.marca);
-    printf("Precio del producto: %f", product.precio);
+    printf("Id #%d\n", product.idProducto);
+    gotoxy(x,whereY());
+    printf("Nombre del producto: %s\n", product.nombre);
+    gotoxy(x,whereY());
+    printf("Marca del producto: %s\n", product.marca);
+    gotoxy(x,whereY());
+    printf("Precio del producto: %f\n\n", product.precio);
+    gotoxy(x,whereY());
 }
 
 ///Funciones de modificacion
@@ -128,7 +132,7 @@ stProducto modificarProducto(stProducto producto)
             printf("Nombre del producto: ");
             fflush(stdin);
             gets(producto.nombre);
-            while (strlen(producto.nombre) > 30)
+            while (validarString(producto.nombre, 30))
             {
                 printf("Error! Nombre de producto muy largo");
                 printf("Nombre del producto: ");
@@ -140,7 +144,7 @@ stProducto modificarProducto(stProducto producto)
             printf("Marca del producto: ");
             fflush(stdin);
             gets(producto.marca);
-            while (strlen(producto.marca) > 20)
+            while (validarString(producto.marca, 20))
             {
                 printf("Error! Marca del producto muy largo");
                 printf("Marca del producto: ");

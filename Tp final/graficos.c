@@ -11,6 +11,21 @@ void getWindowSize(int * col, int * row)
 
 }
 
+void limpiarTodaLinea()
+{
+    printf("%c[2K", 27); ///Borra la consola en la linea donde este el cursor
+}
+
+void limpiarLineaDer()
+{
+    printf("%c[K", 27); ///Borra la consola a la derecha del cursor
+}
+
+void limpiarLineaIzq()
+{
+    printf("%c[1K", 27); ///Borra la consola a la izquierda del cursor
+}
+
 ///Header y Footer
 void header()
 {
@@ -46,7 +61,7 @@ void footer()
 {
     int x,y,i,posX = 0,posY = 0;
     getWindowSize(&x, &y);
-    posY = y - 3;
+    posY = whereY() + 1;
 
     gotoxy(3,posY);
     printf("%c", escSupIzq);
@@ -59,7 +74,7 @@ void footer()
     gotoxy(3,posY);
     printf("%c", barraVertical);
     gotoxy(((x/2)-(strlen("YOU TECS - ASUSPENDER")/2)), posY);
-    color(7);
+    color(2);
     printf("YOU TECS - ASUSPENDER");
     color(15);
     gotoxy(x-4,posY);
@@ -186,14 +201,64 @@ void menuPrincipalAdminG(int x)
     color(15);
 }
 
+void menuDatosClienteAdminG(int x)
+{
+    color(10);
+    printf("============|Datos del Clientes|===========\n");
+    color(15);
+    gotoxy(x,whereY());
+    printf("[ 1 ] Nombre\n");
+    gotoxy(x,whereY());
+    printf("[ 2 ] Apellido\n");
+    gotoxy(x,whereY());
+    printf("[ 3 ] Nombre de usuario\n");
+    gotoxy(x,whereY());
+    printf("[ 4 ] Contrase%ca\n", enie);
+    gotoxy(x,whereY());
+    printf("[ 5 ] Direccion de email\n");
+    gotoxy(x,whereY());
+    printf("[ 6 ] Domicilio\n");
+    gotoxy(x,whereY());
+    printf("[ 7 ] Genero\n");
+    gotoxy(x,whereY());
+    printf("[ 8 ] Dar de baja\n");
+    gotoxy(x,whereY());
+    printf("[ 9 ] Hacer administrador\n");
+    gotoxy(x,whereY());
+    printf("[ 0 ] Volver\n");
+    gotoxy(x,whereY());
+    color(2);
+    printf(">>> ");
+    color(15);
+}
+
 void menuDatosClienteG(int x)
 {
-    printf("============|-----Datos del Clientes-----|===========\n");
-    printf("[ 1 ] Nombre y apellido\n");
-    printf("[ 2 ] Domicilio\n");
-    printf("[ 3 ] Numero de telefono\n");
-    printf("[ 4 ] Direccion de email\n");
+    color(10);
+    printf("=====|Datos del Clientes|=====\n");
+    color(15);
+    gotoxy(x,whereY());
+    printf("[ 1 ] Nombre\n");
+    gotoxy(x,whereY());
+    printf("[ 2 ] Apellido\n");
+    gotoxy(x,whereY());
+    printf("[ 3 ] Nombre de usuario\n");
+    gotoxy(x,whereY());
+    printf("[ 4 ] Contrase%ca\n", enie);
+    gotoxy(x,whereY());
+    printf("[ 5 ] Direccion de email\n");
+    gotoxy(x,whereY());
+    printf("[ 6 ] Domicilio\n");
+    gotoxy(x,whereY());
+    printf("[ 7 ] Genero\n");
+    gotoxy(x,whereY());
+    printf("[ 8 ] Dar de baja\n");
+    gotoxy(x,whereY());
     printf("[ 0 ] Volver\n");
+    gotoxy(x,whereY());
+    color(2);
+    printf(">>> ");
+    color(15);
 }
 
 void menuMostrarArbolG(int x)
@@ -207,6 +272,29 @@ void menuMostrarArbolG(int x)
     printf("[ 2 ] Inorden\n");
     gotoxy(x, whereY());
     printf("[ 3 ] Posorden\n");
+    gotoxy(x, whereY());
+    printf("[ 0 ] Salir\n");
+    gotoxy(x, whereY());
+    color(2);
+    printf(">>> ");
+    color(15);
+}
+
+void menuBusquedaClienteG(int x)
+{
+    color(10);
+    printf("=====|Buscar Cliente|=====\n");
+    color(15);
+    gotoxy(x, whereY());
+    printf("[ 1 ] Buscar por ID\n");
+    gotoxy(x, whereY());
+    printf("[ 2 ] Buscar por nombre de usuario\n");
+    gotoxy(x, whereY());
+    printf("[ 3 ] Buscar por email\n");
+    gotoxy(x, whereY());
+    printf("[ 4 ] Buscar por nombre\n");
+    gotoxy(x, whereY());
+    printf("[ 5 ] Buscar por apellido\n");
     gotoxy(x, whereY());
     printf("[ 0 ] Salir\n");
     gotoxy(x, whereY());

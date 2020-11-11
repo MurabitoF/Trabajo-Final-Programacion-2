@@ -25,8 +25,8 @@ nodoListaProducto * agregarFinalProducto (nodoListaProducto * listaProducto, nod
 nodoListaProducto * agregarOrdenProducto (nodoListaProducto * listaProducto, nodoListaProducto * nuevoProducto);
 
 //////////// Funciones de Muestra ////////////
-void mostrarNodoProducto(nodoListaProducto * aux);
-void mostrarListaProducto(nodoListaProducto * aux);
+void mostrarNodoProducto(nodoListaProducto * aux, int x);
+void mostrarListaProducto(nodoListaProducto * aux, int x);
 
 //////////// Funciones de Borrado de Datos ////////////
 nodoListaProducto * borrarProductoNombre (nodoListaProducto * listaProducto, char nombre[]);

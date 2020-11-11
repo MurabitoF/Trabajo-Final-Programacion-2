@@ -163,6 +163,44 @@ nodoListaClientes * buscarClientePorEmail(nodoListaClientes * lista, char busque
     return busca;
 }
 
+nodoListaClientes * buscarClientePorNombre(nodoListaClientes * lista, char busqueda[])
+{
+    nodoListaClientes * busca = NULL;
+
+    if(lista)
+    {
+        if(strcmpi(lista->cliente.nombre, busqueda) == 0)
+        {
+            busca = lista;
+        }
+        else
+        {
+            busca = buscarClientePorId(lista->siguiente, busqueda);
+        }
+    }
+
+    return busca;
+}
+
+nodoListaClientes * buscarClientePorApellido(nodoListaClientes * lista, char busqueda[])
+{
+    nodoListaClientes * busca = NULL;
+
+    if(lista)
+    {
+        if(strcmpi(lista->cliente.apellido, busqueda) == 0)
+        {
+            busca = lista;
+        }
+        else
+        {
+            busca = buscarClientePorId(lista->siguiente, busqueda);
+        }
+    }
+
+    return busca;
+}
+
 ///Funciones de Borrado
 nodoListaClientes * borrarPrimerCliente(nodoListaClientes * lista)
 {
@@ -231,23 +269,22 @@ nodoListaClientes * borrarListaClientes(nodoListaClientes * lista)
 }
 
 ///Funciones de muestra
-void mostrarNodoCliente(nodoListaClientes * cliente)
+void mostrarNodoCliente(nodoListaClientes * cliente, int x)
 {
-    mostrarCliente(cliente->cliente);
-    mostrarListaProducto(cliente->listaProductos);
+    if(cliente->cliente.activo == 1)
+        mostrarCliente(cliente->cliente, x);
 }
 
-void mostrarListaCliente(nodoListaClientes * lista)
+void mostrarListaClientes(nodoListaClientes * lista, int x)
 {
     nodoListaClientes * seg = lista;
 
     while(seg != NULL)
     {
-        mostrarNodoCliente(seg);
+        mostrarNodoCliente(seg, x);
         seg = seg->siguiente;
     }
 }
-
 
 ///Funcines de archivo
 nodoListaClientes * pasaArchivoALista(nodoListaClientes * listaCliente, char nombreArchivo[])
@@ -308,11 +345,40 @@ void generarPedidos(nodoListaClientes * lista, char nombreArchivo[])
 }
 
 ///Subprogramas
-void subProgramaModificarCliente(nodoListaClientes * nodoCliente, char nombreArchivo[])
+void subProgramaModificarCliente(nodoListaClientes * nodoCliente, char nombreArchivo[], int admin)
 {
     stCliente aux;
-    aux =  modificarCliente(nodoCliente->cliente);
+    aux =  modificarCliente(nodoCliente->cliente, admin);
     nodoCliente->cliente = aux;
     registrarClienteModificado(nombreArchivo, aux);
 
+}
+
+void subProgramaMostrarCliente(nodoListaClientes * nodoCliente, int posX, int posY)
+{
+    int x,y;
+    getWindowSize(&x, &y);
+
+    system("cls");
+    header();
+    gotoxy(posX, posY);
+    mostrarNodoCliente(nodoCliente, posX);
+    gotoxy(posX, whereY());
+    printf("Pedidos: \n");
+    if(nodoCliente->listaProductos)
+    {
+        mostrarListaProducto(nodoCliente->listaProductos, posX + 3);
+    }
+    else
+    {
+        gotoxy(posX + 3, whereY());
+        printf("No hay pedidos\n");
+    }
+    if(whereY() <= y - 4)
+        gotoxy(0, y-4);
+    footer();
+    gotoxy(posX, whereY()- 3);
+    color(10);
+    system("pause");
+    color(15);
 }

@@ -98,17 +98,17 @@ nodoListaProducto * agregarOrdenProducto(nodoListaProducto * listaProducto, nodo
     return listaProducto;
 }
 
-void mostrarNodoProducto (nodoListaProducto * aux)
+void mostrarNodoProducto (nodoListaProducto * aux, int x)
 {
-    mostrarProducto(aux->p);
+    mostrarProducto(aux->p, x);
 }
 
-void mostrarListaProducto(nodoListaProducto * aux)
+void mostrarListaProducto(nodoListaProducto * aux, int x)
 {
     nodoListaProducto * seg = aux;
     while (seg->sig != NULL)
     {
-        mostrarNodoProducto(seg);
+        mostrarNodoProducto(seg, x);
         seg = seg->sig;
     }
 }

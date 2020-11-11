@@ -17,6 +17,9 @@
 
 ///Funciones Control de ventana
 void getWindowSize(int * col, int * row);
+void limpiarTodaLinea();
+void limpiarLineaDer();
+void limpiarLineaIzq();
 
 ///Header y Footer
 void header();
@@ -28,7 +31,9 @@ void menuIngresoG(int x);
 void menuLoginG(int x);
 void menuPrincipalAdminG(int x);
 void menuPrincipalClientesG(int x);
+void menuDatosClienteAdminG(int x);
 void menuDatosClienteG(int x);
 void menuMostrarArbolG(int x);
+void menuBusquedaClienteG(int x);
 
 #endif // GRAFICOS_H_INCLUDED

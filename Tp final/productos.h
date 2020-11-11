@@ -28,7 +28,7 @@ stProducto * pasarArchivoArray (char nombreArchivo); // Descarga los datos de un
 //stProducto * pasarArchivoArray (stProducto arrayProducto [], char nombreArchivo[], int dim); // Descarga los datos de un archivo a un arreglo.
 
 ///Funciones de muestra
-void mostrarProducto(stProducto product);
+void mostrarProducto(stProducto product, int x);
 
 ///Funciones de modificacion
 stProducto modificarProducto(stProducto);
