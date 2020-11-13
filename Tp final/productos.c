@@ -3,7 +3,7 @@
 
 //////////// Funciones de carga ////////////
 
-void crearProducto(char nombreArchivo[])
+stProducto crearProducto(char nombreArchivo[])
 {
     stProducto product;
 
@@ -43,7 +43,7 @@ void crearProducto(char nombreArchivo[])
     product.eliminado = 1;
     product.idProducto = contadorDatos(nombreArchivo, sizeof(stProducto) + 1);
 
-    registrarProducto(nombreArchivo, product);
+    return product;
 }
 
 void registrarProducto(char nombreArchivo[], stProducto prod)  //Registra un producto en un archivo.

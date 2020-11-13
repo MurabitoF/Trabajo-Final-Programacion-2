@@ -14,6 +14,7 @@ typedef struct _stProductos
     int eliminado;
 } stProducto;
 
+stProducto crearProducto(char nombreArchivo[]);
 void registrarProducto(char nombreArchivo[], stProducto prod);  //Registra un producto en un archivo.
 
 //////////// Funciones de descarga ////////////

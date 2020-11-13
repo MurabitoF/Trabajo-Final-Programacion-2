@@ -49,7 +49,7 @@
 
 1604264716 ated upstream
 
-1604518157 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaproducto.h
+1604950977 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaproducto.h
 	<stdio.h>
 	<stdlib.h>
 	"productos.h"
@@ -62,7 +62,7 @@
 1604515437 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\pedidos.c
 	"pedidos.h"
 
-1604516392 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\pedidos.h
+1605299264 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\pedidos.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -70,7 +70,7 @@
 	"clientes.h"
 	"productos.h"
 
-1604521056 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\main.c
+1605300178 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\main.c
 	<stdio.h>
 	<stdlib.h>
 	"productos.h"
@@ -81,7 +81,7 @@
 	"arbolProducto.h"
 	"gotoxy.h"
 
-1604518239 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaproducto.c
+1605299845 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaproducto.c
 	"listaProducto.h"
 	"clientes.h"
 

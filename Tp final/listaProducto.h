@@ -10,6 +10,7 @@ typedef struct _nodoListaProducto
 {
     stProducto p;
     int idPedido;
+    char fecha [15];
     struct _nodoListaProducto * sig;
 } nodoListaProducto;
 

@@ -110,10 +110,16 @@ void mostrarNodoProducto (nodoListaProducto * aux)
 void mostrarListaProducto(nodoListaProducto * aux)
 {
     nodoListaProducto * seg = aux;
-    while (seg->sig != NULL)
+     if(aux)
     {
-        mostrarNodoProducto(seg);
-        seg = seg->sig;
+        while (seg->sig != NULL)
+        {
+            mostrarNodoProducto(seg);
+            seg = seg->sig;
+        }
+    } else
+    {
+        printf("No hay pedidos...\n");
     }
 }
 
