@@ -23,7 +23,7 @@ typedef struct _stCliente
 ///Funciones de Carga
 stCliente crearCliente(char nombreArchivo[]);  //Ingresa los datos por teclado los datos para crear un cliente.
 ///Funcioes de Muestra
-void mostrarCliente(stCliente client, int x); //Muestra un cliente
+void mostrarCliente(stCliente client); //Muestra un cliente
 ///Funcines de archivos
 void registrarCliente(char nombreArchivo[], stCliente client); //Registra un cliente en un archivo.
 void registrarClienteModificado(char nombreArchivo[], stCliente cliente); //Registra un cliente modificado

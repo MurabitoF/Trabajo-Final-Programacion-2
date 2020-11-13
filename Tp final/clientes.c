@@ -7,13 +7,17 @@ stCliente crearCliente(char nombreArchivo[])
 {
     int x, y, posX = 0, posY = 0;
     getWindowSize(&x, &y);
-    posX = (x/2) - strlen("Nombre Usuario: " + 3);
+    posX = (x/2) - strlen("=====|Nuevo Usuario|=====")/2 - 2;
     posY = (y/2) - 5;
     stCliente client;
 
     header();
 
     gotoxy(posX,posY);
+    color(10);
+    printf("=====|Nuevo Usuario|=====\n");
+    color(15);
+    gotoxy(posX,whereY());
     printf("Nombre: \n");
     gotoxy(posX, whereY());
     printf("Apellido: \n");
@@ -30,109 +34,109 @@ stCliente crearCliente(char nombreArchivo[])
     gotoxy(0, y-4);
     footer();
     color(10);
-    gotoxy((posX+strlen("Nombre usuario: ")), posY);
+    gotoxy((posX+strlen("Nombre usuario: ")), posY+1);
     fflush(stdin);
     gets(client.nombre);
     while (validarString(client.nombre,30))
     {
-        gotoxy(posX, posY + 8);
+        gotoxy(posX, posY + 9);
         limpiarTodaLinea();
         color(12);
         printf("Error! Nombre muy largo");
         color(10);
-        gotoxy((posX+strlen("Nombre usuario: ")), posY);
+        gotoxy((posX+strlen("Nombre usuario: ")), posY+1);
         limpiarLineaDer();
         fflush(stdin);
         gets(client.nombre);
     }
-    gotoxy((posX+strlen("Nombre usuario: ")), posY+1);
+    gotoxy((posX+strlen("Nombre usuario: ")), posY+2);
     fflush(stdin);
     gets(client.apellido);
     while (validarString(client.apellido,30))
     {
-        gotoxy(posX, posY + 8);
+        gotoxy(posX, posY + 9);
         limpiarTodaLinea();
         color(12);
         printf("Error! Apellido muy largo.");
         color(10);
-        gotoxy((posX+strlen("Apellido: ")), posY+1);
+        gotoxy((posX+strlen("Apellido: ")), posY+2);
         limpiarLineaDer();
         fflush(stdin);
         gets(client.apellido);
     }
-    gotoxy((posX+strlen("Nombre usuario: ")), posY+2);
+    gotoxy((posX+strlen("Nombre usuario: ")), posY+3);
     fflush(stdin);
     gets(client.userName);
     while (validarString(client.userName,20))
     {
-        gotoxy(posX, posY + 8);
+        gotoxy(posX, posY + 9);
         limpiarTodaLinea();
         color(12);
         printf("Error! Nombre de usuario muy largo");
         color(10);
-        gotoxy((posX+strlen("Nombre usuario: ")), posY+2);
+        gotoxy((posX+strlen("Nombre usuario: ")), posY+3);
         limpiarLineaDer();
         fflush(stdin);
         gets(client.userName);
     }
-    gotoxy((posX+strlen("Nombre usuario: ")), posY+3);
+    gotoxy((posX+strlen("Nombre usuario: ")), posY+4);
     fflush(stdin);
     gets(client.password);
     //encriptar
     while(validarString(client.password,20))
     {
-        gotoxy(posX, posY + 8);
+        gotoxy(posX, posY + 9);
         limpiarTodaLinea();
         color(12);
         printf("Error! Password muy larga.");
         color(10);
-        gotoxy((posX+strlen("Nombre usuario: ")), posY+3);
+        gotoxy((posX+strlen("Nombre usuario: ")), posY+4);
         limpiarLineaDer();
         fflush(stdin);
         gets(client.password);
         //encriptar
     }
-    gotoxy((posX+strlen("Nombre usuario: ")), posY+4);
+    gotoxy((posX+strlen("Nombre usuario: ")), posY+5);
     fflush(stdin);
     gets(client.mail);
     while(validarString(client.mail,20))
     {
-        gotoxy(posX, posY + 8);
+        gotoxy(posX, posY + 9);
         limpiarTodaLinea();
         color(12);
         printf("Error! Email no apto.");
         color(10);
-        gotoxy((posX+strlen("Nombre usuario: ")), posY+4);
+        gotoxy((posX+strlen("Nombre usuario: ")), posY+5);
         limpiarLineaDer();
         fflush(stdin);
         gets(client.mail);
     }
-    gotoxy((posX+strlen("Nombre usuario: ")), posY+5);
+    gotoxy((posX+strlen("Nombre usuario: ")), posY+6);
     fflush(stdin);
     gets(client.domicilio);
     while(validarString(client.domicilio,30))
     {
-        gotoxy(posX, posY + 8);
+        gotoxy(posX, posY + 9);
         limpiarTodaLinea();
         color(12);
         printf("Error! Domicilio muy largo");
         color(10);
-        gotoxy((posX+strlen("Nombre usuario: ")), posY+5);
+        gotoxy((posX+strlen("Nombre usuario: ")), posY+6);
         limpiarLineaDer();
         fflush(stdin);
         gets(client.domicilio);
     }
-    gotoxy((posX+strlen("Nombre usuario: ")), posY+6);
+    gotoxy((posX+strlen("Nombre usuario: ")), posY+7);
     fflush(stdin);
     scanf("%c", &client.genero);
     while(client.genero != 'f' && client.genero != 'm' && client.genero != 'o')
     {
-        gotoxy(posX, posY + 8);
+        gotoxy(posX, posY + 9);
         limpiarTodaLinea();
         color(12);
         printf("Error! Genero no valido");
         color(10);
-        gotoxy((posX+strlen("Nombre usuario: ")), posY+6);
+        gotoxy((posX+strlen("Nombre usuario: ")), posY+7);
         limpiarLineaDer();
         fflush(stdin);
         scanf("%c", &client.genero);
@@ -147,8 +151,9 @@ stCliente crearCliente(char nombreArchivo[])
 
 ///Funciones de muestra
 
-void mostrarCliente(stCliente client, int x)
+void mostrarCliente(stCliente client)
 {
+    int x = whereX();
     printf("Id #%d\n", client.idCliente);
     gotoxy(x, whereY());
     printf("Nombre y Apellido: %s %s\n", client.nombre, client.apellido);
@@ -183,12 +188,13 @@ void registrarClienteModificado(char nombreArchivo[], stCliente cliente)
 
     if(arch)
     {
-        while(fread(&aux,sizeof(stCliente),1,arch) > 0 && !flag)
+        /*while(fread(&aux,sizeof(stCliente),1,arch) > 0 && !flag)
         {
             if(aux.idCliente == cliente.idCliente)
                 flag = 1;
         }
-        fseek(arch,-2*sizeof(stCliente),SEEK_CUR);
+        fseek(arch,-2*sizeof(stCliente),SEEK_CUR);*/
+        fseek(arch,(cliente.idCliente-1)*sizeof(stCliente),SEEK_SET);
         fwrite(&cliente,sizeof(stCliente),1,arch);
         fclose(arch);
     }
@@ -458,7 +464,5 @@ stCliente modificarCliente(stCliente cliente, int admin)
     }
     while(op != 0);
 
-    cliente = aux;
-
-    return cliente;
+    return aux;
 }

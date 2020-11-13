@@ -39,54 +39,52 @@ nodoArbolProducto * agregarNodoEnOrden(nodoArbolProducto *arbol, nodoArbolProduc
     return arbol;
 }
 
-nodoArbolProducto * arregloOrd2arbol(nodoArbolProducto * arbol, stProducto arr[], int inic, int cantVal)
+nodoArbolProducto * arregloOrd2arbol(nodoArbolProducto ** arbol, stProducto arr[], int inic, int cantVal)
 {
     int mid;
 
     if (inic <= cantVal)
     {
         mid = (inic + cantVal) / 2;
-        arbol = agregarNodoEnOrden(arbol, crearNodoArbolProducto(arr[mid]));
-        arbol->izq = arregloOrd2arbol(arbol->izq, arr, inic, mid - 1);
-        arbol->der = arregloOrd2arbol(arbol->der, arr, mid + 1, cantVal);
+        (*arbol) = agregarNodoEnOrden((*arbol), crearNodoArbolProducto(arr[mid]));
+        arregloOrd2arbol(arbol, arr, inic, mid - 1);
+        arregloOrd2arbol(arbol, arr, mid + 1, cantVal);
     }
-
-    return arbol;
 }
 
 ///Funciones de muestra del arbol
-void mostrarNodoArbolProd(nodoArbolProducto * nodo, int x)
+void mostrarNodoArbolProd(nodoArbolProducto * nodo)
 {
-    mostrarProducto(nodo->producto, x);
+    mostrarProducto(nodo->producto);
 }
 
-void mostrarPreOrden(nodoArbolProducto * arbol, int x)
+void mostrarPreOrden(nodoArbolProducto * arbol)
 {
     if(arbol)
     {
-        mostrarNodoArbolProd(arbol, x);
-        mostrarPreOrden(arbol->izq, x);
-        mostrarPreOrden(arbol->der, x);
+        mostrarNodoArbolProd(arbol);
+        mostrarPreOrden(arbol->izq);
+        mostrarPreOrden(arbol->der);
     }
 }
 
-void mostrarInOrden(nodoArbolProducto * arbol, int x)
+void mostrarInOrden(nodoArbolProducto * arbol)
 {
     if(arbol)
     {
-        mostrarInOrden(arbol->izq, x);
-        mostrarNodoArbolProd(arbol, x);
-        mostrarInOrden(arbol->der, x);
+        mostrarInOrden(arbol->izq);
+        mostrarNodoArbolProd(arbol);
+        mostrarInOrden(arbol->der);
     }
 }
 
-void mostrarPosOrden(nodoArbolProducto * arbol, int x)
+void mostrarPosOrden(nodoArbolProducto * arbol)
 {
     if(arbol)
     {
-        mostrarPosOrden(arbol->izq, x);
-        mostrarPosOrden(arbol->der, x);
-        mostrarNodoArbolProd(arbol, x);
+        mostrarPosOrden(arbol->izq);
+        mostrarPosOrden(arbol->der);
+        mostrarNodoArbolProd(arbol);
     }
 }
 

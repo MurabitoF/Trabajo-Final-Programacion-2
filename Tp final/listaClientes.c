@@ -269,19 +269,19 @@ nodoListaClientes * borrarListaClientes(nodoListaClientes * lista)
 }
 
 ///Funciones de muestra
-void mostrarNodoCliente(nodoListaClientes * cliente, int x)
+void mostrarNodoCliente(nodoListaClientes * cliente)
 {
     if(cliente->cliente.activo == 1)
-        mostrarCliente(cliente->cliente, x);
+        mostrarCliente(cliente->cliente);
 }
 
-void mostrarListaClientes(nodoListaClientes * lista, int x)
+void mostrarListaClientes(nodoListaClientes * lista)
 {
     nodoListaClientes * seg = lista;
 
     while(seg != NULL)
     {
-        mostrarNodoCliente(seg, x);
+        mostrarNodoCliente(seg);
         seg = seg->siguiente;
     }
 }
@@ -362,12 +362,13 @@ void subProgramaMostrarCliente(nodoListaClientes * nodoCliente, int posX, int po
     system("cls");
     header();
     gotoxy(posX, posY);
-    mostrarNodoCliente(nodoCliente, posX);
+    mostrarNodoCliente(nodoCliente);
     gotoxy(posX, whereY());
     printf("Pedidos: \n");
     if(nodoCliente->listaProductos)
     {
-        mostrarListaProducto(nodoCliente->listaProductos, posX + 3);
+        gotoxy(posX, 3);
+        mostrarListaProducto(nodoCliente->listaProductos);
     }
     else
     {

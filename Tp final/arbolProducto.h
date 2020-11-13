@@ -16,13 +16,13 @@ typedef struct _nodoArbolProducto
 nodoArbolProducto * inicArbol();
 nodoArbolProducto * crearNodoArbolProducto(stProducto prod);
 ///Funciones de carga del arbol
-nodoArbolProducto * agregarNodoEnOrden(nodoArbolProducto *arbol, nodoArbolProducto *nuevo);
-nodoArbolProducto * arregloOrd2arbol(nodoArbolProducto *arbol, stProducto arr[], int inic, int cantVal);
+nodoArbolProducto * agregarNodoEnOrden(nodoArbolProducto * arbol, nodoArbolProducto *nuevo);
+nodoArbolProducto * arregloOrd2arbol(nodoArbolProducto ** arbol, stProducto arr[], int inic, int cantVal);
 ///Funciones de muestra del arbol
-void mostrarNodoArbolProd(nodoArbolProducto * nodo, int x);
-void mostrarPreOrden(nodoArbolProducto * arbol, int x);
-void mostrarInOrden(nodoArbolProducto * arbol, int x);
-void mostrarPosOrden(nodoArbolProducto * arbol, int x);
+void mostrarNodoArbolProd(nodoArbolProducto * nodo);
+void mostrarPreOrden(nodoArbolProducto * arbol);
+void mostrarInOrden(nodoArbolProducto * arbol);
+void mostrarPosOrden(nodoArbolProducto * arbol);
 ///Funciones de busqueda
 nodoArbolProducto * buscarNodoPorId(nodoArbolProducto * arbol, int id);
 nodoArbolProducto * buscarNodoPorMarca(nodoArbolProducto * arbol, char marca[]);

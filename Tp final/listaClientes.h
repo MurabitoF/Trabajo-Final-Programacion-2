@@ -39,8 +39,8 @@ nodoListaClientes * borrarNodoCliente(nodoListaClientes * lista, nodoListaClient
 nodoListaClientes * borrarListaClientes(nodoListaClientes * lista);
 
 ///Funciones de muestra
-void mostrarNodoCliente(nodoListaClientes * cliente, int x);
-void mostrarListaClientes(nodoListaClientes * lista, int x);
+void mostrarNodoCliente(nodoListaClientes * cliente);
+void mostrarListaClientes(nodoListaClientes * lista);
 
 ///Funciones de archivos
 nodoListaClientes * pasaArchivoALista(nodoListaClientes * listaCliente, char nombreArchivo[]);

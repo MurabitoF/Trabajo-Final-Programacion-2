@@ -181,7 +181,12 @@ void menuPrincipalClientes(nodoListaClientes * nodoCliente, nodoArbolProducto * 
             subprogramaHacerPedido(nodoCliente, arbolProductos);
             break;
         case 2:
-            mostrarNodoCliente(nodoCliente->listaProductos, posX);
+            system("cls");
+            header();
+            gotoxy(posX, 3);
+            mostrarListaProducto(nodoCliente->listaProductos);
+            if(whereY() <= y - 4)
+                gotoxy(0, y - 4);
             gotoxy(posX, whereY() + 1);
             system("pause");
             break;
@@ -247,10 +252,10 @@ void menuPrincipalAdmin(nodoListaClientes * listaClientes, nodoArbolProducto * a
             system("cls");
             header();
             gotoxy(posX, 3);
-            mostrarListaClientes(listaClientes, posX);
+            mostrarListaClientes(listaClientes);
             aux = whereY();
-            if(whereY() <= y-4)
-                gotoxy(0, y-4);
+            if(whereY() <= y - 4)
+                gotoxy(0, y - 4);
             footer();
             gotoxy(posX, aux);
             color(10);
@@ -310,10 +315,10 @@ void menuMostrarArbol(nodoArbolProducto * arbolProductos)
             system("cls");
             header();
             gotoxy(posX, 3);
-            mostrarPreOrden(arbolProductos, posX);
+            mostrarPreOrden(arbolProductos);
             aux = whereY();
-            if(whereY() <= y-4)
-                gotoxy(0, y-4);
+            if(whereY() <= y - 4)
+                gotoxy(0, y - 4);
             footer();
             gotoxy(posX, aux);
             color(10);
@@ -324,10 +329,10 @@ void menuMostrarArbol(nodoArbolProducto * arbolProductos)
             system("cls");
             header();
             gotoxy(posX, 3);
-            mostrarInOrden(arbolProductos, posX);
+            mostrarInOrden(arbolProductos);
             aux = whereY();
-            if(whereY() <= y-4)
-                gotoxy(0, y-4);
+            if(whereY() <= y - 4)
+                gotoxy(0, y - 4);
             footer();
             gotoxy(posX, aux);
             color(10);
@@ -338,10 +343,10 @@ void menuMostrarArbol(nodoArbolProducto * arbolProductos)
             system("cls");
             header();
             gotoxy(posX, 3);
-            mostrarPosOrden(arbolProductos, posX);
+            mostrarPosOrden(arbolProductos);
             aux = whereY();
-            if(whereY() <= y-4)
-                gotoxy(0, y-4);
+            if(whereY() <= y - 4)
+                gotoxy(0, y - 4);
             footer();
             gotoxy(posX, aux);
             color(10);
@@ -560,7 +565,8 @@ void subprogramaHacerPedido(nodoListaClientes * nodoCliente, nodoArbolProducto *
     color(10);
     printf("=====|Productos|=====\n");
     color(15);
-    mostrarInOrden(arbolProductos, posX);
+    gotoxy(posX,3);
+    mostrarInOrden(arbolProductos);
     printf("Ingrese ID de producto: ");
     aux = whereY();
     if(whereY() <= y - 4)

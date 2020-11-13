@@ -5,42 +5,92 @@
 stProducto crearProducto(char nombreArchivo[])
 {
     stProducto product;
+    int x, y, posX = 0, posY = 0;
+    getWindowSize(&x, &y);
+    posX = (x/2) - strlen("=====|Nuevo Producto|=====")/2 - 2;
+    posY = (y/2) - 5;
 
-    printf("Nombre del producto: ");
+    header();
+
+    gotoxy(posX,posY);
+    color(10);
+    printf("=====|Nuevo Producto|=====\n");
+    color(15);
+    gotoxy(posX, whereY());
+    printf("Nombre del producto: \n");
+    gotoxy(posX, whereY());
+    printf("Marca del producto: \n");
+    gotoxy(posX, whereY());
+    printf("Categoria del producto: \n");
+    gotoxy(posX, whereY());
+    printf("Precio del producto: \n");
+    gotoxy(0, y - 4);
+    footer();
+    color(10);
+    gotoxy(posX + strlen("Categoria del producto: "), posY + 1);
     fflush(stdin);
     gets(product.nombre);
-    while (strlen(product.nombre) > 30)
+    while (validarString(product.nombre,30))
     {
+        gotoxy(posX, posY + 6);
+        limpiarTodaLinea();
+        color(12);
         printf("Error! Nombre de producto muy largo");
-        printf("Nombre del producto: ");
+        color(10);
+        gotoxy(posX + strlen("Categoria del producto: "), posY + 1);
+        limpiarLineaDer();
         fflush(stdin);
         gets(product.nombre);
     }
-    printf("Marca del producto: ");
+    gotoxy(posX + strlen("Categoria del producto: "), posY + 2);
     fflush(stdin);
     gets(product.marca);
-    while (strlen(product.marca) > 20)
+    while (validarString(product.marca,20))
     {
-        printf("Error! Marca del producto muy largo");
-        printf("Marca del producto: ");
+        gotoxy(posX, posY + 6);
+        limpiarTodaLinea();
+        color(12);
+        printf("Error! Marca del producto muy larga");
+        color(10);
+        gotoxy(posX + strlen("Categoria del producto: "), posY + 2);
+        limpiarLineaDer();
         fflush(stdin);
         gets(product.marca);
     }
-    printf("Categoria del producto: ");
+    gotoxy(posX + strlen("Categoria del producto: "), posY + 3);
     fflush(stdin);
     gets(product.categoria);
-    while (strlen(product.categoria) > 15)
+    while (validarString(product.categoria, 15))
     {
-        printf("Error! Categoria del producto muy largo");
-        printf("Marca del producto: ");
+        gotoxy(posX, posY + 6);
+        limpiarTodaLinea();
+        color(12);
+        printf("Error! Categoria del producto muy larga");
+        color(10);
+        gotoxy(posX + strlen("Categoria del producto: "), posY + 3);
+        limpiarLineaDer();
         fflush(stdin);
         gets(product.categoria);
     }
-    printf("Precio del producto: ");
-    scanf("%f", product.precio);
+    gotoxy(posX + strlen("Categoria del producto: "), posY + 4);
+    scanf("%f", &product.precio);
+    while(product.precio < 0)
+    {
+        gotoxy(posX, posY + 6);
+        limpiarTodaLinea();
+        color(12);
+        printf("Error! El precio del producto no es valido");
+        color(10);
+        gotoxy(posX + strlen("Categoria del producto: "), posY + 4);
+        limpiarLineaDer();
+        scanf("%f", &product.precio);
+    }
 
+    color(15);
     product.eliminado = 1;
     product.idProducto = contadorDatos(nombreArchivo, sizeof(stProducto) + 1);
+
+    return product;
 }
 
 void registrarProducto(char nombreArchivo[], stProducto prod)  //Registra un producto en un archivo.
@@ -100,15 +150,16 @@ void registrarProductoModificado(char nombreArchivo[], stProducto prod)
 }*/
 
 ///Funciones de muestra
-void mostrarProducto(stProducto product, int x)
+void mostrarProducto(stProducto product)
 {
+    int x = whereX();
     printf("Id #%d\n", product.idProducto);
     gotoxy(x,whereY());
     printf("Nombre del producto: %s\n", product.nombre);
     gotoxy(x,whereY());
-    printf("Marca del producto: %s\n", product.marca);
+    printf("Marca del producto:  %s\n", product.marca);
     gotoxy(x,whereY());
-    printf("Precio del producto: %f\n\n", product.precio);
+    printf("Precio del producto: %.2f\n\n", product.precio);
     gotoxy(x,whereY());
 }
 

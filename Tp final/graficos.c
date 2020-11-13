@@ -57,6 +57,7 @@ void header()
     }
     printf("%c", escInfDer);
 }
+
 void footer()
 {
     int x,y,i,posX = 0,posY = 0;
