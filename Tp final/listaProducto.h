@@ -11,7 +11,7 @@ typedef struct _nodoListaProducto
 {
     stProducto p;
     int idPedido;
-    char fecha[20];
+    char fecha [15];
     struct _nodoListaProducto * sig;
 } nodoListaProducto;
 
@@ -29,7 +29,11 @@ void mostrarNodoProducto(nodoListaProducto * aux);
 void mostrarListaProducto(nodoListaProducto * aux);
 
 //////////// Funciones de Borrado de Datos ////////////
+nodoListaProducto *borrarProductoId(nodoListaProducto *listaProducto, int id);
 nodoListaProducto * borrarProductoNombre (nodoListaProducto * listaProducto, char nombre[]);
 nodoListaProducto * borrarListaProducto (nodoListaProducto * listaProducto);
+
+//////////// Funciones de Calculo ////////////
+float cuentaPrecios(nodoListaProducto *listaProducto);
 
 #endif // LISTAPRODUCTO_H_INCLUDED

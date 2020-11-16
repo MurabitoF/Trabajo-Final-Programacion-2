@@ -24,7 +24,7 @@ void mostrarNodoArbolProd(nodoArbolProducto * nodo);
 void mostrarPreOrden(nodoArbolProducto * arbol);
 void mostrarInOrden(nodoArbolProducto * arbol);
 void mostrarPosOrden(nodoArbolProducto * arbol);
-void mostrarPorCategoria (nodoArbolProducto * arbol, char categoria[]);
+void mostrarPorCategoria(nodoArbolProducto * arbol, char categorias[]);
 ///Funciones de busqueda
 nodoArbolProducto * buscarNodoPorId(nodoArbolProducto * arbol, int id);
 nodoArbolProducto * buscarNodoPorMarca(nodoArbolProducto * arbol, char marca[]);

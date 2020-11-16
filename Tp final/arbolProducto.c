@@ -88,16 +88,16 @@ void mostrarPosOrden(nodoArbolProducto * arbol)
     }
 }
 
-void mostrarPorCategoria (nodoArbolProducto * arbol, char categoria)
+void mostrarPorCategoria(nodoArbolProducto * arbol, char categorias[])
 {
-    if (arbol)
+    if(arbol)
     {
-        mostrarPorCategoria(arbol->izq, categoria);
-
-        if (strcmp(arbol->producto.categoria, categoria) == 0)
+        mostrarPorCategoria(arbol->izq, categorias);
+        if (strcmp(arbol->producto.categoria, categorias) == 0)
+        {
             mostrarNodoArbolProd(arbol);
-
-        mostrarPorCategoria(arbol->der, categoria);
+        }
+        mostrarPorCategoria(arbol->der, categorias);
     }
 }
 

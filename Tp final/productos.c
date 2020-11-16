@@ -104,7 +104,6 @@ void registrarProducto(char nombreArchivo[], stProducto prod)  //Registra un pro
 }
 
 //////////// Funciones de descarga ////////////
-//stProducto * pasarArchivoArray (char nombreArchivo)  //// Implementar con punteros dobles
 
 void registrarProductoModificado(char nombreArchivo[], stProducto prod)
 {
@@ -118,33 +117,6 @@ void registrarProductoModificado(char nombreArchivo[], stProducto prod)
         fclose(arch);
     }
 }
-
-///Funciones de descarga
-/*stProducto * pasarArchivoArray (stProducto arrayProducto [], char nombreArchivo[], int dim)  //// Implementar con punteros dobles
-{
-    stProducto aux;
-    int totalProductos;
-    int i = 0;
-
-    FILE * archi = fopen(nombreArchivo, "rb");
-
-    if (archi!=NULL)
-    {
-        while (fread(&aux, sizeof(stProducto), 1, archi) > 0 && i<dim)
-        {
-            arrayProducto [i] = aux;
-            i++;
-        }
-        fclose(archi);
-    }
-
-    totalProductos = contadorDatos(nombreArchivo, sizeof(stProducto));
-    arrayProducto = (stProducto*) malloc (sizeof(stProducto) * totalProductos);
-
-    fread(&arrayProducto[i], sizeof(stProducto), totalProductos, archi);
-
-    return arrayProducto;
-}*/
 
 ///Funciones de muestra
 void mostrarProducto(stProducto product)
@@ -289,8 +261,21 @@ stProducto modificarProducto(stProducto producto)
     return producto;
 }
 
+//////////// Funciones de Archivos ////////////
+int pasarArchivoArray(stProducto arrayProducto[], char nombreArchivo[], int dim)
+{
+    int i = 0;
+    stProducto aux;
 
-
-
-
-
+    FILE *archi = fopen(nombreArchivo, "rb");
+    if (archi != NULL)
+    {
+        while (fread(&aux, sizeof(stProducto), 1, archi) > 0 && i < dim)
+        {
+            arrayProducto[i] = aux;
+            i++;
+        }
+        fclose(archi);
+    }
+    return i;
+}

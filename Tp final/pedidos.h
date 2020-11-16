@@ -20,6 +20,4 @@ void cargarPedido (char nombreArchivo[], int idCliente, int idProducto);
 
 void registrarPedido(char nombreArchivo[], stPedidos pedi);
 
-
-
 #endif // PEDIDOS_H_INCLUDED

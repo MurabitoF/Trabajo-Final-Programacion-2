@@ -27,7 +27,12 @@ void mostrarCliente(stCliente client); //Muestra un cliente
 ///Funcines de archivos
 void registrarCliente(char nombreArchivo[], stCliente client); //Registra un cliente en un archivo.
 void registrarClienteModificado(char nombreArchivo[], stCliente cliente); //Registra un cliente modificado
-///Funciones de modificación
+///Funciones de modificaciï¿½n
 stCliente modificarCliente(stCliente cliente, int admin); //Modifica los datos de un cliente
+
+///Funciones de carga
+stCliente crearCliente(char nombreArchivo[]);
+
+void registrarCliente(char nombreArchivo[], stCliente client);
 
 #endif // CLIENTES_H_INCLUDED

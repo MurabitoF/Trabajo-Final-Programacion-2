@@ -312,6 +312,7 @@ nodoListaClientes * pasaArchivoALista(nodoListaClientes * listaCliente, char nom
 
 void generarPedidos(nodoListaClientes * lista, char nombreArchivo[])
 {
+    nodoListaCliente * seg = lista;
     nodoListaProducto * productos = lista->listaProductos;
     stPedidos aux;
     int ultimoID = contadorDatos(nombreArchivo, sizeof(stPedidos)) + 1;
@@ -339,8 +340,8 @@ void generarPedidos(nodoListaClientes * lista, char nombreArchivo[])
             productos = productos->sig;
             fwrite(&aux,sizeof(stPedidos), 1, arch);
         }
-        lista = lista->siguiente;
-        productos = lista->listaProductos;
+        seg = seg->siguiente;
+        productos = seg->listaProductos;
     }
     fclose(arch);
 }

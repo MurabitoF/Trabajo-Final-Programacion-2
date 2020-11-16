@@ -26,6 +26,28 @@ void subProgramaModificarProducto(nodoArbolProducto * arbol, char nombreArchivo[
 int contadorDatos(char nombreArchivo[], int byte);
 void fechaHora(char * fecha[]);
 int validarString(char palabra[], int dim);
+void muestraRecomendados(nodoListaClientes *clientes, nodoArbolProducto *arbolProductos);
+nodoListaProducto *bajarPedidos(char nombreArchivo[], int idCliente, nodoArbolProducto *productos, nodoListaProducto *listaPedidos);
+nodoListaClientes *subProgramaBajaPedidos(char nombreArchivo[], nodoListaClientes *clientes, nodoArbolProducto *productos);
+#include "productos.h"
+#include "clientes.h"
+#include "pedidos.h"
+#include "listaClientes.h"
+#include "listaProducto.h"
+#include "arbolProducto.h"
+#include "gotoxy.h"
+
+    const char categorias[7][15] = {"Televisores", "Computadoras", "Celulares", "Accesorios", "Heladeras", "Aires", "Cocina"};
+
+const char A_Productos[] = "productos.dat";
+const char A_Clientes[] = "clientes.dat";
+const char A_Pedidos[] = "pedidos.dat";
+
+int contadorDatos(char nombreArchivo[], int byte);
+nodoListaClientes * pasarProductoaCliente(nodoListaClientes * lista, stProducto producto, stPedidos pedido);
+//nodoListaClientes * bajarPedidos (char nombreArchivo[], nodoListaClientes * clientes, nodoArbolProducto * productos);
+nodoListaProducto * bajarPedidos(char nombreArchivo[], int idCliente, nodoArbolProducto * productos, nodoListaProducto * listaPedidos);
+nodoListaClientes * subProgramaBajaPedidos (char nombreArchivo[], nodoListaClientes * clientes, nodoArbolProducto * productos);
 
 int main()
 {
@@ -712,4 +734,51 @@ int validarString(char palabra[], int dim)
     }
 
     return flag;
+}
+
+void muestraRecomendados(nodoListaClientes *clientes, nodoArbolProducto *arbolProductos)
+{
+    int masVendido;
+    masVendido = buscaMayor(contarCategorias(clientes->listaProductos));
+    mostrarPorCategoria(arbolProductos, categorias[masVendido]);
+}
+
+nodoListaProducto *bajarPedidos(char nombreArchivo[], int idCliente, nodoArbolProducto *productos, nodoListaProducto *listaPedidos)
+{
+    FILE *archi = fopen(nombreArchivo, "rb");
+    stPedidos pedido;
+    nodoArbolProducto *p = inicArbol();
+    nodoListaProducto *aux = listaPedidos;
+
+    if (archi)
+    {
+        while (fread(&pedido, sizeof(stPedidos), 1, archi) > 0)
+        {
+            if (pedido.idCliente == idCliente)
+            {
+                p = buscarNodoPorId(productos, pedido.idProducto);
+                aux = agregarFinalProducto(aux, crearNodoProducto(p->producto, pedido.idPedido));
+                strcpy(aux->fecha, pedido.fecha);
+                aux->idPedido = pedido.idPedido;
+                aux = aux->sig;
+            }
+        }
+    }
+    fclose(archi);
+    return productos;
+}
+
+nodoListaClientes *subProgramaBajaPedidos(char nombreArchivo[], nodoListaClientes *clientes, nodoArbolProducto *productos)
+{
+    nodoListaClientes *seg = clientes;
+
+    if (seg)
+    {
+        while (seg)
+        {
+            seg->listaProductos = bajarPedidos(nombreArchivo, seg->cliente.idCliente, productos, seg->listaProductos);
+            seg = seg->siguiente;
+        }
+    }
+    return clientes;
 }

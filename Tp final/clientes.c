@@ -147,7 +147,6 @@ stCliente crearCliente(char nombreArchivo[])
     return client;
 }
 
-///Funciones de muestra
 
 void mostrarCliente(stCliente client)
 {
@@ -169,11 +168,15 @@ void mostrarCliente(stCliente client)
 ///Funciones de Archivos
 void registrarCliente(char nombreArchivo[], stCliente cliente)
 {
-    FILE * arch = NULL;
+    FILE *arch = NULL;
 
-    arch = fopen(nombreArchivo,"ab");
-    fwrite(&cliente,sizeof(stCliente),1,arch);
-    fclose(arch);
+    arch = fopen(nombreArchivo, "ab");
+
+    if (arch != NULL)
+    {
+        fwrite(&client, sizeof(stCliente), 1, arch);
+        fclose(arch);
+    }
 }
 
 void registrarClienteModificado(char nombreArchivo[], stCliente cliente)
@@ -186,12 +189,6 @@ void registrarClienteModificado(char nombreArchivo[], stCliente cliente)
 
     if(arch)
     {
-        /*while(fread(&aux,sizeof(stCliente),1,arch) > 0 && !flag)
-        {
-            if(aux.idCliente == cliente.idCliente)
-                flag = 1;
-        }
-        fseek(arch,-2*sizeof(stCliente),SEEK_CUR);*/
         fseek(arch,(cliente.idCliente-1)*sizeof(stCliente),SEEK_SET);
         fwrite(&cliente,sizeof(stCliente),1,arch);
         fclose(arch);

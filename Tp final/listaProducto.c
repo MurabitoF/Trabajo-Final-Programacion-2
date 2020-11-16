@@ -1,23 +1,39 @@
 #include "listaProducto.h"
 #include "clientes.h"
 
-//////////// Funciones Basicas ////////////
 
-nodoListaProducto * pasaArbol2Lista(nodoArbolProducto * arbolProducto ,nodoListaProducto * listaProducto, stPedidos * pedido)
+nodoListaProducto * pasaArchivoAListaProducto(nodoListaProducto * listaProducto, char nombreArchivo[])
 {
+    stCliente aux;
+    FILE * arch = NULL;
 
+    arch = fopen(nombreArchivo, "rb");
+
+    if(arch != NULL)
+    {
+        while(fread(&aux,sizeof(stProducto),1,arch)>0)
+        {
+            //listaProducto = agregarAlFinalProducto(listaProducto, crearNodoProducto(&aux));
+        }
+        fclose(arch);
+    }
+
+    return listaProducto;
 }
+
+//////////// Funciones Basicas ////////////
 
 nodoListaProducto * inicListaProducto()
 {
     return NULL;
 }
 
-nodoListaProducto * crearNodoProducto (stProducto dato)
+nodoListaProducto * crearNodoProducto (stProducto producto, int idPedido)
 {
     nodoListaProducto * aux = (nodoListaProducto*) malloc(sizeof(nodoListaProducto));
 
-    aux->p = dato;
+    aux->p = producto;
+    aux->idPedido = idPedido;
     aux->sig = NULL;
 
     return aux;
@@ -25,27 +41,8 @@ nodoListaProducto * crearNodoProducto (stProducto dato)
 
 nodoListaProducto * agregarPrpioProducto (nodoListaProducto * listaProducto, nodoListaProducto * nuevoProducto)
 {
-    if (!listaProducto)
-    {
-        listaProducto = nuevoProducto;
-    }
-    else
-    {
-        nuevoProducto->sig = listaProducto;
-        listaProducto = nuevoProducto;
-    }
-    return listaProducto;
-}
-
-nodoListaProducto * buscarUltimoProducto (nodoListaProducto * listaProdcuto)
-{
-    nodoListaProducto * seg = listaProdcuto;
-    if (seg->sig != NULL)
-        while (seg->sig!=NULL)
-        {
-            seg = seg->sig;
-        }
-    return seg;
+    nuevoProducto->siguiente = listaProducto
+    return nuevoProducto;
 }
 
 nodoListaProducto * agregarFinalProducto (nodoListaProducto * listaProducto, nodoListaProducto * nuevoProducto)
@@ -53,11 +50,9 @@ nodoListaProducto * agregarFinalProducto (nodoListaProducto * listaProducto, nod
     if(!listaProducto)
     {
         listaProducto = nuevoProducto;
-    }
     else
     {
-        nodoListaProducto * ult = buscarUltimoProducto(listaProducto);
-        ult->sig = nuevoProducto;
+        listaProducto->siguiente = agregarFinalProducto(listaProducto->siguiente, nuevoProducto);
     }
     return listaProducto;
 }
@@ -94,7 +89,8 @@ nodoListaProducto * agregarOrdenProducto(nodoListaProducto * listaProducto, nodo
 
 void mostrarNodoProducto (nodoListaProducto * aux)
 {
-    mostrarProducto(aux->p);
+    if(aux->p.eliminado == 1)
+        mostrarProducto(aux->p);
 }
 
 void mostrarListaProducto(nodoListaProducto * aux)
@@ -179,39 +175,49 @@ int * contarCategorias (nodoListaProducto * listaProductos)
 
     while (seg)
     {
-        categorias = listaProductos->p.categoria
-        switch (categorias)
-        {
-            case 'Televisores'
-            comprasProducto [0] = comprasProducto [0] + 1;
-            break;
-
-            case 'Computadoras'
-            comprasProducto [1] = comprasProducto [1] + 1;
-            break;
-
-            case 'Celulares'
-            comprasProducto [2] = comprasProducto [2] + 1;
-            break;
-
-            case 'Accesorios'
-            comprasProducto [3] = comprasProducto [3] + 1;
-            break;
-
-            case 'Heladeras'
-            comprasProducto [4] = comprasProducto [4] + 1;
-            break;
-
-            case 'Aires'
-            comprasProducto [5] = comprasProducto [5] + 1;
-            break;
-
-            case 'Cocina'
-            comprasProducto [6] = comprasProducto [6] + 1;
-            break;
+        strcpy(categorias, seg->p.categoria);
+        if (strcmp(categorias ,"Televisores") == 0)
+            {
+                comprasProducto [0] = comprasProducto [0] + 1;
+            } else
+            {
+                if (strcmp(categorias ,"Computadoras") == 0)
+                    {
+                        comprasProducto [1] = comprasProducto [1] + 1;
+                    } else
+                    {
+                        if (strcmp(categorias ,"Celulares") == 0)
+                            {
+                                comprasProducto [2] = comprasProducto [2] + 1;
+                            } else
+                            {
+                                if (strcmp(categorias ,"Accesorios") == 0)
+                                    {
+                                        comprasProducto [3] = comprasProducto [3] + 1;
+                                    } else
+                                    {
+                                        if (strcmp(categorias ,"Heladeras") == 0)
+                                            {
+                                                comprasProducto [4] = comprasProducto [4] + 1;
+                                            } else
+                                            {
+                                                if (strcmp(categorias ,"Aires") == 0)
+                                                    {
+                                                        comprasProducto [5] = comprasProducto [5] + 1;
+                                                    } else
+                                                    {
+                                                        if (strcmp(categorias ,"Cocina") == 0)
+                                                            {
+                                                                comprasProducto [6] = comprasProducto [6] + 1;
+                                                            }
+                                                    }
+                                            }
+                                    }
+                            }
+                    }
+            }
+            seg = seg->sig;
         }
-        seg = seg->sig;
-    }
     return comprasProducto;
 }
 
@@ -225,4 +231,17 @@ int buscaMayor(int comprasProducto[])
             may = i;
     }
     return may;
+}
+
+float cuentaPrecios (nodoListaProducto * listaProducto)
+{
+    nodoListaProducto * seg = listaProducto;
+    float precio;
+
+    while (seg != NULL)
+    {
+        precio = precio + seg->p.precio;
+        seg = seg->sig;
+    }
+    return precio;
 }

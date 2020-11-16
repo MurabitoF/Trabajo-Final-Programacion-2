@@ -10,6 +10,7 @@
 typedef struct _stProductos
 {
     int idProducto;
+    char categoria[15];
     char nombre[30];
     char marca[20];
     char categoria[15];
@@ -23,10 +24,7 @@ void registrarProducto(char nombreArchivo[], stProducto prod);  //Registra un pr
 void registrarProductoModificado(char nombreArchivo[], stProducto prod);
 
 //////////// Funciones de descarga ////////////
-stProducto * pasarArchivoArray (stProducto arrayProducto [], char nombreArchivo[], int dim); // Descarga los datos de un archivo a un arreglo.
-
-///Funciones de descarga
-//stProducto * pasarArchivoArray (stProducto arrayProducto [], char nombreArchivo[], int dim); // Descarga los datos de un archivo a un arreglo.
+int pasarArchivoArray(stProducto arrayProducto[], char nombreArchivo[], int dim); // Descarga los datos de un archivo a un arreglo.
 
 ///Funciones de muestra
 void mostrarProducto(stProducto product);
