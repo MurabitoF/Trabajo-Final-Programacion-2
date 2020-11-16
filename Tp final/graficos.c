@@ -26,12 +26,29 @@ void limpiarLineaIzq()
     printf("%c[1K", 27); ///Borra la consola a la izquierda del cursor
 }
 
+ventana inicVentana(char texto[], int items)
+{
+    ventana aux;
+    int x = 0, y = 0, posX = 0, posY = 0;
+    getWindowSize(&x, &y);
+    posX = (x/2) - (strlen(texto)/2);
+    posY = (y/2) - items;
+
+    aux.tamX = x;
+    aux.tamY = y;
+    aux.posX = posX;
+    aux.posY = posY;
+
+    return aux;
+}
+
 ///Header y Footer
 void header()
 {
     int x,y,i,posX = 0,posY = 0;
     getWindowSize(&x, &y);
 
+    system("cls");
     gotoxy(3,0);
     printf("%c", escSupIzq);
     for(i = 0; i <(x-8); i++)
@@ -117,9 +134,65 @@ void loading()
     }
 }
 
-///Menús
-void menuIngresoG(int x)
+
+///Funciones de lectura
+int leerInt()
 {
+    int aux = 0;
+
+    color(10);
+    scanf("%d", &aux);
+    color(15);
+
+    return aux;
+}
+float leerfloat()
+{
+    float aux = 0;
+
+    color(10);
+    scanf("%f", &aux);
+    color(15);
+
+    return aux;
+}
+
+char leerChar()
+{
+    char aux = 'n';
+
+    fflush(stdin);
+    color(10);
+    scanf("%c", &aux);
+    color(15);
+
+    return aux;
+}
+
+char * leerString(int dim)
+{
+    char * aux = (char *)malloc(sizeof(char) * dim);
+
+    fflush(stdin);
+    color(10);
+    gets(aux);
+    color(15);
+
+    return aux;
+}
+
+void pausa()
+{
+    color(10);
+    system("pause");
+    color(15);
+}
+
+///Menús
+void menuIngresoG()
+{
+    int x = whereX();
+
     color(10);
     gotoxy(x, whereY());
     printf("======|You TECS|======\n");
@@ -136,8 +209,10 @@ void menuIngresoG(int x)
     color(15);
 }
 
-void menuLoginG(int x)
+void menuLoginG()
 {
+    int x = whereX();
+
     color(10);
     gotoxy(x, whereY());
     printf("=====|Bienvenido|=====\n");
@@ -148,8 +223,10 @@ void menuLoginG(int x)
     printf("Contrase%ca: \n", enie);
 }
 
-void menuPrincipalClientesG(int x)
+void menuPrincipalClientesG()
 {
+    int x = whereX();
+
     gotoxy(x,whereY());
     printf("[ 1 ] Hacer un pedido\n");
     gotoxy(x,whereY());
@@ -166,8 +243,10 @@ void menuPrincipalClientesG(int x)
     color(15);
 }
 
-void menuPrincipalAdminG(int x)
+void menuPrincipalAdminG()
 {
+    int x = whereX();
+
     color(10);
     printf("======|Menu Administrador|======\n");
     color(2);
@@ -202,8 +281,10 @@ void menuPrincipalAdminG(int x)
     color(15);
 }
 
-void menuDatosClienteAdminG(int x)
+void menuDatosClienteAdminG()
 {
+    int x = whereX();
+
     color(10);
     printf("============|Datos del Clientes|===========\n");
     color(15);
@@ -233,8 +314,10 @@ void menuDatosClienteAdminG(int x)
     color(15);
 }
 
-void menuDatosClienteG(int x)
+void menuDatosClienteG()
 {
+    int x = whereX();
+
     color(10);
     printf("=====|Datos del Clientes|=====\n");
     color(15);
@@ -262,8 +345,35 @@ void menuDatosClienteG(int x)
     color(15);
 }
 
-void menuMostrarArbolG(int x)
+void menuDatosProductosG()
 {
+    int x = whereX();
+
+    color(10);
+    printf("=====|Datos del Producto|=====\n");
+    color(15);
+    gotoxy(x,whereY());
+    printf("[ 1 ] Nombre del producto\n");
+    gotoxy(x,whereY());
+    printf("[ 2 ] Marca del producto\n");
+    gotoxy(x,whereY());
+    printf("[ 3 ] Categoria del producto\n");
+    gotoxy(x,whereY());
+    printf("[ 4 ] Precio del producto\n");
+    gotoxy(x,whereY());
+    printf("[ 5 ] Eliminar producto\n");
+    gotoxy(x,whereY());
+    printf("[ 0 ] Volver\n");
+    gotoxy(x,whereY());
+    color(2);
+    printf(">>> ");
+    color(15);
+}
+
+void menuMostrarArbolG()
+{
+    int x = whereX();
+
     color(10);
     printf("=====|Mostrar Productos|=====\n");
     color(15);
@@ -281,8 +391,10 @@ void menuMostrarArbolG(int x)
     color(15);
 }
 
-void menuBusquedaClienteG(int x)
+void menuBusquedaClienteG()
 {
+    int x = whereX();
+
     color(10);
     printf("=====|Buscar Cliente|=====\n");
     color(15);
@@ -296,6 +408,29 @@ void menuBusquedaClienteG(int x)
     printf("[ 4 ] Buscar por nombre\n");
     gotoxy(x, whereY());
     printf("[ 5 ] Buscar por apellido\n");
+    gotoxy(x, whereY());
+    printf("[ 0 ] Salir\n");
+    gotoxy(x, whereY());
+    color(2);
+    printf(">>> ");
+    color(15);
+}
+
+void menuBusquedaProductoG()
+{
+    int x = whereX();
+
+    color(10);
+    printf("=====|Buscar Producto|=====\n");
+    color(15);
+    gotoxy(x, whereY());
+    printf("[ 1 ] Buscar por ID\n");
+    gotoxy(x, whereY());
+    printf("[ 2 ] Buscar por nombre producto\n");
+    gotoxy(x, whereY());
+    printf("[ 3 ] Buscar por marca\n");
+    gotoxy(x, whereY());
+    printf("[ 4 ] Buscar por categorias\n");
     gotoxy(x, whereY());
     printf("[ 0 ] Salir\n");
     gotoxy(x, whereY());

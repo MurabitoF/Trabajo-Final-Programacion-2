@@ -15,11 +15,29 @@
 #define escInfIzq 200
 #define escInfDer 188
 
+///Estructura de posicion en ventana
+typedef struct
+{
+    int tamX; //Tamaño maximo en x de la ventana
+    int tamY; //Tamaño maximo en y de la ventana
+    int posX; //Posición central en x de la ventana
+    int posY; //Posición central en y de la ventana
+}ventana;
+
 ///Funciones Control de ventana
 void getWindowSize(int * col, int * row);
 void limpiarTodaLinea();
 void limpiarLineaDer();
 void limpiarLineaIzq();
+ventana inicVentana(char texto[], int items);
+
+
+///Funciones de lectura
+int leerInt();
+float leerfloat();
+char leerChar();
+char * leerString(int dim);
+void pausa();
 
 ///Header y Footer
 void header();
@@ -27,13 +45,14 @@ void footer();
 void loading();
 
 ///Menús
-void menuIngresoG(int x);
-void menuLoginG(int x);
-void menuPrincipalAdminG(int x);
-void menuPrincipalClientesG(int x);
-void menuDatosClienteAdminG(int x);
-void menuDatosClienteG(int x);
-void menuMostrarArbolG(int x);
-void menuBusquedaClienteG(int x);
-
+void menuIngresoG();
+void menuLoginG();
+void menuPrincipalAdminG();
+void menuPrincipalClientesG();
+void menuDatosClienteAdminG();
+void menuDatosClienteG();
+void menuMostrarArbolG();
+void menuBusquedaClienteG();
+void menuBusquedaProductoG();
+void menuDatosProductosG();
 #endif // GRAFICOS_H_INCLUDED

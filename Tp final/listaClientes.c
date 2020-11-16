@@ -12,6 +12,7 @@ nodoListaClientes * crearNodoCliente(stCliente cliente)
     nodoListaClientes * aux = (nodoListaClientes *) malloc(sizeof(nodoListaClientes));
     aux->cliente = cliente;
     aux->listaProductos = inicListaProducto();
+    aux->costoTotalDelPedido = 0;
     aux->siguiente = NULL;
 
     return aux;
@@ -137,7 +138,7 @@ nodoListaClientes * buscarClientePorUsername(nodoListaClientes * lista, char bus
         }
         else
         {
-            busca = buscarClientePorId(lista->siguiente, busqueda);
+            busca = buscarClientePorUsername(lista->siguiente, busqueda);
         }
     }
 
@@ -156,7 +157,7 @@ nodoListaClientes * buscarClientePorEmail(nodoListaClientes * lista, char busque
         }
         else
         {
-            busca = buscarClientePorId(lista->siguiente, busqueda);
+            busca = buscarClientePorEmail(lista->siguiente, busqueda);
         }
     }
 
@@ -175,7 +176,7 @@ nodoListaClientes * buscarClientePorNombre(nodoListaClientes * lista, char busqu
         }
         else
         {
-            busca = buscarClientePorId(lista->siguiente, busqueda);
+            busca = buscarClientePorNombre(lista->siguiente, busqueda);
         }
     }
 
@@ -194,7 +195,7 @@ nodoListaClientes * buscarClientePorApellido(nodoListaClientes * lista, char bus
         }
         else
         {
-            busca = buscarClientePorId(lista->siguiente, busqueda);
+            busca = buscarClientePorApellido(lista->siguiente, busqueda);
         }
     }
 
@@ -345,40 +346,27 @@ void generarPedidos(nodoListaClientes * lista, char nombreArchivo[])
 }
 
 ///Subprogramas
-void subProgramaModificarCliente(nodoListaClientes * nodoCliente, char nombreArchivo[], int admin)
+void subProgramaMostrarCliente(nodoListaClientes * nodoCliente, ventana pos)
 {
-    stCliente aux;
-    aux =  modificarCliente(nodoCliente->cliente, admin);
-    nodoCliente->cliente = aux;
-    registrarClienteModificado(nombreArchivo, aux);
-
-}
-
-void subProgramaMostrarCliente(nodoListaClientes * nodoCliente, int posX, int posY)
-{
-    int x,y;
-    getWindowSize(&x, &y);
-
-    system("cls");
     header();
-    gotoxy(posX, posY);
+    gotoxy(pos.posX, pos.posY);
     mostrarNodoCliente(nodoCliente);
-    gotoxy(posX, whereY());
+    gotoxy(pos.posX, whereY());
     printf("Pedidos: \n");
     if(nodoCliente->listaProductos)
     {
-        gotoxy(posX, 3);
+        gotoxy(pos.posX, 3);
         mostrarListaProducto(nodoCliente->listaProductos);
     }
     else
     {
-        gotoxy(posX + 3, whereY());
+        gotoxy(pos.posX + 3, whereY());
         printf("No hay pedidos\n");
     }
-    if(whereY() <= y - 4)
-        gotoxy(0, y-4);
+    if(whereY() <= pos.tamY - 4)
+        gotoxy(0, pos.posY - 4);
     footer();
-    gotoxy(posX, whereY()- 3);
+    gotoxy(pos.posX, whereY()- 3);
     color(10);
     system("pause");
     color(15);

@@ -11,11 +11,16 @@ const char A_Pedidos[] = "Datos\\pedidos.dat";
 void menuLogin(nodoListaClientes * listaClientes, nodoArbolProducto * arbolProductos);
 void menuPrincipalClientes(nodoListaClientes * nodoCliente, nodoArbolProducto * arbolProductos);
 void menuPrincipalAdmin(nodoListaClientes * listaClientes, nodoArbolProducto * arbolProductos);
-void menuMostrarArbol(nodoArbolProducto * arbolProducto);
+void menuMostrarArbol(nodoArbolProducto * arbolProductos);
 void menuBusquedaCliente(nodoListaClientes * listaClientes);
+void menuModificarCliente(nodoListaClientes * listaClientes);
+void menuBusquedaProducto(nodoArbolProducto * arbolProductos);
+void menuModificarProducto(nodoArbolProducto * arbolProductos);
 
 ///Subprogramas
 void subprogramaHacerPedido(nodoListaClientes * nodoCliente, nodoArbolProducto * arbolProductos);
+void subProgramaModificarCliente(nodoListaClientes * nodoCliente, char nombreArchivo[], int admin);
+void subProgramaModificarProducto(nodoArbolProducto * arbol, char nombreArchivo[]);
 
 ///Funciones Extra
 int contadorDatos(char nombreArchivo[], int byte);
@@ -24,10 +29,9 @@ int validarString(char palabra[], int dim);
 
 int main()
 {
-    int x, y, posX = 0, posY = 0, op = 0;
-    getWindowSize(&x, &y);
-    posX = (x/2) - (strlen("======|You TECS|======")/2)-2;
-    posY = (y/2) - 3;
+    ventana pos = inicVentana("======|You TECS|======", 3);
+    int op = 0;
+    pos.posX = pos.posX -2;
     stCliente nuevo;
     nodoListaClientes * clientes = inicListaClientes();
     nodoListaClientes * clienteEncotrado = inicListaClientes();
@@ -39,26 +43,22 @@ int main()
 
     do
     {
-        system("cls");
         header();
-        gotoxy(posX,posY);
-        menuIngresoG(posX);
-        gotoxy(0, y-4);
+        gotoxy(pos.posX, pos.posY);
+        menuIngresoG();
+        gotoxy(0, pos.tamY - 4);
         footer();
-        gotoxy(posX + 4, posY + 4);
-        color(10);
-        scanf("%d", &op);
-        color(15);
+        gotoxy(pos.posX + 4, pos.posY + 4);
+        op = leerInt();
 
         switch(op)
         {
         case 1:
-            //menuLogin(clientes, productos);
-            menuPrincipalAdmin(clientes, productos);
+            menuLogin(clientes, productos);
+            //menuPrincipalAdmin(clientes, productos);
             //menuPrincipalClientes(clientes, productos);
             break;
         case 2:
-            system("cls");
             nuevo = crearCliente(A_Clientes);
             clienteEncotrado = buscarClientePorUsername(clientes, nuevo.userName);
             if(!clienteEncotrado)
@@ -68,14 +68,12 @@ int main()
             }
             else
             {
-                gotoxy(posX, posY + 5);
+                gotoxy(pos.posX, pos.posY + 5);
                 color(12);
                 printf("El usuario ya existe, intente nuevamente!\n");
                 color(15);
-                gotoxy(posX, whereY());
-                color(10);
-                system("pause");
-                color(15);
+                gotoxy(pos.posX, whereY());
+                pausa();
             }
             break;
         default:
@@ -84,7 +82,7 @@ int main()
     }
     while(op != 0);
 
-    gotoxy(0, y+1);
+    gotoxy(0, pos.tamY + 1);
     return 0;
 }
 
@@ -92,103 +90,81 @@ int main()
 void menuLogin(nodoListaClientes * listaClientes, nodoArbolProducto * arbolProductos)
 {
     nodoListaClientes * cliente = inicListaClientes();
-    int x,y,posX = 0,posY = 0,op = 0;
+    ventana pos = inicVentana("=====|Bienvenido|=====", 1);
+    int op = 0;
     char usuario[20], pass[20];
-    getWindowSize(&x, &y);
-    posX = (x/2) - (strlen("=====|Bienvenido|=====")/2)-2;
-    posY = (y/3) - 1;
-    do
-    {
-        system("cls");
-        header();
-        gotoxy(posX,posY);
-        menuLoginG(posX);
-        gotoxy(0, y-4);
-        footer();
-        gotoxy((posX+strlen("Contrasena: ")), posY + 1);
-        color(10);
-        fflush(stdin);
-        gets(usuario);
-        color(15);
-        cliente = buscarClientePorUsername(listaClientes, usuario);
-        while(!cliente)
-        {
-            gotoxy(posX, posY + 3);
-            color(12);
-            printf("El usuario no existe!");
-            color(15);
-            gotoxy((posX+strlen("Contrasena: ")), posY + 1);
-            limpiarLineaDer();
-            color(10);
-            fflush(stdin);
-            gets(usuario);
-            color(15);
-            cliente = buscarClientePorUsername(listaClientes, usuario);
-        }
-        gotoxy(posX, posY + 3);
-        limpiarTodaLinea();
-        gotoxy((posX+strlen("Contrasena: ")), posY + 2);
-        color(10);
-        fflush(stdin);
-        gets(pass);
-        color(15);
-        while(strcmpi(pass, cliente->cliente.password))
-        {
-            gotoxy(posX, posY + 3);
-            color(12);
-            printf("La contrase%ca es incorrecta!", enie);
-            color(15);
-            gotoxy((posX+strlen("Contrasena: ")), posY + 2);
-            limpiarLineaDer();
-            color(10);
-            fflush(stdin);
-            gets(pass);
-            color(15);
-        }
+    pos.posX = pos.posX - 2;
 
-        cliente->cliente.rol == 1 ? menuPrincipalAdmin(listaClientes, arbolProductos) : menuPrincipalClientes(cliente, arbolProductos);
+    header();
+    gotoxy(pos.posX, pos.posY);
+    menuLoginG();
+    gotoxy(0, pos.tamY - 4);
+    footer();
+    gotoxy(pos.posX + strlen("Contrasena: "), pos.posY + 1);
+    strcpy(usuario, leerString(20));
+    cliente = buscarClientePorUsername(listaClientes, usuario);
+    while(!cliente)
+    {
+        gotoxy(pos.posX, pos.posY + 3);
+        color(12);
+        printf("El usuario no existe!");
+        color(15);
+        gotoxy(pos.posX + strlen("Contrasena: "), pos.posY + 1);
+        limpiarLineaDer();
+        strcpy(usuario, leerString(20));
+        cliente = buscarClientePorUsername(listaClientes, usuario);
     }
-    while(op != 0);
+    gotoxy(pos.posX, pos.posY + 3);
+    limpiarTodaLinea();
+    gotoxy(pos.posX + strlen("Contrasena: "), pos.posY + 2);
+    strcpy(pass, leerString(20));
+    while(strcmpi(pass, cliente->cliente.password))
+    {
+        gotoxy(pos.posX, pos.posY + 3);
+        color(12);
+        printf("La contrase%ca es incorrecta!", enie);
+        color(15);
+        gotoxy(pos.posX + strlen("Contrasena: "), pos.posY + 2);
+        limpiarLineaDer();
+        strcpy(pass, leerString(20));
+    }
+
+    cliente->cliente.rol == 1 ? menuPrincipalAdmin(listaClientes, arbolProductos) : menuPrincipalClientes(cliente, arbolProductos);
 }
 
 void menuPrincipalClientes(nodoListaClientes * nodoCliente, nodoArbolProducto * arbolProductos)
 {
-    int op = 0, x, y, posX = 0, posY = 0, mostrar = 0;
-    getWindowSize(&x, &y);
-    posX = (x/2) - (strlen("======|Hola!          |======")/2);
-    posY = (y/2) - 5;
+    int op = 0, mostrar = 0;
+    ventana pos = inicVentana("======|Hola!          |======", 5);
 
     do
     {
-        system("cls");
         header();
-        gotoxy(posX, posY);
+        gotoxy(pos.posX, pos.posY);
         color(10);
-        printf("======|Hola! |======\n");
+        printf("======|Hola! %s|======\n", nodoCliente->cliente.userName);
         color(15);
-        menuPrincipalClientesG(posX);
-        gotoxy(0, y-4);
+        gotoxy(pos.posX,whereY());
+        menuPrincipalClientesG();
+        gotoxy(0, pos.tamY - 4);
         footer();
-        gotoxy(posX+4, posY + 6);
-        color(10);
-        scanf("%d", &op);
-        color(15);
+        gotoxy(pos.posX + 4, pos.posY + 6);
+        op = leerInt();
 
         switch(op)
         {
         case 1:
-            system("cls");
             subprogramaHacerPedido(nodoCliente, arbolProductos);
             break;
         case 2:
-            system("cls");
             header();
-            gotoxy(posX, 3);
+            gotoxy(pos.posX, 3);
             mostrarListaProducto(nodoCliente->listaProductos);
-            if(whereY() <= y - 4)
-                gotoxy(0, y - 4);
-            gotoxy(posX, whereY() + 1);
-            system("pause");
+            if(whereY() <= pos.tamY - 4)
+                gotoxy(0, pos.tamY - 4);
+            footer();
+            gotoxy(pos.posX, whereY() + 1);
+            pausa();
             break;
         case 3:
             subProgramaModificarCliente(nodoCliente, A_Clientes, 0);
@@ -202,33 +178,28 @@ void menuPrincipalClientes(nodoListaClientes * nodoCliente, nodoArbolProducto * 
     }
     while(op != 0);
 }
+
 void menuPrincipalAdmin(nodoListaClientes * listaClientes, nodoArbolProducto * arbolProductos)
 {
     stCliente nuevoCliente;
     nodoListaClientes * clienteEncotrado = inicListaClientes();
     stProducto nuevoProducto;
-    int op = 0, x, y, posX = 0, posY = 0, mostrar = 0, aux = 0;
-    getWindowSize(&x, &y);
-    posX = (x/2) - (strlen("======|Menu Administrador|======")/2);
-    posY = (y/2) - 8;
+    int op = 0, mostrar = 0, aux = 0;
+    ventana pos = inicVentana("======|Menu Administrador|======", 8);
 
     do
     {
-        system("cls");
         header();
-        gotoxy(posX, posY);
-        menuPrincipalAdminG(posX);
-        gotoxy(0, y-4);
+        gotoxy(pos.posX, pos.posY);
+        menuPrincipalAdminG();
+        gotoxy(0, pos.tamY - 4);
         footer();
-        gotoxy(posX+4,posY + 12);
-        color(10);
-        scanf("%d", &op);
-        color(15);
+        gotoxy(pos.posX + 4, pos.posY + 12);
+        op = leerInt();
 
         switch(op)
         {
         case 1:
-            system("cls");
             nuevoCliente = crearCliente(A_Clientes);
             clienteEncotrado = buscarClientePorUsername(listaClientes, nuevoCliente.userName);
             if(!clienteEncotrado)
@@ -238,29 +209,23 @@ void menuPrincipalAdmin(nodoListaClientes * listaClientes, nodoArbolProducto * a
             }
             else
             {
-                gotoxy(posX, posY + 10);
+                gotoxy(pos.posX, pos.posY + 10);
                 color(12);
                 printf("El usuario ya existe, intente nuevamente!\n");
-                color(15);
-                gotoxy(posX, whereY());
-                color(10);
-                system("pause");
-                color(15);
+                gotoxy(pos.posX, whereY());
+                pausa();
             }
             break;
         case 2:
-            system("cls");
             header();
-            gotoxy(posX, 3);
+            gotoxy(pos.posX, 3);
             mostrarListaClientes(listaClientes);
             aux = whereY();
-            if(whereY() <= y - 4)
-                gotoxy(0, y - 4);
+            if(whereY() <= pos.tamY - 4)
+                gotoxy(0, pos.tamY - 4);
             footer();
-            gotoxy(posX, aux);
-            color(10);
-            system("pause");
-            color(15);
+            gotoxy(pos.posX, aux);
+            pausa();
             break;
         case 3:
             menuBusquedaCliente(listaClientes);
@@ -269,7 +234,6 @@ void menuPrincipalAdmin(nodoListaClientes * listaClientes, nodoArbolProducto * a
             menuModificarCliente(listaClientes);
             break;
         case 5:
-            system("cls");
             nuevoProducto = crearProducto(A_Productos);
             registrarProducto(A_Productos, nuevoProducto);
             arbolProductos = agregarNodoEnOrden(arbolProductos, crearNodoArbolProducto(nuevoProducto));
@@ -278,10 +242,10 @@ void menuPrincipalAdmin(nodoListaClientes * listaClientes, nodoArbolProducto * a
             menuMostrarArbol(arbolProductos);
             break;
         case 7:
-            //subprogramaBuscarProducto();
+            menuBusquedaProducto(arbolProductos);
             break;
         case 8:
-            //subProgramaModificarProducto();
+            menuModificarProducto(arbolProductos);
             break;
         default:
             break;
@@ -292,66 +256,52 @@ void menuPrincipalAdmin(nodoListaClientes * listaClientes, nodoArbolProducto * a
 
 void menuMostrarArbol(nodoArbolProducto * arbolProductos)
 {
-    int op = 0, x, y, posX = 0, posY = 0, aux = 0;
-    getWindowSize(&x, &y);
-    posX = (x/2)-(strlen("=====|Mostrar Productos|=====")/2);
-    posY =(y/2)-5;
+    int op = 0, aux = 0;
+    ventana pos = inicVentana("=====|Mostrar Productos|=====", 5);
 
     do
     {
-        system("cls");
         header();
-        gotoxy(posX, posY);
-        menuMostrarArbolG(posX);
-        gotoxy(0, y-4);
+        gotoxy(pos.posX, pos.posY);
+        menuMostrarArbolG();
+        gotoxy(0, pos.tamY - 4);
         footer();
-        gotoxy(posX+4, posY+5);
-        color(10);
-        scanf("%d", &op);
-        color(15);
+        gotoxy(pos.posX + 4, pos.posY + 5);
+        op = leerInt();
         switch(op)
         {
         case 1:
-            system("cls");
             header();
-            gotoxy(posX, 3);
+            gotoxy(pos.posX, 3);
             mostrarPreOrden(arbolProductos);
             aux = whereY();
-            if(whereY() <= y - 4)
-                gotoxy(0, y - 4);
+            if(whereY() <= pos.tamY - 4)
+                gotoxy(0, pos.tamY - 4);
             footer();
-            gotoxy(posX, aux);
-            color(10);
-            system("pause");
-            color(15);
+            gotoxy(pos.posX, aux);
+            pausa();
             break;
         case 2:
-            system("cls");
             header();
-            gotoxy(posX, 3);
+            gotoxy(pos.posX, 3);
             mostrarInOrden(arbolProductos);
             aux = whereY();
-            if(whereY() <= y - 4)
-                gotoxy(0, y - 4);
+            if(whereY() <= pos.tamY - 4)
+                gotoxy(0, pos.tamY - 4);
             footer();
-            gotoxy(posX, aux);
-            color(10);
-            system("pause");
-            color(15);
+            gotoxy(pos.posX, aux);
+            pausa();
             break;
         case 3:
-            system("cls");
             header();
-            gotoxy(posX, 3);
+            gotoxy(pos.posX, 3);
             mostrarPosOrden(arbolProductos);
             aux = whereY();
-            if(whereY() <= y - 4)
-                gotoxy(0, y - 4);
+            if(whereY() <= pos.tamY - 4)
+                gotoxy(0, pos.tamY - 4);
             footer();
-            gotoxy(posX, aux);
-            color(10);
-            system("pause");
-            color(15);
+            gotoxy(pos.posX, aux);
+            pausa();
             break;
         default:
             break;
@@ -362,150 +312,123 @@ void menuMostrarArbol(nodoArbolProducto * arbolProductos)
 
 void menuBusquedaCliente(nodoListaClientes * listaClientes)
 {
-    int op = 0, x, y, posX = 0, posY = 0, idCli = 0;
+    int op = 0, idCli = 0;
     char busca[30] = "\0";
-    getWindowSize(&x, &y);
-    posX = (x/2)-(strlen("=====|Buscar Cliente|=====")/2) - 3;
-    posY =(y/2)-5;
+    ventana pos = inicVentana("=====|Buscar Cliente|=====", 5);
+    pos.posX = pos.posX - 3;
     nodoListaClientes * clienteEncontrado = inicListaClientes();
 
     do
     {
-        system("cls");
         header();
-        gotoxy(posX,posY);
-        menuBusquedaClienteG(posX);
-        gotoxy(0,y - 4);
+        gotoxy(pos.posX, pos.posY);
+        menuBusquedaClienteG();
+        gotoxy(0, pos.tamY - 4);
         footer();
-        gotoxy(posX + 4, posY + 7);
-        color(10);
-        scanf("%d", &op);
-        color(15);
+        gotoxy(pos.posX + 4, pos.posY + 7);
+        op = leerInt();
 
         switch (op)
         {
         case 1:
-            gotoxy(posX, posY + 8);
+            gotoxy(pos.posX, pos.posY + 8);
             printf("Ingrese el ID: ");
-            color(10);
-            scanf("%d", &idCli);
-            color(15);
+            idCli = leerInt();
             clienteEncontrado = buscarClientePorId(listaClientes, idCli);
             if(clienteEncontrado)
             {
-                subProgramaMostrarCliente(clienteEncontrado, posX, posY);
+                subProgramaMostrarCliente(clienteEncontrado, pos);
             }
             else
             {
-                gotoxy(posX, posY + 8);
+                gotoxy(pos.posX, pos.posY + 8);
                 limpiarTodaLinea();
                 color(12);
-                printf("No hay ningun usuario con ese ID!");
-                color(10);
-                gotoxy(posX, posY + 9);
-                system("pause");
-                color(15);
+                printf("No se ha econtrdo ningun usuario");
+                gotoxy(pos.posX, pos.posY + 9);
+                pausa();
             }
             break;
         case 2:
-            gotoxy(posX, posY + 8);
+            gotoxy(pos.posX, pos.posY + 8);
             printf("Ingrese el nombre de usuario: ");
-            color(10);
-            fflush(stdin);
-            gets(busca);
-            color(15);
+            strcpy(busca, leerString(20));
             clienteEncontrado = buscarClientePorUsername(listaClientes, busca);
             if(clienteEncontrado)
             {
-                subProgramaMostrarCliente(clienteEncontrado, posX, posY);
+                subProgramaMostrarCliente(clienteEncontrado, pos);
             }
             else
             {
-                gotoxy(posX, posY + 8);
+                gotoxy(pos.posX, pos.posY + 8);
                 limpiarTodaLinea();
                 color(12);
-                printf("No hay ningun usuario con ese nombre de usuario!");
-                color(10);
-                gotoxy(posX, posY + 9);
-                system("pause");
-                color(15);
+                printf("No se ha econtrdo ningun usuario");
+                gotoxy(pos.posX, pos.posY + 9);
+                pausa();
             }
             break;
         case 3:
-            gotoxy(posX, posY + 8);
+            gotoxy(pos.posX, pos.posY + 8);
             printf("Ingrese el email: ");
-            color(10);
-            fflush(stdin);
-            gets(busca);
-            color(15);
+            strcpy(busca, leerString(30));
             clienteEncontrado = buscarClientePorEmail(listaClientes, busca);
             if(clienteEncontrado)
             {
-                subProgramaMostrarCliente(clienteEncontrado, posX, posY);
+                subProgramaMostrarCliente(clienteEncontrado, pos);
             }
             else
             {
-                gotoxy(posX, posY + 8);
+                gotoxy(pos.posX, pos.posY + 8);
                 limpiarTodaLinea();
                 color(12);
-                printf("No hay ningun usuario con ese email!");
-                color(10);
-                gotoxy(posX, posY + 9);
-                system("pause");
-                color(15);
+                printf("No se ha econtrdo ningun usuario");
+                gotoxy(pos.posX, pos.posY + 9);
+                pausa();
             }
             break;
         case 4:
-            gotoxy(posX, posY + 8);
+            gotoxy(pos.posX, pos.posY + 8);
             printf("Ingrese el nombre: ");
-            color(10);
-            fflush(stdin);
-            gets(busca);
-            color(15);
+            strcpy(busca, leerString(30));
             clienteEncontrado = buscarClientePorNombre(listaClientes, busca);
             if(clienteEncontrado)
             {
-                subProgramaMostrarCliente(clienteEncontrado, posX, posY);
+                subProgramaMostrarCliente(clienteEncontrado, pos);
             }
             else
             {
-                gotoxy(posX, posY + 8);
+                gotoxy(pos.posX, pos.posY + 8);
                 limpiarTodaLinea();
                 color(12);
-                printf("No hay ningun usuario con ese Nombre!");
-                color(10);
-                gotoxy(posX, posY + 9);
-                system("pause");
-                color(15);
+                printf("No se ha econtrdo ningun usuario");
+                gotoxy(pos.posX, pos.posY + 9);
+                pausa();
             }
             break;
         case 5:
-            gotoxy(posX, posY + 8);
+            gotoxy(pos.posX, pos.posY + 8);
             printf("Ingrese el apellido: ");
-            color(10);
-            fflush(stdin);
-            gets(busca);
-            color(15);
+            strcpy(busca, leerString(30));
             clienteEncontrado = buscarClientePorApellido(listaClientes, busca);
             if(clienteEncontrado)
             {
-                subProgramaMostrarCliente(clienteEncontrado, posX, posY);
+                subProgramaMostrarCliente(clienteEncontrado, pos);
             }
             else
             {
-                gotoxy(posX, posY + 8);
+                gotoxy(pos.posX, pos.posY + 8);
                 limpiarTodaLinea();
                 color(12);
-                printf("No hay ningun usuario con ese apellido!");
-                color(10);
-                gotoxy(posX, posY + 9);
-                system("pause");
-                color(15);
+                printf("No se ha econtrdo ningun usuario");
+                gotoxy(pos.posX, pos.posY + 9);
+                pausa();
             }
             break;
         default:
             break;
         }
+
     }
     while(op != 0);
 }
@@ -513,25 +436,21 @@ void menuBusquedaCliente(nodoListaClientes * listaClientes)
 void menuModificarCliente(nodoListaClientes * listaClientes)
 {
     nodoListaClientes * clienteEncontrado = inicListaClientes();
-    int op = 0, x, y, posX = 0, posY = 0, idCli = 0;
-    getWindowSize(&x, &y);
-    posX = (x/2) - strlen("=====|Modificar Cliente|=====")/2 - 2;
-    posY = y/2 - 2;
+    int op = 0, idCli = 0;
+    ventana pos = inicVentana("=====|Modificar Cliente|=====", 2);
+    pos.posX = pos.posX - 2;
 
-    system("cls");
     header();
-    gotoxy(posX,posY);
+    gotoxy(pos.posX, pos.posY);
     color(10);
     printf("=====|Modificar Cliente|=====\n\n");
     color(15);
-    gotoxy(posX, whereY());
+    gotoxy(pos.posX, whereY());
     printf("Ingrese ID del usuario a modificar: ");
-    gotoxy(0, y - 4);
+    gotoxy(0, pos.tamY - 4);
     footer();
-    gotoxy(posX + strlen("Ingrese ID del usuario a modificar: "), posY + 2);
-    color(10);
-    scanf("%d", &idCli);
-    color(15);
+    gotoxy(pos.posX + strlen("Ingrese ID del usuario a modificar: "), pos.posY + 2);
+    idCli = leerInt();
 
     clienteEncontrado = buscarClientePorId(listaClientes, idCli);
 
@@ -541,13 +460,173 @@ void menuModificarCliente(nodoListaClientes * listaClientes)
     }
     else
     {
-        gotoxy(posX, whereY());
+        gotoxy(pos.posX, whereY());
         color(12);
         printf("No hay un usuario con ese ID!\n");
-        color(10);
-        gotoxy(posX, whereY());
-        system("pause");
-        color(15);
+        gotoxy(pos.posX, whereY());
+        pausa();
+    }
+}
+
+void menuBusquedaProducto(nodoArbolProducto * arbolProductos)
+{
+    int op = 0, idProd = 0;
+    char busca[30] = "\0";
+    ventana pos = inicVentana("=====|Buscar Producto|=====", 5);
+    pos.posX = pos.posX - 3;
+    nodoArbolProducto * prodEncontrado = inicArbol();
+
+    do
+    {
+        header();
+        gotoxy(pos.posX, pos.posY);
+        menuBusquedaProductoG();
+        gotoxy(0, pos.tamY - 4);
+        footer();
+        gotoxy(pos.posX + 4, pos.posY + 6);
+        op = leerInt();
+
+        switch (op)
+        {
+        case 1:
+            gotoxy(pos.posX, pos.posY + 7);
+            printf("Ingrese el ID: ");
+            idProd = leerInt();
+            prodEncontrado = buscarNodoPorId(arbolProductos, idProd);
+            if(prodEncontrado)
+            {
+                header();
+                gotoxy(pos.posX, pos.posY);
+                mostrarNodoArbolProd(prodEncontrado);
+                gotoxy(0, pos.posY - 4);
+                footer();
+                gotoxy(pos.posX, pos.posY + 5);
+                pausa();
+            }
+            else
+            {
+                gotoxy(pos.posX, pos.posY + 7);
+                limpiarTodaLinea();
+                color(12);
+                printf("No se ha econtrdo ningun producto");
+                gotoxy(pos.posX, pos.posY + 8);
+                pausa();
+            }
+            break;
+        case 2:
+            gotoxy(pos.posX, pos.posY + 7);
+            printf("Ingrese el nombre producto: ");
+            strcpy(busca, leerString(30));
+            prodEncontrado = buscarNodoPorNombre(arbolProductos, busca);
+            if(prodEncontrado)
+            {
+                header();
+                gotoxy(pos.posX, pos.posY);
+                mostrarNodoArbolProd(prodEncontrado);
+                gotoxy(0, pos.tamY - 4);
+                footer();
+                gotoxy(pos.posX, pos.posY + 5);
+                pausa();
+            }
+            else
+            {
+                gotoxy(pos.posX, pos.posY + 7);
+                limpiarTodaLinea();
+                color(12);
+                printf("No se ha econtrdo ningun producto");
+                gotoxy(pos.posX, pos.posY + 8);
+                pausa();
+            }
+            break;
+        case 3:
+            gotoxy(pos.posX, pos.posY + 7);
+            printf("Ingrese el marca: ");
+            strcpy(busca, leerString(20));
+            prodEncontrado = buscarNodoPorMarca(arbolProductos, busca);
+            if(prodEncontrado)
+            {
+                header();
+                gotoxy(pos.posX, pos.posY);
+                mostrarNodoArbolProd(prodEncontrado);
+                gotoxy(0, pos.tamY - 4);
+                footer();
+                gotoxy(pos.posX, pos.posY + 5);
+                pausa();
+            }
+            else
+            {
+                gotoxy(pos.posX, pos.posY + 7);
+                limpiarTodaLinea();
+                color(12);
+                printf("No se ha econtrdo ningun producto");
+                gotoxy(pos.posX, pos.posY + 8);
+                pausa();
+            }
+            break;
+        case 4:
+            gotoxy(pos.posX, pos.posY + 7);
+            printf("Ingrese el categoria: ");
+            strcpy(busca, leerString(15));
+            prodEncontrado = buscarNodoPorCategoria(arbolProductos, busca);
+            if(prodEncontrado)
+            {
+                header();
+                gotoxy(pos.posX, pos.posY);
+                mostrarNodoArbolProd(prodEncontrado);
+                gotoxy(0, pos.tamY - 4);
+                footer();
+                gotoxy(pos.posX, pos.posY + 5);
+                pausa();
+            }
+            else
+            {
+                gotoxy(pos.posX, pos.posY + 7);
+                limpiarTodaLinea();
+                color(12);
+                printf("No se ha econtrdo ningun producto");
+                gotoxy(pos.posX, pos.posY + 8);
+                pausa();
+            }
+            break;
+        default:
+            break;
+        }
+    }
+    while(op != 0);
+}
+
+void menuModificarProducto(nodoArbolProducto * arbolProductos)
+{
+    nodoArbolProducto * productoEncontrado = inicArbol();
+    int op = 0, idProd = 0;
+    ventana pos = inicVentana("=====|Modificar Producto|=====", 2);
+    pos.posX = pos.posX - 2;
+
+    header();
+    gotoxy(pos.posX, pos.posY);
+    color(10);
+    printf("=====|Modificar Producto|=====\n\n");
+    color(15);
+    gotoxy(pos.posX, whereY());
+    printf("Ingrese ID del producto a modificar: ");
+    gotoxy(0, pos.tamY - 4);
+    footer();
+    gotoxy(pos.posX + strlen("Ingrese ID del producto a modificar: "), pos.posY + 2);
+    idProd = leerInt();
+
+    productoEncontrado = buscarNodoPorId(arbolProductos, idProd);
+
+    if(productoEncontrado)
+    {
+        subProgramaModificarProducto(productoEncontrado, A_Productos);
+    }
+    else
+    {
+        gotoxy(pos.posX, whereY());
+        color(12);
+        printf("No hay un producto con ese ID!\n");
+        gotoxy(pos.posX, whereY());
+        pausa();
     }
 }
 
@@ -555,30 +634,44 @@ void menuModificarCliente(nodoListaClientes * listaClientes)
 void subprogramaHacerPedido(nodoListaClientes * nodoCliente, nodoArbolProducto * arbolProductos)
 {
     nodoArbolProducto * nodoProducto = inicArbol();
-    int x,y, posX = 0, posY = 0, idProd = 0, aux = 0;
-    getWindowSize(&x, &y);
-    posX = (x/2) - strlen("=====|Productos|=====");
-    posY = 3;
+    int idProd = 0, aux = 0;
+    ventana pos = inicVentana("=====|Productos|=====", 0);
+    pos.posY = 3;
 
     header();
-    gotoxy(posX, posY);
+    gotoxy(pos.posX, pos.posY);
     color(10);
     printf("=====|Productos|=====\n");
     color(15);
-    gotoxy(posX,3);
+    gotoxy(pos.posX,whereY());
     mostrarInOrden(arbolProductos);
     printf("Ingrese ID de producto: ");
     aux = whereY();
-    if(whereY() <= y - 4)
-        gotoxy(0,y - 4);
+    if(whereY() <= pos.tamY - 4)
+        gotoxy(0, pos.tamY - 4);
     footer();
-    gotoxy(posX + strlen("Ingrese ID de producto: "), aux);
-    color(10);
-    scanf("%d", &idProd);
-    color(15);
+    gotoxy(pos.posX + strlen("Ingrese ID de producto: "), aux);
+    idProd = leerInt();
 
     nodoProducto = buscarNodoPorId(arbolProductos, idProd);
     agregarProductoListaClientes(nodoCliente, nodoCliente->cliente.idCliente, nodoProducto->producto);
+}
+
+void subProgramaModificarCliente(nodoListaClientes * nodoCliente, char nombreArchivo[], int admin)
+{
+    stCliente aux;
+    aux =  modificarCliente(nodoCliente->cliente, admin);
+    nodoCliente->cliente = aux;
+    registrarClienteModificado(nombreArchivo, aux);
+
+}
+
+void subProgramaModificarProducto(nodoArbolProducto * arbol, char nombreArchivo[])
+{
+    stProducto aux;
+    aux =  modificarProducto(arbol->producto);
+    arbol->producto = aux;
+    registrarProductoModificado(nombreArchivo, aux);
 }
 
 ///Funciones Extra
@@ -593,8 +686,9 @@ int contadorDatos(char nombreArchivo[], int byte) //Cuenta cuantos bloques de da
     {
         fseek(arch, 0, SEEK_END);
         cant = ftell(arch)/ byte;
+        fclose(arch);
     }
-    fclose(arch);
+
 
     return cant;
 }

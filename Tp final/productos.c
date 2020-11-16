@@ -5,83 +5,80 @@
 stProducto crearProducto(char nombreArchivo[])
 {
     stProducto product;
-    int x, y, posX = 0, posY = 0;
-    getWindowSize(&x, &y);
-    posX = (x/2) - strlen("=====|Nuevo Producto|=====")/2 - 2;
-    posY = (y/2) - 5;
+    ventana pos = inicVentana("=====|Nuevo Producto|=====", 5);
 
     header();
 
-    gotoxy(posX,posY);
+    gotoxy(pos.posX, pos.posY);
     color(10);
     printf("=====|Nuevo Producto|=====\n");
     color(15);
-    gotoxy(posX, whereY());
+    gotoxy(pos.posX, whereY());
     printf("Nombre del producto: \n");
-    gotoxy(posX, whereY());
+    gotoxy(pos.posX, whereY());
     printf("Marca del producto: \n");
-    gotoxy(posX, whereY());
+    gotoxy(pos.posX, whereY());
     printf("Categoria del producto: \n");
-    gotoxy(posX, whereY());
+    gotoxy(pos.posX, whereY());
     printf("Precio del producto: \n");
-    gotoxy(0, y - 4);
+    gotoxy(0, pos.tamY - 4);
     footer();
     color(10);
-    gotoxy(posX + strlen("Categoria del producto: "), posY + 1);
+    gotoxy(pos.posX + strlen("Categoria del producto: "), pos.posY + 1);
     fflush(stdin);
     gets(product.nombre);
     while (validarString(product.nombre,30))
     {
-        gotoxy(posX, posY + 6);
+        gotoxy(pos.posX, pos.posY + 6);
         limpiarTodaLinea();
         color(12);
         printf("Error! Nombre de producto muy largo");
         color(10);
-        gotoxy(posX + strlen("Categoria del producto: "), posY + 1);
+        gotoxy(pos.posX + strlen("Categoria del producto: "), pos.posY + 1);
         limpiarLineaDer();
         fflush(stdin);
         gets(product.nombre);
     }
-    gotoxy(posX + strlen("Categoria del producto: "), posY + 2);
+    gotoxy(pos.posX + strlen("Categoria del producto: "), pos.posY + 2);
     fflush(stdin);
     gets(product.marca);
     while (validarString(product.marca,20))
     {
-        gotoxy(posX, posY + 6);
+        gotoxy(pos.posX, pos.posY + 6);
         limpiarTodaLinea();
         color(12);
         printf("Error! Marca del producto muy larga");
         color(10);
-        gotoxy(posX + strlen("Categoria del producto: "), posY + 2);
+        gotoxy(pos.posX + strlen("Categoria del producto: "), pos.posY + 2);
         limpiarLineaDer();
         fflush(stdin);
         gets(product.marca);
     }
-    gotoxy(posX + strlen("Categoria del producto: "), posY + 3);
+    gotoxy(pos.posX + strlen("Categoria del producto: "), pos.posY + 3);
     fflush(stdin);
     gets(product.categoria);
     while (validarString(product.categoria, 15))
     {
-        gotoxy(posX, posY + 6);
+        gotoxy(pos.posX, pos.posY + 6);
         limpiarTodaLinea();
         color(12);
         printf("Error! Categoria del producto muy larga");
         color(10);
-        gotoxy(posX + strlen("Categoria del producto: "), posY + 3);
+        gotoxy(pos.posX + strlen("Categoria del producto: "), pos.posY + 3);
         limpiarLineaDer();
         fflush(stdin);
         gets(product.categoria);
     }
-    gotoxy(posX + strlen("Categoria del producto: "), posY + 4);
+    gotoxy(pos.posX + strlen("Categoria del producto: "), pos.posY + 4);
     scanf("%f", &product.precio);
     while(product.precio < 0)
     {
-        gotoxy(posX, posY + 6);
+        gotoxy(pos.posX, pos.posY + 6);
         limpiarTodaLinea();
         color(12);
         printf("Error! El precio del producto no es valido");
         color(10);
-        gotoxy(posX + strlen("Categoria del producto: "), posY + 4);
+        gotoxy(pos.posX + strlen("Categoria del producto: "), pos.posY + 4);
         limpiarLineaDer();
         scanf("%f", &product.precio);
     }
@@ -116,7 +113,7 @@ void registrarProductoModificado(char nombreArchivo[], stProducto prod)
     fopen(nombreArchivo, "r+b");
     if(arch)
     {
-        fseek(arch, prod.idProducto, SEEK_SET);
+        fseek(arch, (prod.idProducto - 1) * sizeof(stProducto), SEEK_SET);
         fwrite(&prod, sizeof(stProducto), 1, arch);
         fclose(arch);
     }
@@ -153,13 +150,15 @@ void registrarProductoModificado(char nombreArchivo[], stProducto prod)
 void mostrarProducto(stProducto product)
 {
     int x = whereX();
-    printf("Id #%d\n", product.idProducto);
+    printf("Id#%d\n", product.idProducto);
     gotoxy(x,whereY());
-    printf("Nombre del producto: %s\n", product.nombre);
+    printf("Nombre del producto:    %s\n", product.nombre);
     gotoxy(x,whereY());
-    printf("Marca del producto:  %s\n", product.marca);
+    printf("Marca del producto:     %s\n", product.marca);
     gotoxy(x,whereY());
-    printf("Precio del producto: %.2f\n\n", product.precio);
+    printf("Categoria del producto: %s\n", product.categoria);
+    gotoxy(x,whereY());
+    printf("Precio del producto:    %.2f\n\n", product.precio);
     gotoxy(x,whereY());
 }
 
@@ -169,70 +168,122 @@ stProducto modificarProducto(stProducto producto)
     stProducto aux;
     int op = 0;
     char opcion = 'n';
+    ventana pos = inicVentana("=====|Datos del Producto|=====", 5);
+
     do
     {
-        system("cls");
         header();
-        //menuDatosProducto();
+        gotoxy(pos.posX, pos.posY);
+        menuDatosProductosG();
+        gotoxy(0, pos.tamY - 4);
         footer();
-        scanf("%d", &op);
+        gotoxy(pos.posX + 4, pos.posY + 7);
+        op = leerInt();
 
         switch (op)
         {
         case 1:
-            printf("Nombre del producto: ");
+            header();
+            gotoxy(pos.posX, pos.posY);
+            printf("Nombre actual del producto: %s\n", producto.nombre);
+            gotoxy(pos.posX, whereY());
+            printf("Nuevo nombre del producto: ");
+            gotoxy(0, pos.tamY - 4);
+            footer();
+            gotoxy(pos.posX + strlen("Nuevo nombre del producto: "), pos.posY + 1);
             fflush(stdin);
             gets(producto.nombre);
             while (validarString(producto.nombre, 30))
             {
+                gotoxy(pos.posX, pos.posY + 3);
+                limpiarTodaLinea();
+                color(12);
                 printf("Error! Nombre de producto muy largo");
-                printf("Nombre del producto: ");
+                color(15);
+                gotoxy(pos.posX + strlen("Nuevo nombre del producto: "), pos.posY + 1);
+                limpiarLineaDer();
                 fflush(stdin);
                 gets(producto.nombre);
             }
             break;
         case 2:
-            printf("Marca del producto: ");
+            header();
+            gotoxy(pos.posX, pos.posY);
+            printf("Marca actual del producto: %s\n", producto.marca);
+            gotoxy(pos.posX, whereY());
+            printf("Nueva marca del producto: ");
+            gotoxy(0, pos.tamY - 4);
+            footer();
+            gotoxy(pos.posX + strlen("Nueva marca del producto: "), pos.posY + 1);
             fflush(stdin);
             gets(producto.marca);
             while (validarString(producto.marca, 20))
             {
+                gotoxy(pos.posX, pos.posY + 3);
+                limpiarTodaLinea();
+                color(12);
                 printf("Error! Marca del producto muy largo");
-                printf("Marca del producto: ");
+                color(15);
+                gotoxy(pos.posX + strlen("Marca del producto: "), pos.posY + 1);
+                limpiarLineaDer();
                 fflush(stdin);
                 gets(producto.marca);
             }
             break;
         case 3:
-            printf("Precio del producto: ");
-            scanf("%f", producto.precio);
-            break;
-        case 4:
-            printf("Categoria del producto: ");
+            header();
+            gotoxy(pos.posX, pos.posY);
+            printf("Categoria actual del producto: %s\n", producto.categoria);
+            gotoxy(pos.posX, whereY());
+            printf("Nueva categoria del producto: ");
+            gotoxy(0, pos.tamY - 4);
+            footer();
+            gotoxy(pos.posX + strlen("Nueva categoria del producto: "), pos.posY + 1);
             fflush(stdin);
             gets(producto.categoria);
             while (strlen(producto.categoria) > 15)
             {
+                gotoxy(pos.posX, pos.posY + 3);
+                limpiarTodaLinea();
+                color(12);
                 printf("Error! Categoria del producto muy largo");
-                printf("Marca del producto: ");
+                color(15);
+                gotoxy(pos.posX + strlen("Nueva categoria del producto: "), pos.posY + 1);
+                limpiarLineaDer();
                 fflush(stdin);
                 gets(producto.categoria);
             }
             break;
-
+        case 4:
+            header();
+            gotoxy(pos.posX, pos.posY);
+            printf("Precio actual del producto: %.2f\n", producto.precio);
+            gotoxy(pos.posX, whereY());
+            printf("Nuevo precio del producto: ");
+            gotoxy(0, pos.tamY - 4);
+            gotoxy(pos.posX + strlen("Nuevo precio del producto: "), pos.posY + 1);
+            scanf("%f", &producto.precio);
+            break;
         case 5:
+            header();
+            gotoxy(pos.posX, pos.posY);
+            color(12);
             printf("Esta seguro de que quiere dar de baja?(s/n): ");
+            color(15);
             fflush(stdin);
             scanf("%c", &opcion);
             if(opcion == 's')
             {
                 aux.eliminado = 0;
+                gotoxy(pos.posX, pos.posY + 1);
+                printf("El producto ha sido dado de baja");
             }
             break;
         default:
             break;
         }
-    }while(op != 0);
+    }
+    while(op != 0);
     producto = aux;
 
     return producto;

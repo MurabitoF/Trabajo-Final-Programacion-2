@@ -47,8 +47,7 @@ nodoListaClientes * pasaArchivoALista(nodoListaClientes * listaCliente, char nom
 void generarPedidos(nodoListaClientes * lista, char nombreArchivo[]);
 
 ///Subprogramas
-void subProgramaModificarCliente(nodoListaClientes * nodoCliente, char nombreArchivo[], int admin);
-void subProgramaMostrarCliente(nodoListaClientes * nodoCliente, int posX, int posY);
+void subProgramaMostrarCliente(nodoListaClientes * nodoCliente, ventana pos);
 
 
 #endif // LISTASCLIENTES_H_INCLUDED

@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "graficos.h"
 #include "gotoxy.h"
 
 typedef struct _stProductos

@@ -272,7 +272,3 @@ nodoArbolProducto * borrarArbolProductos(nodoArbolProducto * arbol)
 }
 
 ///Subprogramas
-void subProgramaModificarProducto(nodoArbolProducto * nodoProducto, char nombreArchivo[])
-{
-
-}
