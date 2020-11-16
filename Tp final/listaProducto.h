@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "productos.h"
+#include "pedidos.h"
+#include "arbolProducto.h"
 
 typedef struct _nodoListaProducto
 {
@@ -14,39 +16,20 @@ typedef struct _nodoListaProducto
 } nodoListaProducto;
 
 //////////// Funciones Basicas ////////////
-
 nodoListaProducto * inicListaProducto();
-
 nodoListaProducto * crearNodoProducto (stProducto dato);
-
-nodoListaProducto * pasaArbol2Lista(nodoArbolProducto * arbolProducto ,nodoListaProducto * listaProducto, stPedidos * pedido);
-
+nodoListaProducto * pasaArchivoAListaProducto(nodoListaProducto * listaProducto, char nombreArchivo[]);
 nodoListaProducto * agregarPrpioProducto (nodoListaProducto * listaProducto, nodoListaProducto * nuevoProducto);
-
 nodoListaProducto * buscarUltimoProducto (nodoListaProducto * listaProdcuto);
-
 nodoListaProducto * agregarFinalProducto (nodoListaProducto * listaProducto, nodoListaProducto * nuevoProducto);
-
 nodoListaProducto * agregarOrdenProducto (nodoListaProducto * listaProducto, nodoListaProducto * nuevoProducto);
 
-
 //////////// Funciones de Muestra ////////////
-
 void mostrarNodoProducto(nodoListaProducto * aux);
-
 void mostrarListaProducto(nodoListaProducto * aux);
 
 //////////// Funciones de Borrado de Datos ////////////
-
-
 nodoListaProducto * borrarProductoNombre (nodoListaProducto * listaProducto, char nombre[]);
-
 nodoListaProducto * borrarListaProducto (nodoListaProducto * listaProducto);
-
-///Funciones contar productos comprados
-
-int * contarCategorias(nodoListaProducto * listaProductos);
-
-int buscaMayor (int comprasProducto[]);
 
 #endif // LISTAPRODUCTO_H_INCLUDED

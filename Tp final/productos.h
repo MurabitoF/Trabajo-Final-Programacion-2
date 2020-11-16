@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "graficos.h"
 #include "gotoxy.h"
 
 typedef struct _stProductos
@@ -16,17 +17,20 @@ typedef struct _stProductos
     int eliminado;
 } stProducto;
 
-//////////// Funciones de carga ////////////
-
-void crearProducto(char nombreArchivo[]);
-
+///Funciones de carga
+stProducto crearProducto(char nombreArchivo[]);
 void registrarProducto(char nombreArchivo[], stProducto prod);  //Registra un producto en un archivo.
+void registrarProductoModificado(char nombreArchivo[], stProducto prod);
 
 //////////// Funciones de descarga ////////////
 stProducto * pasarArchivoArray (stProducto arrayProducto [], char nombreArchivo[], int dim); // Descarga los datos de un archivo a un arreglo.
 
-//////////// Funciones de muestra ////////////
+///Funciones de descarga
+//stProducto * pasarArchivoArray (stProducto arrayProducto [], char nombreArchivo[], int dim); // Descarga los datos de un archivo a un arreglo.
 
+///Funciones de muestra
 void mostrarProducto(stProducto product);
 
+///Funciones de modificacion
+stProducto modificarProducto(stProducto);
 #endif // PRODUCTOS_H_INCLUDED

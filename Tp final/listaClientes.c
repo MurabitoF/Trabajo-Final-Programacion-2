@@ -12,11 +12,13 @@ nodoListaClientes * crearNodoCliente(stCliente cliente)
     nodoListaClientes * aux = (nodoListaClientes *) malloc(sizeof(nodoListaClientes));
     aux->cliente = cliente;
     aux->listaProductos = inicListaProducto();
+    aux->costoTotalDelPedido = 0;
     aux->siguiente = NULL;
 
     return aux;
 }
 
+///Funciones Agregar
 nodoListaClientes * agregarClientePpio(nodoListaClientes * lista, nodoListaClientes * nuevo)
 {
     nuevo->siguiente = lista;
@@ -85,6 +87,7 @@ void agregarProductoListaClientes(nodoListaClientes * lista, int id, stProducto 
     }
 }
 
+///Funciones de Busqueda
 nodoListaClientes * buscarUltimoNodoClientes(nodoListaClientes * lista)
 {
     nodoListaClientes * ultimo;
@@ -135,7 +138,7 @@ nodoListaClientes * buscarClientePorUsername(nodoListaClientes * lista, char bus
         }
         else
         {
-            busca = buscarClientePorId(lista->siguiente, busqueda);
+            busca = buscarClientePorUsername(lista->siguiente, busqueda);
         }
     }
 
@@ -154,13 +157,52 @@ nodoListaClientes * buscarClientePorEmail(nodoListaClientes * lista, char busque
         }
         else
         {
-            busca = buscarClientePorId(lista->siguiente, busqueda);
+            busca = buscarClientePorEmail(lista->siguiente, busqueda);
         }
     }
 
     return busca;
 }
 
+nodoListaClientes * buscarClientePorNombre(nodoListaClientes * lista, char busqueda[])
+{
+    nodoListaClientes * busca = NULL;
+
+    if(lista)
+    {
+        if(strcmpi(lista->cliente.nombre, busqueda) == 0)
+        {
+            busca = lista;
+        }
+        else
+        {
+            busca = buscarClientePorNombre(lista->siguiente, busqueda);
+        }
+    }
+
+    return busca;
+}
+
+nodoListaClientes * buscarClientePorApellido(nodoListaClientes * lista, char busqueda[])
+{
+    nodoListaClientes * busca = NULL;
+
+    if(lista)
+    {
+        if(strcmpi(lista->cliente.apellido, busqueda) == 0)
+        {
+            busca = lista;
+        }
+        else
+        {
+            busca = buscarClientePorApellido(lista->siguiente, busqueda);
+        }
+    }
+
+    return busca;
+}
+
+///Funciones de Borrado
 nodoListaClientes * borrarPrimerCliente(nodoListaClientes * lista)
 {
     nodoListaClientes * borrado = lista;
@@ -227,23 +269,23 @@ nodoListaClientes * borrarListaClientes(nodoListaClientes * lista)
     return lista;
 }
 
+///Funciones de muestra
 void mostrarNodoCliente(nodoListaClientes * cliente)
 {
-    mostrarCliente(cliente->cliente);
+    if(cliente->cliente.activo == 1)
+        mostrarCliente(cliente->cliente);
 }
 
-void mostrarListaCliente(nodoListaClientes * lista)
+void mostrarListaClientes(nodoListaClientes * lista)
 {
     nodoListaClientes * seg = lista;
 
     while(seg != NULL)
     {
         mostrarNodoCliente(seg);
-        mostrarListaProducto(lista->listaProductos);
         seg = seg->siguiente;
     }
 }
-
 
 ///Funcines de archivo
 nodoListaClientes * pasaArchivoALista(nodoListaClientes * listaCliente, char nombreArchivo[])
@@ -266,4 +308,66 @@ nodoListaClientes * pasaArchivoALista(nodoListaClientes * listaCliente, char nom
     }
 
     return listaCliente;
+}
+
+void generarPedidos(nodoListaClientes * lista, char nombreArchivo[])
+{
+    nodoListaProducto * productos = lista->listaProductos;
+    stPedidos aux;
+    int ultimoID = contadorDatos(nombreArchivo, sizeof(stPedidos)) + 1;
+
+    FILE * arch = NULL;
+
+    arch = fopen(nombreArchivo, "wb");
+
+    if(arch)
+    {
+        while(productos)
+        {
+            aux.idCliente = lista->cliente.idCliente;
+            aux.idProducto = productos->p.idProducto;
+            strcpy(aux.fecha, productos->fecha);
+            if(productos->idPedido != 0)
+            {
+                aux.idPedido = productos->idPedido;
+            }
+            else
+            {
+                aux.idPedido = ultimoID;
+                ultimoID++;
+            }
+            productos = productos->sig;
+            fwrite(&aux,sizeof(stPedidos), 1, arch);
+        }
+        lista = lista->siguiente;
+        productos = lista->listaProductos;
+    }
+    fclose(arch);
+}
+
+///Subprogramas
+void subProgramaMostrarCliente(nodoListaClientes * nodoCliente, ventana pos)
+{
+    header();
+    gotoxy(pos.posX, pos.posY);
+    mostrarNodoCliente(nodoCliente);
+    gotoxy(pos.posX, whereY());
+    printf("Pedidos: \n");
+    if(nodoCliente->listaProductos)
+    {
+        gotoxy(pos.posX, 3);
+        mostrarListaProducto(nodoCliente->listaProductos);
+    }
+    else
+    {
+        gotoxy(pos.posX + 3, whereY());
+        printf("No hay pedidos\n");
+    }
+    if(whereY() <= pos.tamY - 4)
+        gotoxy(0, pos.posY - 4);
+    footer();
+    gotoxy(pos.posX, whereY()- 3);
+    color(10);
+    system("pause");
+    color(15);
 }

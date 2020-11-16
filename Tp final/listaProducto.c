@@ -28,7 +28,8 @@ nodoListaProducto * agregarPrpioProducto (nodoListaProducto * listaProducto, nod
     if (!listaProducto)
     {
         listaProducto = nuevoProducto;
-    } else
+    }
+    else
     {
         nuevoProducto->sig = listaProducto;
         listaProducto = nuevoProducto;
@@ -52,7 +53,8 @@ nodoListaProducto * agregarFinalProducto (nodoListaProducto * listaProducto, nod
     if(!listaProducto)
     {
         listaProducto = nuevoProducto;
-    } else
+    }
+    else
     {
         nodoListaProducto * ult = buscarUltimoProducto(listaProducto);
         ult->sig = nuevoProducto;
@@ -65,12 +67,14 @@ nodoListaProducto * agregarOrdenProducto(nodoListaProducto * listaProducto, nodo
     if(!listaProducto)
     {
         listaProducto = nuevoProducto;
-    } else
+    }
+    else
     {
         if (strcmp(listaProducto->p.nombre, nuevoProducto->p.nombre) > 0)
         {
             listaProducto = agregarPrpioProducto(listaProducto, nuevoProducto);
-        } else
+        }
+        else
         {
             nodoListaProducto * seg = listaProducto->sig;
             nodoListaProducto * ante = listaProducto;
@@ -95,11 +99,20 @@ void mostrarNodoProducto (nodoListaProducto * aux)
 
 void mostrarListaProducto(nodoListaProducto * aux)
 {
+    int x = whereX();
     nodoListaProducto * seg = aux;
-    while (seg->sig != NULL)
+    if(aux)
     {
-        mostrarNodoProducto(seg);
-        seg = seg->sig;
+        while (seg->sig != NULL)
+        {
+            mostrarNodoProducto(seg);
+            seg = seg->sig;
+        }
+    }
+    else
+    {
+        gotoxy(x,whereY());
+        printf("No hay pedidos...\n");
     }
 }
 
@@ -114,7 +127,8 @@ nodoListaProducto * borrarProductoId (nodoListaProducto * listaProducto, int id)
             nodoListaProducto * aux = listaProducto;
             listaProducto = listaProducto->sig;
             free(aux);
-        } else
+        }
+        else
         {
             listaProducto->sig = borrarProductoId(listaProducto->sig, id);
         }
@@ -131,7 +145,8 @@ nodoListaProducto * borrarProductoNombre (nodoListaProducto * listaProducto, cha
             nodoListaProducto * aux = listaProducto;
             listaProducto = listaProducto->sig;
             free(aux);
-        } else
+        }
+        else
         {
             listaProducto->sig = borrarProductoNombre(listaProducto->sig, nombre);
         }

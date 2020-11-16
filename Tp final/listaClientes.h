@@ -29,6 +29,8 @@ nodoListaClientes * buscarUltimoNodoClientes(nodoListaClientes * lista);
 nodoListaClientes * buscarClientePorId(nodoListaClientes * lista, int busqueda);
 nodoListaClientes * buscarClientePorUsername(nodoListaClientes * lista, char busqueda[]);
 nodoListaClientes * buscarClientePorEmail(nodoListaClientes * lista, char busqueda[]);
+nodoListaClientes * buscarClientePorNombre(nodoListaClientes * lista, char busqueda[]);
+nodoListaClientes * buscarClientePorApellido(nodoListaClientes * lista, char busqueda[]);
 
 ///Funciones de Borrado
 nodoListaClientes * borrarPrimerCliente(nodoListaClientes * lista);
@@ -38,9 +40,14 @@ nodoListaClientes * borrarListaClientes(nodoListaClientes * lista);
 
 ///Funciones de muestra
 void mostrarNodoCliente(nodoListaClientes * cliente);
-void mostrarListaCliente(nodoListaClientes * lista);
+void mostrarListaClientes(nodoListaClientes * lista);
 
 ///Funciones de archivos
 nodoListaClientes * pasaArchivoALista(nodoListaClientes * listaCliente, char nombreArchivo[]);
+void generarPedidos(nodoListaClientes * lista, char nombreArchivo[]);
+
+///Subprogramas
+void subProgramaMostrarCliente(nodoListaClientes * nodoCliente, ventana pos);
+
 
 #endif // LISTASCLIENTES_H_INCLUDED

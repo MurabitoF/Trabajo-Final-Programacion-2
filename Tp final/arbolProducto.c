@@ -39,20 +39,17 @@ nodoArbolProducto * agregarNodoEnOrden(nodoArbolProducto *arbol, nodoArbolProduc
     return arbol;
 }
 
-nodoArbolProducto * arregloOrd2arbol(stProducto arr[], int inic, int cantVal)
+nodoArbolProducto * arregloOrd2arbol(nodoArbolProducto ** arbol, stProducto arr[], int inic, int cantVal)
 {
     int mid;
-    nodoArbolProducto * temp = NULL;
 
     if (inic <= cantVal)
     {
         mid = (inic + cantVal) / 2;
-        temp = crearNodoArbolProducto(arr[mid]);
-        temp->izq = arregloOrd2arbol(arr, inic, mid - 1);
-        temp->der = arregloOrd2arbol(arr, mid + 1, cantVal);
+        (*arbol) = agregarNodoEnOrden((*arbol), crearNodoArbolProducto(arr[mid]));
+        arregloOrd2arbol(arbol, arr, inic, mid - 1);
+        arregloOrd2arbol(arbol, arr, mid + 1, cantVal);
     }
-
-    return temp;
 }
 
 ///Funciones de muestra del arbol
@@ -286,3 +283,5 @@ nodoArbolProducto * borrarArbolProductos(nodoArbolProducto * arbol)
 
     return arbol;
 }
+
+///Subprogramas

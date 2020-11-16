@@ -17,8 +17,8 @@ typedef struct _nodoArbolProducto
 nodoArbolProducto * inicArbol();
 nodoArbolProducto * crearNodoArbolProducto(stProducto prod);
 ///Funciones de carga del arbol
-nodoArbolProducto * agregarNodoEnOrden(nodoArbolProducto *arbol, nodoArbolProducto *nuevo);
-nodoArbolProducto * arregloOrd2arbol(stProducto arr[], int inic, int cantVal);
+nodoArbolProducto * agregarNodoEnOrden(nodoArbolProducto * arbol, nodoArbolProducto *nuevo);
+nodoArbolProducto * arregloOrd2arbol(nodoArbolProducto ** arbol, stProducto arr[], int inic, int cantVal);
 ///Funciones de muestra del arbol
 void mostrarNodoArbolProd(nodoArbolProducto * nodo);
 void mostrarPreOrden(nodoArbolProducto * arbol);
@@ -36,6 +36,6 @@ nodoArbolProducto * buscaNodoMasDer(nodoArbolProducto * arbol);
 nodoArbolProducto * borrarnodoArbolProducto(nodoArbolProducto * arbol, nodoArbolProducto * borrado);
 nodoArbolProducto * borrarArbolProductos(nodoArbolProducto * arbol);
 ///Subprogramas
-
+void subProgramaModificarProducto(nodoArbolProducto * nodoProducto, char nombreArchivo[]);
 
 #endif // ARBOLPRODUCTO_H_INCLUDED

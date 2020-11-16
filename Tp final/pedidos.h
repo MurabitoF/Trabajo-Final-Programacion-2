@@ -13,7 +13,7 @@ typedef struct _stPedidos
     int idPedido;
     int idCliente;
     int idProducto;
-    char fecha[20];
+    char fecha[15];
 } stPedidos;
 
 void cargarPedido (char nombreArchivo[], int idCliente, int idProducto);

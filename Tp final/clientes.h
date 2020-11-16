@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "gotoxy.h"
+#include "graficos.h"
 
 typedef struct _stCliente
 {
@@ -17,19 +17,17 @@ typedef struct _stCliente
     char domicilio[30];
     char genero;
     int rol; // 1: es admin - 0: cliente
-    int activo; // indica 1 o 0 si el cliente fue eliminado
+    int activo; // indica 0 si el cliente fue eliminado si no 1
 } stCliente;
 
-void mostrarCliente(stCliente client);
-
-//////////////////////////////Funciones de Carga/////////////////////////////////////////////
-
+///Funciones de Carga
 stCliente crearCliente(char nombreArchivo[]);  //Ingresa los datos por teclado los datos para crear un cliente.
-
+///Funcioes de Muestra
+void mostrarCliente(stCliente client); //Muestra un cliente
+///Funcines de archivos
 void registrarCliente(char nombreArchivo[], stCliente client); //Registra un cliente en un archivo.
-
-//////////// Funciones de modificación ////////////
-
-void modificarCliente(stCliente cliente, FILE * nombreArchivo);
+void registrarClienteModificado(char nombreArchivo[], stCliente cliente); //Registra un cliente modificado
+///Funciones de modificación
+stCliente modificarCliente(stCliente cliente, int admin); //Modifica los datos de un cliente
 
 #endif // CLIENTES_H_INCLUDED
