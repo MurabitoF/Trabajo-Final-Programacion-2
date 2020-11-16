@@ -26,6 +26,8 @@ void menuModificarProducto(nodoArbolProducto * arbolProductos);
 void subprogramaHacerPedido(nodoListaClientes * nodoCliente, nodoArbolProducto * arbolProductos);
 void subProgramaModificarCliente(nodoListaClientes * nodoCliente, char nombreArchivo[], int admin);
 void subProgramaModificarProducto(nodoArbolProducto * arbol, char nombreArchivo[]);
+nodoArbolProducto * subProgramaArchivo2Arbol (char nombreArchivo[]);
+nodoListaClientes *subProgramaBajaPedidos(char nombreArchivo[], nodoListaClientes *clientes, nodoArbolProducto *productos);
 
 ///Funciones Extra
 int contadorDatos(char nombreArchivo[], int byte);
@@ -33,7 +35,6 @@ void fechaHora(char * fecha[]);
 int validarString(char palabra[], int dim);
 void muestraRecomendados(nodoListaClientes *clientes, nodoArbolProducto *arbolProductos);
 nodoListaProducto *bajarPedidos(char nombreArchivo[], int idCliente, nodoArbolProducto *productos, nodoListaProducto *listaPedidos);
-nodoListaClientes *subProgramaBajaPedidos(char nombreArchivo[], nodoListaClientes *clientes, nodoArbolProducto *productos);
 
 const char categorias[7][15] = {"Televisores", "Computadoras", "Celulares", "Accesorios", "Heladeras", "Aires", "Cocina"};
 
@@ -48,6 +49,7 @@ int main()
     nodoArbolProducto * productos = inicArbol();
 
     clientes = pasaArchivoALista(clientes, A_Clientes);
+    productos = subProgramaArchivo2Arbol(A_Productos);
 
     //cargar Lista y arbol
 
@@ -684,6 +686,37 @@ void subProgramaModificarProducto(nodoArbolProducto * arbol, char nombreArchivo[
     registrarProductoModificado(nombreArchivo, aux);
 }
 
+nodoListaClientes *subProgramaBajaPedidos(char nombreArchivo[], nodoListaClientes *clientes, nodoArbolProducto *productos)
+{
+    nodoListaClientes *seg = clientes;
+
+    if (seg)
+    {
+        while (seg)
+        {
+            seg->listaProductos = bajarPedidos(nombreArchivo, seg->cliente.idCliente, productos, seg->listaProductos);
+            seg = seg->siguiente;
+        }
+    }
+    return clientes;
+}
+
+nodoArbolProducto * subProgramaArchivo2Arbol (char nombreArchivo[])
+{
+    FILE * archi = fopen(nombreArchivo, "rb");
+    int dim = contadorDatos(nombreArchivo, sizeof(stProducto));
+    int val;
+    stProducto * arrayP = (stProducto*) malloc(sizeof(stProducto)*dim);
+    nodoArbolProducto * p;
+
+    pasarArchivoArray(arrayP, nombreArchivo, dim);
+    arregloOrd2arbol(&p, arrayP, 0, dim);
+
+    return p;
+
+}
+
+
 ///Funciones Extra
 int contadorDatos(char nombreArchivo[], int byte) //Cuenta cuantos bloques de datos hay en un archivo y devuelve el valor.
 {
@@ -756,17 +789,3 @@ nodoListaProducto *bajarPedidos(char nombreArchivo[], int idCliente, nodoArbolPr
     return productos;
 }
 
-nodoListaClientes *subProgramaBajaPedidos(char nombreArchivo[], nodoListaClientes *clientes, nodoArbolProducto *productos)
-{
-    nodoListaClientes *seg = clientes;
-
-    if (seg)
-    {
-        while (seg)
-        {
-            seg->listaProductos = bajarPedidos(nombreArchivo, seg->cliente.idCliente, productos, seg->listaProductos);
-            seg = seg->siguiente;
-        }
-    }
-    return clientes;
-}

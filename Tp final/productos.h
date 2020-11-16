@@ -23,7 +23,7 @@ void registrarProducto(char nombreArchivo[], stProducto prod);  //Registra un pr
 void registrarProductoModificado(char nombreArchivo[], stProducto prod);
 
 //////////// Funciones de descarga ////////////
-int pasarArchivoArray(stProducto arrayProducto[], char nombreArchivo[], int dim); // Descarga los datos de un archivo a un arreglo.
+void pasarArchivoArray(stProducto arrayProducto[], char nombreArchivo[], int dim); // Descarga los datos de un archivo a un arreglo.
 
 ///Funciones de muestra
 void mostrarProducto(stProducto product);

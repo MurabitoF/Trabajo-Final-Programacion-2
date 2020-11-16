@@ -85,7 +85,7 @@ stProducto crearProducto(char nombreArchivo[])
 
     color(15);
     product.eliminado = 1;
-    product.idProducto = contadorDatos(nombreArchivo, sizeof(stProducto) + 1);
+    product.idProducto = contadorDatos(nombreArchivo, sizeof(stProducto)) + 1;
 
     return product;
 }
@@ -262,7 +262,7 @@ stProducto modificarProducto(stProducto producto)
 }
 
 //////////// Funciones de Archivos ////////////
-int pasarArchivoArray(stProducto arrayProducto[], char nombreArchivo[], int dim)
+void pasarArchivoArray(stProducto arrayProducto[], char nombreArchivo[], int dim)
 {
     int i = 0;
     stProducto aux;
@@ -277,5 +277,4 @@ int pasarArchivoArray(stProducto arrayProducto[], char nombreArchivo[], int dim)
         }
         fclose(archi);
     }
-    return i;
 }

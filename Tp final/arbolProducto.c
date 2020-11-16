@@ -39,7 +39,7 @@ nodoArbolProducto * agregarNodoEnOrden(nodoArbolProducto *arbol, nodoArbolProduc
     return arbol;
 }
 
-nodoArbolProducto * arregloOrd2arbol(nodoArbolProducto ** arbol, stProducto arr[], int inic, int cantVal)
+void arregloOrd2arbol(nodoArbolProducto * arbol, stProducto arr[], int inic, int cantVal)
 {
     int mid;
 
