@@ -89,7 +89,7 @@ void muestraRecomendados(nodoListaClientes * clientes, nodoArbolProducto * arbol
 {
     int masVendido;
     masVendido = buscaMayor(contarCategorias(clientes->listaProductos));
-    mostrarPorCategoria(arbolProductos, categorias);
+    mostrarPorCategoria(arbolProductos, categorias[masVendido]);
 }
 
 /*nodoListaClientes * bajarPedidos (char nombreArchivo[], nodoListaClientes * clientes, nodoArbolProducto * productos)
