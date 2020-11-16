@@ -7,7 +7,7 @@ void cargarPedido (char nombreArchivo[], int idCliente, int idProducto)
 
     aux.idCliente = idCliente;
     aux.idProducto = idProducto;
-    aux.idPedido = contadorDatos(nombreArchivo, sizeof(stPedidos) + 1);
+    aux.idPedido = contadorDatos(nombreArchivo, sizeof(stPedidos)) + 1;
 
     registrarPedido(nombreArchivo, aux);
 }

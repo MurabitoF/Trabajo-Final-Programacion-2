@@ -41,7 +41,7 @@ stProducto crearProducto(char nombreArchivo[])
     scanf("%f", &product.precio);
 
     product.eliminado = 1;
-    product.idProducto = contadorDatos(nombreArchivo, sizeof(stProducto) + 1);
+    product.idProducto = contadorDatos(nombreArchivo, sizeof(stProducto)) + 1;
 
     return product;
 }

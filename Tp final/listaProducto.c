@@ -112,9 +112,10 @@ void mostrarListaProducto(nodoListaProducto * aux)
     nodoListaProducto * seg = aux;
      if(aux)
     {
-        while (seg->sig != NULL)
+        while (seg != NULL)
         {
             mostrarNodoProducto(seg);
+            printf("%s", seg->fecha);
             seg = seg->sig;
         }
     } else
