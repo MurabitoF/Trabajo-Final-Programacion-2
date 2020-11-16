@@ -1,7 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "productos.h"
+#include "clientes.h"
+#include "pedidos.h"
 #include "listaClientes.h"
+#include "listaProducto.h"
 #include "arbolProducto.h"
+#include "gotoxy.h"
 
 const char A_Clientes[] = "Datos\\clientes.dat";
 const char A_Productos[] = "Datos\\productos.dat";
@@ -29,25 +34,8 @@ int validarString(char palabra[], int dim);
 void muestraRecomendados(nodoListaClientes *clientes, nodoArbolProducto *arbolProductos);
 nodoListaProducto *bajarPedidos(char nombreArchivo[], int idCliente, nodoArbolProducto *productos, nodoListaProducto *listaPedidos);
 nodoListaClientes *subProgramaBajaPedidos(char nombreArchivo[], nodoListaClientes *clientes, nodoArbolProducto *productos);
-#include "productos.h"
-#include "clientes.h"
-#include "pedidos.h"
-#include "listaClientes.h"
-#include "listaProducto.h"
-#include "arbolProducto.h"
-#include "gotoxy.h"
 
-    const char categorias[7][15] = {"Televisores", "Computadoras", "Celulares", "Accesorios", "Heladeras", "Aires", "Cocina"};
-
-const char A_Productos[] = "productos.dat";
-const char A_Clientes[] = "clientes.dat";
-const char A_Pedidos[] = "pedidos.dat";
-
-int contadorDatos(char nombreArchivo[], int byte);
-nodoListaClientes * pasarProductoaCliente(nodoListaClientes * lista, stProducto producto, stPedidos pedido);
-//nodoListaClientes * bajarPedidos (char nombreArchivo[], nodoListaClientes * clientes, nodoArbolProducto * productos);
-nodoListaProducto * bajarPedidos(char nombreArchivo[], int idCliente, nodoArbolProducto * productos, nodoListaProducto * listaPedidos);
-nodoListaClientes * subProgramaBajaPedidos (char nombreArchivo[], nodoListaClientes * clientes, nodoArbolProducto * productos);
+const char categorias[7][15] = {"Televisores", "Computadoras", "Celulares", "Accesorios", "Heladeras", "Aires", "Cocina"};
 
 int main()
 {

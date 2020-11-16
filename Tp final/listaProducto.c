@@ -41,7 +41,7 @@ nodoListaProducto * crearNodoProducto (stProducto producto, int idPedido)
 
 nodoListaProducto * agregarPrpioProducto (nodoListaProducto * listaProducto, nodoListaProducto * nuevoProducto)
 {
-    nuevoProducto->siguiente = listaProducto
+    nuevoProducto->sig = listaProducto;
     return nuevoProducto;
 }
 
@@ -50,9 +50,10 @@ nodoListaProducto * agregarFinalProducto (nodoListaProducto * listaProducto, nod
     if(!listaProducto)
     {
         listaProducto = nuevoProducto;
+    }
     else
     {
-        listaProducto->siguiente = agregarFinalProducto(listaProducto->siguiente, nuevoProducto);
+        listaProducto->sig = agregarFinalProducto(listaProducto->sig, nuevoProducto);
     }
     return listaProducto;
 }

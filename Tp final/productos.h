@@ -13,7 +13,6 @@ typedef struct _stProductos
     char categoria[15];
     char nombre[30];
     char marca[20];
-    char categoria[15];
     float precio;
     int eliminado;
 } stProducto;

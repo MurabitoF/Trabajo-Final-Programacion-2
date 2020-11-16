@@ -78,7 +78,7 @@ void agregarProductoListaClientes(nodoListaClientes * lista, int id, stProducto 
     {
         if(lista->cliente.idCliente == id)
         {
-            lista->listaProductos = agregarFinalProducto(lista->listaProductos, crearNodoProducto(producto));
+            lista->listaProductos = agregarFinalProducto(lista->listaProductos, crearNodoProducto(producto, 0));
         }
         else
         {
@@ -312,7 +312,7 @@ nodoListaClientes * pasaArchivoALista(nodoListaClientes * listaCliente, char nom
 
 void generarPedidos(nodoListaClientes * lista, char nombreArchivo[])
 {
-    nodoListaCliente * seg = lista;
+    nodoListaClientes * seg = lista;
     nodoListaProducto * productos = lista->listaProductos;
     stPedidos aux;
     int ultimoID = contadorDatos(nombreArchivo, sizeof(stPedidos)) + 1;

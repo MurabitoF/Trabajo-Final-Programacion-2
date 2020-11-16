@@ -17,7 +17,7 @@ typedef struct _nodoListaProducto
 
 //////////// Funciones Basicas ////////////
 nodoListaProducto * inicListaProducto();
-nodoListaProducto * crearNodoProducto (stProducto dato);
+nodoListaProducto * crearNodoProducto (stProducto dato, int idPedido);
 nodoListaProducto * pasaArchivoAListaProducto(nodoListaProducto * listaProducto, char nombreArchivo[]);
 nodoListaProducto * agregarPrpioProducto (nodoListaProducto * listaProducto, nodoListaProducto * nuevoProducto);
 nodoListaProducto * buscarUltimoProducto (nodoListaProducto * listaProdcuto);

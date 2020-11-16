@@ -2,113 +2,74 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="arbolProducto.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="arbolProducto.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="885" topLine="0" />
+			<Cursor1 position="563" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="clientes.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="gotoxy.c" open="1" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="673" topLine="0" />
+			<Cursor1 position="556" topLine="7" />
 		</Cursor>
 	</File>
-	<File name="gotoxy.c" open="1" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="arbolProducto.c" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="556" topLine="0" />
+			<Cursor1 position="2167" topLine="72" />
+		</Cursor>
+	</File>
+	<File name="listaClientes.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="260" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="listaClientes.c" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1934" topLine="58" />
+		</Cursor>
+	</File>
+	<File name="pedidos.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="137" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="main.c" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="5497" topLine="85" />
-		</Cursor>
-		<Folding>
-			<Collapse line="91" />
-			<Collapse line="137" />
-			<Collapse line="185" />
-			<Collapse line="262" />
-			<Collapse line="316" />
-			<Collapse line="403" />
-			<Collapse line="439" />
-			<Collapse line="543" />
-			<Collapse line="549" />
-			<Collapse line="576" />
-			<Collapse line="585" />
-		</Folding>
-	</File>
-	<File name="graficos.c" open="1" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3149" topLine="120" />
-		</Cursor>
-		<Folding>
-			<Collapse line="196" />
-			<Collapse line="210" />
-			<Collapse line="230" />
-			<Collapse line="268" />
-			<Collapse line="301" />
-			<Collapse line="332" />
-			<Collapse line="353" />
-			<Collapse line="378" />
-		</Folding>
-	</File>
-	<File name="pedidos.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="299" topLine="0" />
+			<Cursor1 position="526" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="graficos.h" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="pedidos.c" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="598" topLine="0" />
+			<Cursor1 position="261" topLine="4" />
 		</Cursor>
 	</File>
-	<File name="productos.h" open="1" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="clientes.c" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="504" topLine="0" />
+			<Cursor1 position="2190" topLine="52" />
 		</Cursor>
 	</File>
-	<File name="listaProducto.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="productos.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1115" topLine="0" />
+			<Cursor1 position="1968" topLine="41" />
 		</Cursor>
 	</File>
-	<File name="pedidos.c" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="clientes.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="591" topLine="0" />
+			<Cursor1 position="636" topLine="8" />
 		</Cursor>
 	</File>
-	<File name="listaClientes.c" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="listaProducto.c" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="4398" topLine="104" />
+			<Cursor1 position="1485" topLine="37" />
 		</Cursor>
 	</File>
-	<File name="productos.c" open="1" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="listaProducto.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="6124" topLine="0" />
+			<Cursor1 position="1503" topLine="13" />
 		</Cursor>
 	</File>
-	<File name="clientes.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="productos.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="12820" topLine="0" />
-		</Cursor>
-		<Folding>
-			<Collapse line="6" />
-			<Collapse line="154" />
-			<Collapse line="172" />
-			<Collapse line="181" />
-		</Folding>
-	</File>
-	<File name="listaClientes.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2105" topLine="2" />
-		</Cursor>
-	</File>
-	<File name="listaProducto.c" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3029" topLine="84" />
-		</Cursor>
-	</File>
-	<File name="arbolProducto.c" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="6276" topLine="223" />
+			<Cursor1 position="570" topLine="1" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
