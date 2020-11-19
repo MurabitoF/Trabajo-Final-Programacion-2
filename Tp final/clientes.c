@@ -57,7 +57,7 @@ stCliente crearCliente(char nombreArchivo[])
         color(12);
         printf("Error! Apellido muy largo.");
         color(10);
-        gotoxy(pos.posX + strlen("Apellido: "), pos.posY + 2);
+        gotoxy(pos.posX + strlen("Nombre usuario: "), pos.posY + 2);
         limpiarLineaDer();
         fflush(stdin);
         gets(client.apellido);

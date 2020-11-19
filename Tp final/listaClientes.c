@@ -78,7 +78,7 @@ void agregarProductoListaClientes(nodoListaClientes * lista, int id, stProducto 
     {
         if(lista->cliente.idCliente == id)
         {
-            lista->listaProductos = agregarFinalProducto(lista->listaProductos, crearNodoProducto(producto, 0));
+            lista->listaProductos = agregarPrpioProducto(lista->listaProductos, crearNodoProducto(producto, 0));
         }
         else
         {

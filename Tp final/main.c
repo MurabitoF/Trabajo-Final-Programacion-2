@@ -50,6 +50,7 @@ int main()
 
     clientes = pasaArchivoALista(clientes, A_Clientes);
     productos = subProgramaCargarProductos(productos, A_Productos);
+    clientes = subProgramaBajaPedidos(clientes, productos, A_Pedidos);
 
     //cargar Lista y arbol
 
@@ -66,8 +67,8 @@ int main()
         switch(op)
         {
         case 1:
-            //menuLogin(clientes, productos);
-            menuPrincipalAdmin(clientes, productos);
+            menuLogin(clientes, productos);
+            //menuPrincipalAdmin(clientes, productos);
             //menuPrincipalClientes(clientes, productos);
             break;
         case 2:
@@ -147,7 +148,7 @@ void menuLogin(nodoListaClientes * listaClientes, nodoArbolProducto * arbolProdu
 
 void menuPrincipalClientes(nodoListaClientes * nodoCliente, nodoArbolProducto * arbolProductos)
 {
-    int op = 0, mostrar = 0;
+    int op = 0, mostrar = 0, aux = 0;
     ventana pos = inicVentana("======|Hola!          |======", 5);
 
     do
@@ -173,10 +174,11 @@ void menuPrincipalClientes(nodoListaClientes * nodoCliente, nodoArbolProducto * 
             header();
             gotoxy(pos.posX, 3);
             mostrarListaProducto(nodoCliente->listaProductos);
+            aux = whereY();
             if(whereY() <= pos.tamY - 4)
                 gotoxy(0, pos.tamY - 4);
             footer();
-            gotoxy(pos.posX, whereY() + 1);
+            gotoxy(pos.posX, aux);
             pausa();
             break;
         case 3:
@@ -649,6 +651,7 @@ void subprogramaHacerPedido(nodoListaClientes * nodoCliente, nodoArbolProducto *
     nodoArbolProducto * nodoProducto = inicArbol();
     int idProd = 0, aux = 0;
     ventana pos = inicVentana("=====|Productos|=====", 0);
+    pos.posX = pos.posX - 5;
     pos.posY = 3;
 
     header();
@@ -774,10 +777,10 @@ nodoListaProducto *bajarPedidos(char nombreArchivo[], int idCliente, nodoArbolPr
             if (pedido.idCliente == idCliente)
             {
                 p = buscarNodoPorId(productos, pedido.idProducto);
-                aux = agregarFinalProducto(aux, crearNodoProducto(p->producto, pedido.idPedido));
+                aux = agregarPrpioProducto(aux, crearNodoProducto(p->producto, pedido.idPedido));
                 strcpy(aux->fecha, pedido.fecha);
-                aux->idPedido = pedido.idPedido;
-                aux = aux->sig;
+                aux->idPedido = pedido.idPedido;///??????
+                aux = aux->sig;///???????
             }
         }
     }

@@ -109,7 +109,7 @@ void registrarProductoModificado(char nombreArchivo[], stProducto prod)
 {
     FILE * arch = NULL;
 
-    fopen(nombreArchivo, "r+b");
+    arch = fopen(nombreArchivo, "rb+");
     if(arch)
     {
         fseek(arch, (prod.idProducto - 1) * sizeof(stProducto), SEEK_SET);
@@ -137,7 +137,7 @@ void mostrarProducto(stProducto product)
 ///Funciones de modificacion
 stProducto modificarProducto(stProducto producto)
 {
-    stProducto aux;
+    stProducto aux = producto;
     int op = 0;
     char opcion = 'n';
     ventana pos = inicVentana("=====|Datos del Producto|=====", 5);
@@ -157,15 +157,15 @@ stProducto modificarProducto(stProducto producto)
         case 1:
             header();
             gotoxy(pos.posX, pos.posY);
-            printf("Nombre actual del producto: %s\n", producto.nombre);
+            printf("Nombre actual del producto: %s\n", aux.nombre);
             gotoxy(pos.posX, whereY());
             printf("Nuevo nombre del producto: ");
             gotoxy(0, pos.tamY - 4);
             footer();
             gotoxy(pos.posX + strlen("Nuevo nombre del producto: "), pos.posY + 1);
             fflush(stdin);
-            gets(producto.nombre);
-            while (validarString(producto.nombre, 30))
+            gets(aux.nombre);
+            while (validarString(aux.nombre, 30))
             {
                 gotoxy(pos.posX, pos.posY + 3);
                 limpiarTodaLinea();
@@ -175,21 +175,21 @@ stProducto modificarProducto(stProducto producto)
                 gotoxy(pos.posX + strlen("Nuevo nombre del producto: "), pos.posY + 1);
                 limpiarLineaDer();
                 fflush(stdin);
-                gets(producto.nombre);
+                gets(aux.nombre);
             }
             break;
         case 2:
             header();
             gotoxy(pos.posX, pos.posY);
-            printf("Marca actual del producto: %s\n", producto.marca);
+            printf("Marca actual del producto: %s\n", aux.marca);
             gotoxy(pos.posX, whereY());
             printf("Nueva marca del producto: ");
             gotoxy(0, pos.tamY - 4);
             footer();
             gotoxy(pos.posX + strlen("Nueva marca del producto: "), pos.posY + 1);
             fflush(stdin);
-            gets(producto.marca);
-            while (validarString(producto.marca, 20))
+            gets(aux.marca);
+            while (validarString(aux.marca, 20))
             {
                 gotoxy(pos.posX, pos.posY + 3);
                 limpiarTodaLinea();
@@ -199,21 +199,21 @@ stProducto modificarProducto(stProducto producto)
                 gotoxy(pos.posX + strlen("Marca del producto: "), pos.posY + 1);
                 limpiarLineaDer();
                 fflush(stdin);
-                gets(producto.marca);
+                gets(aux.marca);
             }
             break;
         case 3:
             header();
             gotoxy(pos.posX, pos.posY);
-            printf("Categoria actual del producto: %s\n", producto.categoria);
+            printf("Categoria actual del producto: %s\n", aux.categoria);
             gotoxy(pos.posX, whereY());
             printf("Nueva categoria del producto: ");
             gotoxy(0, pos.tamY - 4);
             footer();
             gotoxy(pos.posX + strlen("Nueva categoria del producto: "), pos.posY + 1);
             fflush(stdin);
-            gets(producto.categoria);
-            while (strlen(producto.categoria) > 15)
+            gets(aux.categoria);
+            while (strlen(aux.categoria) > 15)
             {
                 gotoxy(pos.posX, pos.posY + 3);
                 limpiarTodaLinea();
@@ -223,18 +223,18 @@ stProducto modificarProducto(stProducto producto)
                 gotoxy(pos.posX + strlen("Nueva categoria del producto: "), pos.posY + 1);
                 limpiarLineaDer();
                 fflush(stdin);
-                gets(producto.categoria);
+                gets(aux.categoria);
             }
             break;
         case 4:
             header();
             gotoxy(pos.posX, pos.posY);
-            printf("Precio actual del producto: %.2f\n", producto.precio);
+            printf("Precio actual del producto: %.2f\n", aux.precio);
             gotoxy(pos.posX, whereY());
             printf("Nuevo precio del producto: ");
             gotoxy(0, pos.tamY - 4);
             gotoxy(pos.posX + strlen("Nuevo precio del producto: "), pos.posY + 1);
-            scanf("%f", &producto.precio);
+            scanf("%f", &aux.precio);
             break;
         case 5:
             header();
@@ -256,9 +256,8 @@ stProducto modificarProducto(stProducto producto)
         }
     }
     while(op != 0);
-    producto = aux;
 
-    return producto;
+    return aux;
 }
 
 //////////// Funciones de Archivos ////////////
