@@ -31,10 +31,8 @@ stCliente crearCliente(char nombreArchivo[])
     printf("Genero (f/m/o): \n");
     gotoxy(0, pos.tamY - 4);
     footer();
-    color(10);
     gotoxy(pos.posX + strlen("Nombre usuario: "), pos.posY + 1);
-    fflush(stdin);
-    gets(client.nombre);
+    strcpy(client.nombre, leerString(30));
     while (validarString(client.nombre,30))
     {
         gotoxy(pos.posX, pos.posY + 9);
@@ -44,12 +42,10 @@ stCliente crearCliente(char nombreArchivo[])
         color(10);
         gotoxy(pos.posX + strlen("Nombre usuario: "), pos.posY+1);
         limpiarLineaDer();
-        fflush(stdin);
-        gets(client.nombre);
+        strcpy(client.nombre, leerString(30));
     }
     gotoxy(pos.posX + strlen("Nombre usuario: "), pos.posY + 2);
-    fflush(stdin);
-    gets(client.apellido);
+    strcpy(client.apellido, leerString(30));
     while (validarString(client.apellido,30))
     {
         gotoxy(pos.posX, pos.posY + 9);
@@ -59,12 +55,10 @@ stCliente crearCliente(char nombreArchivo[])
         color(10);
         gotoxy(pos.posX + strlen("Nombre usuario: "), pos.posY + 2);
         limpiarLineaDer();
-        fflush(stdin);
-        gets(client.apellido);
+        strcpy(client.apellido, leerString(30));
     }
     gotoxy(pos.posX + strlen("Nombre usuario: "), pos.posY + 3);
-    fflush(stdin);
-    gets(client.userName);
+    strcpy(client.userName, leerString(30));
     while (validarString(client.userName,20))
     {
         gotoxy(pos.posX, pos.posY + 9);
@@ -74,13 +68,11 @@ stCliente crearCliente(char nombreArchivo[])
         color(10);
         gotoxy(pos.posX + strlen("Nombre usuario: "), pos.posY + 3);
         limpiarLineaDer();
-        fflush(stdin);
-        gets(client.userName);
+        strcpy(client.userName, leerString(30));
     }
     gotoxy(pos.posX + strlen("Nombre usuario: "), pos.posY + 4);
-    fflush(stdin);
-    gets(client.password);
-    //encriptar
+    strcpy(client.password, leerString(30));
+    strcpy(client.password, encriptarPass(client.password));
     while(validarString(client.password,20))
     {
         gotoxy(pos.posX, pos.posY + 9);
@@ -90,13 +82,11 @@ stCliente crearCliente(char nombreArchivo[])
         color(10);
         gotoxy(pos.posX + strlen("Nombre usuario: "), pos.posY + 4);
         limpiarLineaDer();
-        fflush(stdin);
-        gets(client.password);
-        //encriptar
+        strcpy(client.password, leerString(30));
+        strcpy(client.password, encriptarPass(client.password));
     }
     gotoxy(pos.posX + strlen("Nombre usuario: "), pos.posY + 5);
-    fflush(stdin);
-    gets(client.mail);
+    strcpy(client.mail, leerString(30));
     while(validarString(client.mail,20))
     {
         gotoxy(pos.posX, pos.posY + 9);
@@ -106,12 +96,10 @@ stCliente crearCliente(char nombreArchivo[])
         color(10);
         gotoxy(pos.posX + strlen("Nombre usuario: "), pos.posY + 5);
         limpiarLineaDer();
-        fflush(stdin);
-        gets(client.mail);
+        strcpy(client.mail, leerString(30));
     }
     gotoxy(pos.posX + strlen("Nombre usuario: "), pos.posY + 6);
-    fflush(stdin);
-    gets(client.domicilio);
+    strcpy(client.domicilio, leerString(30));
     while(validarString(client.domicilio, 30))
     {
         gotoxy(pos.posX, pos.posY + 9);
@@ -121,12 +109,10 @@ stCliente crearCliente(char nombreArchivo[])
         color(10);
         gotoxy(pos.posX + strlen("Nombre usuario: "), pos.posY + 6);
         limpiarLineaDer();
-        fflush(stdin);
-        gets(client.domicilio);
+        strcpy(client.domicilio, leerString(30));
     }
     gotoxy(pos.posX + strlen("Nombre usuario: "), pos.posY + 7);
-    fflush(stdin);
-    scanf("%c", &client.genero);
+    client.genero = leerChar();
     while(client.genero != 'f' && client.genero != 'm' && client.genero != 'o')
     {
         gotoxy(pos.posX, pos.posY + 9);
@@ -136,13 +122,11 @@ stCliente crearCliente(char nombreArchivo[])
         color(10);
         gotoxy(pos.posX + strlen("Nombre usuario: "), pos.posY + 7);
         limpiarLineaDer();
-        fflush(stdin);
-        scanf("%c", &client.genero);
+        client.genero = leerChar();
     }
     client.rol = 0;
     client.activo = 1;
     client.idCliente = contadorDatos(nombreArchivo, sizeof(stCliente)) + 1;
-    color(15);
 
     return client;
 }
@@ -174,7 +158,7 @@ void registrarCliente(char nombreArchivo[], stCliente cliente)
 
     if (arch != NULL)
     {
-        fwrite(&client, sizeof(stCliente), 1, arch);
+        fwrite(&cliente, sizeof(stCliente), 1, arch);
         fclose(arch);
     }
 }
@@ -293,6 +277,7 @@ stCliente modificarCliente(stCliente cliente, int admin)
             footer();
             gotoxy(pos.posX + 5 + strlen("Nueva contrasena: "), pos.posY +5);
             strcpy(aux.password, leerString(20));
+            strcpy(aux.password, encriptarPass(aux.password));
             while (validarString(aux.password,20))
             {
                 gotoxy(pos.posX + 5, pos.posY + 8);
@@ -303,6 +288,7 @@ stCliente modificarCliente(stCliente cliente, int admin)
                 gotoxy(pos.posX + 5 + strlen("Nueva contrasena: "), pos.posY + 5);
                 limpiarLineaDer();
                 strcpy(aux.password, leerString(20));
+                strcpy(aux.password, encriptarPass(aux.password));
             }
             break;
         case 5:

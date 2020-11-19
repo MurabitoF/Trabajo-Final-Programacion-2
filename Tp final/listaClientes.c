@@ -313,7 +313,6 @@ nodoListaClientes * pasaArchivoALista(nodoListaClientes * listaCliente, char nom
 void generarPedidos(nodoListaClientes * lista, char nombreArchivo[])
 {
     nodoListaClientes * seg = lista;
-    nodoListaProducto * productos = lista->listaProductos;
     stPedidos aux;
     int ultimoID = contadorDatos(nombreArchivo, sizeof(stPedidos)) + 1;
 
@@ -323,27 +322,27 @@ void generarPedidos(nodoListaClientes * lista, char nombreArchivo[])
 
     if(arch)
     {
-        while(productos)
+        while(seg)
         {
-            aux.idCliente = lista->cliente.idCliente;
-            aux.idProducto = productos->p.idProducto;
-            strcpy(aux.fecha, productos->fecha);
-            if(productos->idPedido != 0)
+            while(seg->listaProductos)
             {
-                aux.idPedido = productos->idPedido;
+                aux = cargarPedido(nombreArchivo, seg->cliente, seg->listaProductos->p, seg->listaProductos->fecha);
+                if(seg->listaProductos->p.idProducto != 0)
+                {
+                    aux.idPedido = seg->listaProductos->idPedido;
+                }
+                else
+                {
+                    aux.idPedido = ultimoID;
+                    ultimoID++;
+                }
+                seg->listaProductos = seg->listaProductos->sig;
+                fwrite(&aux,sizeof(stPedidos), 1, arch);
             }
-            else
-            {
-                aux.idPedido = ultimoID;
-                ultimoID++;
-            }
-            productos = productos->sig;
-            fwrite(&aux,sizeof(stPedidos), 1, arch);
+            seg = seg->siguiente;
         }
-        seg = seg->siguiente;
-        productos = seg->listaProductos;
+        fclose(arch);
     }
-    fclose(arch);
 }
 
 ///Subprogramas

@@ -23,10 +23,8 @@ stProducto crearProducto(char nombreArchivo[])
     printf("Precio del producto: \n");
     gotoxy(0, pos.tamY - 4);
     footer();
-    color(10);
     gotoxy(pos.posX + strlen("Categoria del producto: "), pos.posY + 1);
-    fflush(stdin);
-    gets(product.nombre);
+    strcpy(product.nombre, leerString());
     while (validarString(product.nombre,30))
     {
         gotoxy(pos.posX, pos.posY + 6);
@@ -36,12 +34,10 @@ stProducto crearProducto(char nombreArchivo[])
         color(10);
         gotoxy(pos.posX + strlen("Categoria del producto: "), pos.posY + 1);
         limpiarLineaDer();
-        fflush(stdin);
-        gets(product.nombre);
+        strcpy(product.nombre, leerString());
     }
     gotoxy(pos.posX + strlen("Categoria del producto: "), pos.posY + 2);
-    fflush(stdin);
-    gets(product.marca);
+    strcpy(product.marca, leerString());
     while (validarString(product.marca,20))
     {
         gotoxy(pos.posX, pos.posY + 6);
@@ -51,12 +47,10 @@ stProducto crearProducto(char nombreArchivo[])
         color(10);
         gotoxy(pos.posX + strlen("Categoria del producto: "), pos.posY + 2);
         limpiarLineaDer();
-        fflush(stdin);
-        gets(product.marca);
+        strcpy(product.marca, leerString());
     }
     gotoxy(pos.posX + strlen("Categoria del producto: "), pos.posY + 3);
-    fflush(stdin);
-    gets(product.categoria);
+    strcpy(product.categoria, leerString());
     while (validarString(product.categoria, 15))
     {
         gotoxy(pos.posX, pos.posY + 6);
@@ -66,11 +60,10 @@ stProducto crearProducto(char nombreArchivo[])
         color(10);
         gotoxy(pos.posX + strlen("Categoria del producto: "), pos.posY + 3);
         limpiarLineaDer();
-        fflush(stdin);
-        gets(product.categoria);
+        strcpy(product.categoria, leerString());
     }
     gotoxy(pos.posX + strlen("Categoria del producto: "), pos.posY + 4);
-    scanf("%f", &product.precio);
+    product.precio = leerfloat();
     while(product.precio < 0)
     {
         gotoxy(pos.posX, pos.posY + 6);
@@ -80,10 +73,8 @@ stProducto crearProducto(char nombreArchivo[])
         color(10);
         gotoxy(pos.posX + strlen("Categoria del producto: "), pos.posY + 4);
         limpiarLineaDer();
-        scanf("%f", &product.precio);
+        product.precio = leerfloat();
     }
-
-    color(15);
     product.eliminado = 1;
     product.idProducto = contadorDatos(nombreArchivo, sizeof(stProducto)) + 1;
 
@@ -163,8 +154,7 @@ stProducto modificarProducto(stProducto producto)
             gotoxy(0, pos.tamY - 4);
             footer();
             gotoxy(pos.posX + strlen("Nuevo nombre del producto: "), pos.posY + 1);
-            fflush(stdin);
-            gets(aux.nombre);
+            strcpy(aux.nombre, leerString(30));
             while (validarString(aux.nombre, 30))
             {
                 gotoxy(pos.posX, pos.posY + 3);
@@ -174,8 +164,7 @@ stProducto modificarProducto(stProducto producto)
                 color(15);
                 gotoxy(pos.posX + strlen("Nuevo nombre del producto: "), pos.posY + 1);
                 limpiarLineaDer();
-                fflush(stdin);
-                gets(aux.nombre);
+                strcpy(aux.nombre, leerString(30));
             }
             break;
         case 2:
@@ -187,8 +176,7 @@ stProducto modificarProducto(stProducto producto)
             gotoxy(0, pos.tamY - 4);
             footer();
             gotoxy(pos.posX + strlen("Nueva marca del producto: "), pos.posY + 1);
-            fflush(stdin);
-            gets(aux.marca);
+            strcpy(aux.marca, leerString(30));
             while (validarString(aux.marca, 20))
             {
                 gotoxy(pos.posX, pos.posY + 3);
@@ -198,8 +186,7 @@ stProducto modificarProducto(stProducto producto)
                 color(15);
                 gotoxy(pos.posX + strlen("Marca del producto: "), pos.posY + 1);
                 limpiarLineaDer();
-                fflush(stdin);
-                gets(aux.marca);
+                strcpy(aux.marca, leerString(20));
             }
             break;
         case 3:
@@ -211,8 +198,7 @@ stProducto modificarProducto(stProducto producto)
             gotoxy(0, pos.tamY - 4);
             footer();
             gotoxy(pos.posX + strlen("Nueva categoria del producto: "), pos.posY + 1);
-            fflush(stdin);
-            gets(aux.categoria);
+            strcpy(aux.categoria, leerString(15));
             while (strlen(aux.categoria) > 15)
             {
                 gotoxy(pos.posX, pos.posY + 3);
@@ -222,8 +208,7 @@ stProducto modificarProducto(stProducto producto)
                 color(15);
                 gotoxy(pos.posX + strlen("Nueva categoria del producto: "), pos.posY + 1);
                 limpiarLineaDer();
-                fflush(stdin);
-                gets(aux.categoria);
+                strcpy(aux.categoria, leerString(30));
             }
             break;
         case 4:
@@ -234,7 +219,7 @@ stProducto modificarProducto(stProducto producto)
             printf("Nuevo precio del producto: ");
             gotoxy(0, pos.tamY - 4);
             gotoxy(pos.posX + strlen("Nuevo precio del producto: "), pos.posY + 1);
-            scanf("%f", &aux.precio);
+            aux.precio = leerfloat();
             break;
         case 5:
             header();
@@ -243,7 +228,7 @@ stProducto modificarProducto(stProducto producto)
             printf("Esta seguro de que quiere dar de baja?(s/n): ");
             color(15);
             fflush(stdin);
-            scanf("%c", &opcion);
+            opcion = leerChar();
             if(opcion == 's')
             {
                 aux.eliminado = 0;

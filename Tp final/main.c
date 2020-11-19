@@ -11,6 +11,9 @@
 const char A_Clientes[] = "Datos\\clientes.dat";
 const char A_Productos[] = "Datos\\productos.dat";
 const char A_Pedidos[] = "Datos\\pedidos.dat";
+const char key [20] = {22, 53, 44, 71, 66, 177, 253, 122, 56, 101, 111, 109, 57, 23, 48, 16, 85, 69, 71, 20}; //La idea era usar keys aleatorias almacenadas en un archivo.
+const char categorias[7][15] = {"Televisores", "Computadoras", "Celulares", "Accesorios", "Heladeras", "Aires", "Cocina"};
+
 
 ///Menus
 void menuLogin(nodoListaClientes * listaClientes, nodoArbolProducto * arbolProductos);
@@ -35,8 +38,7 @@ void fechaHora(char * fecha[]);
 int validarString(char palabra[], int dim);
 void muestraRecomendados(nodoListaClientes *clientes, nodoArbolProducto *arbolProductos);
 nodoListaProducto *bajarPedidos(char nombreArchivo[], int idCliente, nodoArbolProducto *productos, nodoListaProducto *listaPedidos);
-
-const char categorias[7][15] = {"Televisores", "Computadoras", "Celulares", "Accesorios", "Heladeras", "Aires", "Cocina"};
+char * encriptarPass(char pass[20]);
 
 int main()
 {
@@ -51,8 +53,6 @@ int main()
     clientes = pasaArchivoALista(clientes, A_Clientes);
     productos = subProgramaCargarProductos(productos, A_Productos);
     clientes = subProgramaBajaPedidos(clientes, productos, A_Pedidos);
-
-    //cargar Lista y arbol
 
     do
     {
@@ -132,6 +132,7 @@ void menuLogin(nodoListaClientes * listaClientes, nodoArbolProducto * arbolProdu
     limpiarTodaLinea();
     gotoxy(pos.posX + strlen("Contrasena: "), pos.posY + 2);
     strcpy(pass, leerString(20));
+    strcpy(pass, encriptarPass(pass));
     while(strcmpi(pass, cliente->cliente.password))
     {
         gotoxy(pos.posX, pos.posY + 3);
@@ -141,6 +142,7 @@ void menuLogin(nodoListaClientes * listaClientes, nodoArbolProducto * arbolProdu
         gotoxy(pos.posX + strlen("Contrasena: "), pos.posY + 2);
         limpiarLineaDer();
         strcpy(pass, leerString(20));
+        strcpy(pass, encriptarPass(pass));
     }
 
     cliente->cliente.rol == 1 ? menuPrincipalAdmin(listaClientes, arbolProductos) : menuPrincipalClientes(cliente, arbolProductos);
@@ -758,17 +760,25 @@ int validarString(char palabra[], int dim)
 
 void muestraRecomendados(nodoListaClientes *clientes, nodoArbolProducto *arbolProductos)
 {
-    int masVendido;
-    masVendido = buscaMayor(contarCategorias(clientes->listaProductos));
+    int masVendido = 0;
+    int arrayCat[7]={0};
+
+    contarCategorias(clientes->listaProductos, arrayCat);
+    masVendido = buscaMayor(arrayCat);
     mostrarPorCategoria(arbolProductos, categorias[masVendido]);
+    pausa();
 }
 
 nodoListaProducto *bajarPedidos(char nombreArchivo[], int idCliente, nodoArbolProducto *productos, nodoListaProducto *listaPedidos)
 {
-    FILE *archi = fopen(nombreArchivo, "rb");
+
+
+    FILE *archi = NULL;
     stPedidos pedido;
     nodoArbolProducto *p = inicArbol();
     nodoListaProducto *aux = listaPedidos;
+
+    archi = fopen(nombreArchivo, "rb");
 
     if (archi)
     {
@@ -779,11 +789,21 @@ nodoListaProducto *bajarPedidos(char nombreArchivo[], int idCliente, nodoArbolPr
                 p = buscarNodoPorId(productos, pedido.idProducto);
                 aux = agregarPrpioProducto(aux, crearNodoProducto(p->producto, pedido.idPedido));
                 strcpy(aux->fecha, pedido.fecha);
-                aux->idPedido = pedido.idPedido;///??????
-                aux = aux->sig;///???????
             }
         }
     }
     fclose(archi);
-    return productos;
+    return aux;
+}
+
+char * encriptarPass(char pass[20])
+{
+    int i;
+
+    for (i=0; i < strlen(pass) - 1; i++)
+    {
+        pass[i] ^= key[i];
+    }
+
+    return pass;
 }

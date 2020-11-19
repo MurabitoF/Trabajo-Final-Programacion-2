@@ -1,26 +1,13 @@
 #include "pedidos.h"
 
 
-void cargarPedido (char nombreArchivo[], int idCliente, int idProducto)
+stPedidos cargarPedido (char nombreArchivo[], stCliente cliente, stProducto prod, char fecha[])
 {
     stPedidos aux;
 
-    aux.idCliente = idCliente;
-    aux.idProducto = idProducto;
-    aux.idPedido = contadorDatos(nombreArchivo, sizeof(stPedidos)) + 1;
+    aux.idCliente = cliente.idCliente;
+    aux.idProducto = prod.idProducto;
+    strcpy(aux.fecha, fecha);
 
-    registrarPedido(nombreArchivo, aux);
-}
-
-void registrarPedido(char nombreArchivo[], stPedidos pedi)  //Registra un producto en un archivo.
-{
-    FILE * arch = NULL;
-
-    arch = fopen(nombreArchivo,"ab");
-
-    if(arch != NULL)
-    {
-        fwrite(&pedi,sizeof(stPedidos),1,arch);
-        fclose(arch);
-    }
+    return aux;
 }

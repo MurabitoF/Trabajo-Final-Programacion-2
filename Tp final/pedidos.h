@@ -16,8 +16,6 @@ typedef struct _stPedidos
     char fecha[15];
 } stPedidos;
 
-void cargarPedido (char nombreArchivo[], int idCliente, int idProducto);
-
-void registrarPedido(char nombreArchivo[], stPedidos pedi);
+stPedidos cargarPedido (char nombreArchivo[], stCliente cliente, stProducto prod, char fecha[]);
 
 #endif // PEDIDOS_H_INCLUDED

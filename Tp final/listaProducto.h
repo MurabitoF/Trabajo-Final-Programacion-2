@@ -35,5 +35,7 @@ nodoListaProducto * borrarListaProducto (nodoListaProducto * listaProducto);
 
 //////////// Funciones de Calculo ////////////
 float cuentaPrecios(nodoListaProducto *listaProducto);
+void contarCategorias (nodoListaProducto * listaProductos, int comprasProducto[7]);
+int buscaMayor(int comprasProducto[]);
 
 #endif // LISTAPRODUCTO_H_INCLUDED

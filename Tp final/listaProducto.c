@@ -34,6 +34,7 @@ nodoListaProducto * crearNodoProducto (stProducto producto, int idPedido)
 
     aux->p = producto;
     aux->idPedido = idPedido;
+    fechaHora(aux->fecha);
     aux->sig = NULL;
 
     return aux;
@@ -100,7 +101,7 @@ void mostrarListaProducto(nodoListaProducto * aux)
     nodoListaProducto * seg = aux;
     if(aux)
     {
-        while (seg->sig != NULL)
+        while (seg)
         {
             mostrarNodoProducto(seg);
             seg = seg->sig;
@@ -166,10 +167,8 @@ nodoListaProducto * borrarListaProducto (nodoListaProducto * listaProducto)
 
 ///Funciones contar productos comprados
 
-int * contarCategorias (nodoListaProducto * listaProductos)
+void contarCategorias (nodoListaProducto * listaProductos, int comprasProducto[7])
 {
-    int comprasProducto[7] = {0};
-
     char categorias[15];
 
     nodoListaProducto * seg = listaProductos;
@@ -228,7 +227,7 @@ int buscaMayor(int comprasProducto[])
     int i;
     for (i=0; i<7; i++)
     {
-        if (comprasProducto[i] > comprasProducto[i+1])
+        if (comprasProducto[i] > comprasProducto[may])
             may = i;
     }
     return may;
