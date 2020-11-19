@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 #include "productos.h"
 #include "clientes.h"
 #include "pedidos.h"
@@ -9,19 +8,29 @@
 #include "arbolProducto.h"
 #include "gotoxy.h"
 
-const char categorias[7][15] = {"Televisores", "Computadoras", "Celulares", "Accesorios", "Heladeras", "Aires", "Cocina"};
+const char A_Clientes[] = "Datos\\clientes.dat";
+const char A_Productos[] = "Datos\\productos.dat";
+const char A_Pedidos[] = "Datos\\pedidos.dat";
 
-const char A_Productos[] = "productos.dat";
-const char A_Clientes[] = "clientes.dat";
-const char A_Pedidos[] = "pedidos.dat";
+///Menus
+void menuLogin(nodoListaClientes * listaClientes, nodoArbolProducto * arbolProductos);
+void menuPrincipalClientes(nodoListaClientes * nodoCliente, nodoArbolProducto * arbolProductos);
+void menuPrincipalAdmin(nodoListaClientes * listaClientes, nodoArbolProducto * arbolProductos);
+void menuMostrarArbol(nodoArbolProducto * arbolProductos);
+void menuBusquedaCliente(nodoListaClientes * listaClientes);
+void menuModificarCliente(nodoListaClientes * listaClientes);
+void menuBusquedaProducto(nodoArbolProducto * arbolProductos);
+void menuModificarProducto(nodoArbolProducto * arbolProductos);
 
+///Subprogramas
+void subprogramaHacerPedido(nodoListaClientes * nodoCliente, nodoArbolProducto * arbolProductos);
+void subProgramaModificarCliente(nodoListaClientes * nodoCliente, char nombreArchivo[], int admin);
+void subProgramaModificarProducto(nodoArbolProducto * arbol, char nombreArchivo[]);
+nodoListaClientes *subProgramaBajaPedidos(nodoListaClientes *clientes, nodoArbolProducto *productos, char nombreArchivo[]);
+nodoArbolProducto * subProgramaCargarProductos(nodoArbolProducto * arbol, char nombreArchivo[]);
+
+///Funciones Extra
 int contadorDatos(char nombreArchivo[], int byte);
-<<<<<<< Updated upstream
-nodoListaClientes * pasarProductoaCliente(nodoListaClientes * lista, stProducto producto, stPedidos pedido);
-//nodoListaClientes * bajarPedidos (char nombreArchivo[], nodoListaClientes * clientes, nodoArbolProducto * productos);
-nodoListaProducto * bajarPedidos(char nombreArchivo[], int idCliente, nodoArbolProducto * productos, nodoListaProducto * listaPedidos);
-nodoListaClientes * subProgramaBajaPedidos (char nombreArchivo[], nodoListaClientes * clientes, nodoArbolProducto * productos);
-=======
 void fechaHora(char * fecha[]);
 int validarString(char palabra[], int dim);
 void muestraRecomendados(nodoListaClientes *clientes, nodoArbolProducto *arbolProductos);
@@ -29,57 +38,68 @@ nodoListaProducto *bajarPedidos(char nombreArchivo[], int idCliente, nodoArbolPr
 
 
 const char categorias[7][15] = {"Televisores", "Computadoras", "Celulares", "Accesorios", "Heladeras", "Aires", "Cocina"};
->>>>>>> Stashed changes
 
 int main()
 {
-
-    int i, val, j;
-    int dim;
-
-    nodoArbolProducto * arbolProductos = inicArbol();
+    ventana pos = inicVentana("======|You TECS|======", 3);
+    int op = 0;
+    pos.posX = pos.posX -2;
+    stCliente nuevo;
     nodoListaClientes * clientes = inicListaClientes();
-    stCliente client;
-    stProducto product;
-    dim = contadorDatos(A_Productos, sizeof(stProducto));
-    stProducto arrayP [1];
-
-    /*for (i = 0; i<2; i++)
-    {
-        product = crearProducto(A_Productos);
-        registrarProducto(A_Productos, product);
-        printf("\n");
-        client = crearCliente(A_Clientes);
-        registrarCliente(A_Clientes, client);
-        printf("\n");
-        if (i == 0)
-        cargarPedido(A_Pedidos, client.idCliente, product.idProducto);
-        if (i == 1)
-        cargarPedido(A_Pedidos, client.idCliente, product.idProducto);
-    }*/
-    printf("%d \n", dim);
-    //system("pause");
-
-    val = pasarArchivoArray(arrayP, A_Productos, dim);
-    printf("%d \n", val);
-    //system("pause");
-
-    mostrarProducto(arrayP[0]);
-    //system("pause");
-
-    arbolProductos = arregloOrd2arbol(arbolProductos, arrayP, 0, val);
+    nodoListaClientes * clienteEncotrado = inicListaClientes();
+    nodoArbolProducto * productos = inicArbol();
 
     clientes = pasaArchivoALista(clientes, A_Clientes);
+    productos = subProgramaCargarProductos(productos, A_Productos);
 
-    clientes = subProgramaBajaPedidos(A_Pedidos, clientes, arbolProductos);
+    //cargar Lista y arbol
 
-    mostrarListaCliente(clientes);
+    do
+    {
+        header();
+        gotoxy(pos.posX, pos.posY);
+        menuIngresoG();
+        gotoxy(0, pos.tamY - 4);
+        footer();
+        gotoxy(pos.posX + 4, pos.posY + 4);
+        op = leerInt();
 
+        switch(op)
+        {
+        case 1:
+            //menuLogin(clientes, productos);
+            menuPrincipalAdmin(clientes, productos);
+            //menuPrincipalClientes(clientes, productos);
+            break;
+        case 2:
+            nuevo = crearCliente(A_Clientes);
+            clienteEncotrado = buscarClientePorUsername(clientes, nuevo.userName);
+            if(!clienteEncotrado)
+            {
+                registrarCliente(A_Clientes, nuevo);
+                clientes = agregarClienteFinal(clientes, crearNodoCliente(nuevo));
+            }
+            else
+            {
+                gotoxy(pos.posX, pos.posY + 5);
+                color(12);
+                printf("El usuario ya existe, intente nuevamente!\n");
+                color(15);
+                gotoxy(pos.posX, whereY());
+                pausa();
+            }
+            break;
+        default:
+            break;
+        }
+    }
+    while(op != 0);
+
+    generarPedidos(clientes, A_Pedidos);
+    gotoxy(0, pos.tamY + 1);
     return 0;
 }
 
-<<<<<<< Updated upstream
-=======
 ///Menus
 void menuLogin(nodoListaClientes * listaClientes, nodoArbolProducto * arbolProductos)
 {
@@ -696,7 +716,6 @@ nodoArbolProducto * subProgramaCargarProductos(nodoArbolProducto * arbol, char n
 }
 
 ///Funciones Extra
->>>>>>> Stashed changes
 int contadorDatos(char nombreArchivo[], int byte) //Cuenta cuantos bloques de datos hay en un archivo y devuelve el valor.
 {
     FILE * arch = NULL;
@@ -708,42 +727,31 @@ int contadorDatos(char nombreArchivo[], int byte) //Cuenta cuantos bloques de da
     {
         fseek(arch, 0, SEEK_END);
         cant = ftell(arch)/ byte;
+        fclose(arch);
     }
-    fclose(arch);
+
 
     return cant;
 }
 
-void muestraRecomendados(nodoListaClientes * clientes, nodoArbolProducto * arbolProductos)
+void fechaHora(char * fecha[]) //Devuelve la fecha y la hora del sistema.
 {
-    int masVendido;
-    masVendido = buscaMayor(contarCategorias(clientes->listaProductos));
-    mostrarPorCategoria(arbolProductos, categorias[masVendido]);
+    time_t tiempo = time(0);
+    struct tm *tlocal = localtime(&tiempo);
+    char formato[] = {"%d/%m/%y %H:%M"};
+
+    strftime(fecha,20,formato,tlocal);
 }
 
-/*nodoListaClientes * bajarPedidos (char nombreArchivo[], nodoListaClientes * clientes, nodoArbolProducto * productos)
+int validarString(char palabra[], int dim)
 {
-    FILE * archi = fopen(nombreArchivo, "rb");
-    stPedidos pedido;
-    nodoArbolProducto * p = (nodoArbolProducto*) malloc(sizeof(nodoArbolProducto));
+    int flag = 0;
 
-    if (archi)
+    if(strlen(palabra) > dim)
     {
-        while (fread(&pedido, sizeof(stPedidos), 1, archi) > 0)
-        {
-            p = buscarNodoPorId(productos, pedido.idProducto);
-            agregarProductoListaClientes(clientes, pedido.idCliente, p->producto);
-            clientes->listaProductos->idPedido = pedido.idPedido;
-            strcpy(clientes->listaProductos->fecha, pedido.fecha);
-        }
-        fclose(archi);
+        flag = 1;
     }
-    return clientes;
-}*/
 
-<<<<<<< Updated upstream
-nodoListaProducto * bajarPedidos(char nombreArchivo[], int idCliente, nodoArbolProducto * productos, nodoListaProducto * listaPedidos)
-=======
     return flag;
 }
 
@@ -758,14 +766,13 @@ void muestraRecomendados(nodoListaClientes *clientes, nodoArbolProducto *arbolPr
 }
 
 nodoListaProducto *bajarPedidos(char nombreArchivo[], int idCliente, nodoArbolProducto *productos, nodoListaProducto *listaPedidos)
->>>>>>> Stashed changes
 {
-    FILE * archi = fopen(nombreArchivo, "rb");
+    FILE *archi = fopen(nombreArchivo, "rb");
     stPedidos pedido;
-    nodoArbolProducto * p = inicArbol();
-    nodoListaProducto * aux = listaPedidos;
+    nodoArbolProducto *p = inicArbol();
+    nodoListaProducto *aux = listaPedidos;
 
-    if(archi)
+    if (archi)
     {
         while (fread(&pedido, sizeof(stPedidos), 1, archi) > 0)
         {
@@ -780,19 +787,3 @@ nodoListaProducto *bajarPedidos(char nombreArchivo[], int idCliente, nodoArbolPr
     fclose(archi);
     return aux;
 }
-
-nodoListaClientes * subProgramaBajaPedidos (char nombreArchivo[], nodoListaClientes * clientes, nodoArbolProducto * productos)
-{
-    nodoListaClientes * seg = clientes;
-
-    if(seg)
-    {
-        while (seg)
-        {
-            seg->listaProductos = bajarPedidos(nombreArchivo, seg->cliente.idCliente, productos, seg->listaProductos);
-            seg = seg->siguiente;
-        }
-    }
-    return clientes;
-}
-
