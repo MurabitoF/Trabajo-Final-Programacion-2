@@ -108,10 +108,17 @@
 	"clientes.h"
 	"listaProducto.h"
 
+<<<<<<< Updated upstream
 1603825995 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\arbolproducto.c
 	"arbolProducto.h"
 
 1603825897 c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\arbolproducto.h
+=======
+1605820093 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\arbolproducto.c
+	"arbolProducto.h"
+
+1605820093 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\arbolproducto.h
+>>>>>>> Stashed changes
 	<stdio.h>
 	<stdlib.h>
 	"productos.h"
@@ -138,7 +145,14 @@
 	<stdlib.h>
 	<windows.h>
 
+<<<<<<< Updated upstream
 1604013651 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\listaclientes.c
+=======
+1605563397 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\graficos.c
+	"graficos.h"
+
+1605823425 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaclientes.c
+>>>>>>> Stashed changes
 	"listaClientes.h"
 	"listaProducto.h"
 
@@ -148,20 +162,44 @@
 	"clientes.h"
 	"listaProducto.h"
 
+<<<<<<< Updated upstream
 1603750720 c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\listaproducto.h
+=======
+1605824191 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaproducto.h
 	<stdio.h>
 	<stdlib.h>
 	"productos.h"
+	"pedidos.h"
+	"arbolProducto.h"
 
+1605823453 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\pedidos.h
+>>>>>>> Stashed changes
+	<stdio.h>
+	<stdlib.h>
+	"productos.h"
+	"listaProducto.h"
+
+<<<<<<< Updated upstream
 1603750720 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\listaproducto.c
 	"listaProducto.h"
 	"clientes.h"
 
 1603826008 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\main.c
+=======
+1605825298 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaproducto.c
+	"listaProducto.h"
+	"clientes.h"
+
+1605825211 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\main.c
+>>>>>>> Stashed changes
 	<stdio.h>
 	<stdlib.h>
 
+<<<<<<< Updated upstream
 1603750720 source:c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\pedidos.c
+=======
+1605822949 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\pedidos.c
+>>>>>>> Stashed changes
 	"pedidos.h"
 
 1603750720 c:\users\franco\documents\github\trabajo-final-programacion-2\tp final\pedidos.h

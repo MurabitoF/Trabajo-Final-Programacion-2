@@ -172,9 +172,8 @@ nodoListaProducto * borrarListaProducto (nodoListaProducto * listaProducto)
 }
 ///Funciones contar productos comprados
 
-int * contarCategorias (nodoListaProducto * listaProductos)
+void contarCategorias (nodoListaProducto * listaProductos, int comprasProducto[])
 {
-    int comprasProducto[7] = {0};
 
     char categorias[15];
 
@@ -225,7 +224,6 @@ int * contarCategorias (nodoListaProducto * listaProductos)
             }
             seg = seg->sig;
         }
-    return comprasProducto;
 }
 
 int buscaMayor(int comprasProducto[])
@@ -234,7 +232,7 @@ int buscaMayor(int comprasProducto[])
     int i;
     for (i=0; i<7; i++)
     {
-        if (comprasProducto[i] > comprasProducto[i+1])
+        if (comprasProducto[i] > comprasProducto[may])
             may = i;
     }
     return may;
@@ -245,7 +243,7 @@ float cuentaPrecios (nodoListaProducto * listaProducto)
     nodoListaProducto * seg = listaProducto;
     float precio;
 
-    while (seg != NULL)
+    while (seg)
     {
         precio = precio + seg->p.precio;
         seg = seg->sig;

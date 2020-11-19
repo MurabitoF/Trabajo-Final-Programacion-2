@@ -49,4 +49,7 @@ nodoListaProducto * borrarListaProducto (nodoListaProducto * listaProducto);
 
 float cuentaPrecios (nodoListaProducto * listaProducto);
 
+void contarCategorias (nodoListaProducto *listaProductos, int comprasProducto[]);
+int buscaMayor(int comprasProducto[]);
+
 #endif // LISTAPRODUCTO_H_INCLUDED

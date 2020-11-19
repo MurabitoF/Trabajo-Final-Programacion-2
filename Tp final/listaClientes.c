@@ -267,3 +267,68 @@ nodoListaClientes * pasaArchivoALista(nodoListaClientes * listaCliente, char nom
 
     return listaCliente;
 }
+<<<<<<< Updated upstream
+=======
+
+void generarPedidos(nodoListaClientes * lista, char nombreArchivo[])
+{
+    nodoListaClientes * seg = lista;
+    stPedidos aux;
+    int ultimoID = contadorDatos(nombreArchivo, sizeof(stPedidos)) + 1;
+
+    FILE * arch = NULL;
+
+    arch = fopen(nombreArchivo, "wb");
+
+    if(arch)
+    {
+        while(seg)
+        {
+            while(seg->listaProductos)
+            {
+                aux = cargarPedido(nombreArchivo, seg->cliente, seg->listaProductos->p, seg->listaProductos->fecha);
+                    if(seg->listaProductos->idPedido != 0)
+                {
+                    aux.idPedido = seg->listaProductos->idPedido;
+                }
+                else
+                {
+                    aux.idPedido = ultimoID;
+                    ultimoID++;
+                }
+                seg->listaProductos = seg->listaProductos->sig;
+                fwrite(&aux,sizeof(stPedidos), 1, arch);
+            }
+            seg = seg->siguiente;
+        }
+        fclose(arch);
+    }
+}
+
+///Subprogramas
+void subProgramaMostrarCliente(nodoListaClientes * nodoCliente, ventana pos)
+{
+    header();
+    gotoxy(pos.posX, pos.posY);
+    mostrarNodoCliente(nodoCliente);
+    gotoxy(pos.posX, whereY());
+    printf("Pedidos: \n");
+    if(nodoCliente->listaProductos)
+    {
+        gotoxy(pos.posX, 3);
+        mostrarListaProducto(nodoCliente->listaProductos);
+    }
+    else
+    {
+        gotoxy(pos.posX + 3, whereY());
+        printf("No hay pedidos\n");
+    }
+    if(whereY() <= pos.tamY - 4)
+        gotoxy(0, pos.posY - 4);
+    footer();
+    gotoxy(pos.posX, whereY()- 3);
+    color(10);
+    system("pause");
+    color(15);
+}
+>>>>>>> Stashed changes
