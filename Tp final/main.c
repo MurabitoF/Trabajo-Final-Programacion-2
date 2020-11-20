@@ -68,8 +68,6 @@ int main()
         {
         case 1:
             menuLogin(clientes, productos);
-            //menuPrincipalAdmin(clientes, productos);
-            //menuPrincipalClientes(clientes, productos);
             break;
         case 2:
             nuevo = crearCliente(A_Clientes);
@@ -717,6 +715,7 @@ nodoListaClientes *subProgramaBajaPedidos(nodoListaClientes *clientes, nodoArbol
         while (seg)
         {
             seg->listaProductos = bajarPedidos(nombreArchivo, seg->cliente.idCliente, productos, seg->listaProductos);
+            seg->costoTotalDelPedido = cuentaPrecios(seg->listaProductos);
             seg = seg->siguiente;
         }
     }
@@ -816,7 +815,7 @@ nodoListaProducto * bajarPedidos(char nombreArchivo[], int idCliente, nodoArbolP
             if (pedido.idCliente == idCliente)
             {
                 p = buscarNodoPorId(productos, pedido.idProducto);
-                aux = agregarPrpioProducto(aux, crearNodoProducto(p->producto, pedido.idPedido));
+                aux = agregarFinalProducto(aux, crearNodoProducto(p->producto, pedido.idPedido));
                 strcpy(aux->fecha, pedido.fecha);
             }
         }
