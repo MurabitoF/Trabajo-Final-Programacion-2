@@ -204,7 +204,7 @@ void menuPrincipalClientesG()
     gotoxy(x,whereY());
     printf("[ 2 ] Mostrar mis Pedidos\n");
     gotoxy(x,whereY());
-    printf("[ 3 ] Modificar mis datos\n");
+    printf("[ 3 ] Mostrar mis datos\n");
     gotoxy(x,whereY());
     printf("[ 4 ] Productos recomendados\n");
     gotoxy(x,whereY());

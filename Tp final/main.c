@@ -215,6 +215,7 @@ void menuPrincipalAdmin(nodoListaClientes * listaClientes, nodoArbolProducto * a
     nodoListaClientes * clienteEncotrado = inicListaClientes();
     stProducto nuevoProducto;
     int op = 0, mostrar = 0, aux = 0;
+    char sigue = 's';
     ventana pos = inicVentana("======|Menu Administrador|======", 8);
 
     do
@@ -230,20 +231,26 @@ void menuPrincipalAdmin(nodoListaClientes * listaClientes, nodoArbolProducto * a
         switch(op)
         {
         case 1:
-            nuevoCliente = crearCliente(A_Clientes);
-            clienteEncotrado = buscarClientePorUsername(listaClientes, nuevoCliente.userName);
-            if(!clienteEncotrado)
+            while(sigue == 's')
             {
-                registrarCliente(A_Clientes, nuevoCliente);
-                listaClientes = agregarClienteFinal(listaClientes, crearNodoCliente(nuevoCliente));
-            }
-            else
-            {
-                gotoxy(pos.posX, pos.posY + 10);
-                color(12);
-                printf("El usuario ya existe, intente nuevamente!\n");
-                gotoxy(pos.posX, whereY());
-                pausa();
+                nuevoCliente = crearCliente(A_Clientes);
+                clienteEncotrado = buscarClientePorUsername(listaClientes, nuevoCliente.userName);
+                if(!clienteEncotrado)
+                {
+                    registrarCliente(A_Clientes, nuevoCliente);
+                    listaClientes = agregarClienteFinal(listaClientes, crearNodoCliente(nuevoCliente));
+                }
+                else
+                {
+                    gotoxy(pos.posX, pos.posY + 10);
+                    color(12);
+                    printf("El usuario ya existe, intente nuevamente!\n");
+                    gotoxy(pos.posX, whereY());
+                    pausa();
+                }
+                gotoxy(pos.posX, whereY() + 1);
+                printf("Desea cargar otro cliente?(s/n): ");
+                sigue = leerChar();
             }
             break;
         case 2:
@@ -264,9 +271,15 @@ void menuPrincipalAdmin(nodoListaClientes * listaClientes, nodoArbolProducto * a
             menuModificarCliente(listaClientes);
             break;
         case 5:
-            nuevoProducto = crearProducto(A_Productos);
-            registrarProducto(A_Productos, nuevoProducto);
-            arbolProductos = agregarNodoEnOrden(arbolProductos, crearNodoArbolProducto(nuevoProducto));
+            while(sigue == 's')
+            {
+                nuevoProducto = crearProducto(A_Productos);
+                registrarProducto(A_Productos, nuevoProducto);
+                arbolProductos = agregarNodoEnOrden(arbolProductos, crearNodoArbolProducto(nuevoProducto));
+                gotoxy(pos.posX, whereY() + 1);
+                printf("Desea cargar otro producto? (s/n): ");
+                sigue = leerChar();
+            }
             break;
         case 6:
             menuMostrarArbol(arbolProductos);
@@ -777,7 +790,7 @@ void muestraRecomendados(nodoListaClientes *clientes, nodoArbolProducto *arbolPr
 {
     ventana pos = inicVentana("=====|Productos Recomendados|=====", 0);
     int masVendido = 0, aux = 0;
-    int arrayCat[7]={0};
+    int arrayCat[7]= {0};
     pos.posY = 3;
 
     contarCategorias(clientes->listaProductos, arrayCat);

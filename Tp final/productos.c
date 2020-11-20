@@ -119,7 +119,7 @@ void mostrarProducto(stProducto product)
     gotoxy(x,whereY());
     printf("Categoria del producto: %s\n", product.categoria);
     gotoxy(x,whereY());
-    printf("Precio del producto:    %.2f\n\n", product.precio);
+    printf("Precio del producto:    $%.2f\n\n", product.precio);
     gotoxy(x,whereY());
 }
 
