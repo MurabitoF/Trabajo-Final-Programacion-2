@@ -288,7 +288,7 @@ void mostrarListaClientes(nodoListaClientes * lista)
 }
 
 ///Funcines de archivo
-nodoListaClientes * pasaArchivoALista(nodoListaClientes * listaCliente, char nombreArchivo[])
+nodoListaClientes * pasaArchivoALista(nodoListaClientes * listaCliente, char nombreArchivo[]) //Descarga los cliente del archivo
 {
     stCliente aux;
     FILE * arch = NULL;
@@ -310,7 +310,7 @@ nodoListaClientes * pasaArchivoALista(nodoListaClientes * listaCliente, char nom
     return listaCliente;
 }
 
-void generarPedidos(nodoListaClientes * lista, char nombreArchivo[])
+void generarPedidos(nodoListaClientes * lista, char nombreArchivo[]) //Carga en un archivo nuevo los pedidos que haya actualmente en el sistema
 {
     nodoListaClientes * seg = lista;
     stPedidos aux;
@@ -346,7 +346,7 @@ void generarPedidos(nodoListaClientes * lista, char nombreArchivo[])
 }
 
 ///Subprogramas
-void subProgramaMostrarCliente(nodoListaClientes * nodoCliente, ventana pos)
+void subProgramaMostrarCliente(nodoListaClientes * nodoCliente, ventana pos) //Muestra un Cliente y sus pedidos
 {
     header();
     gotoxy(pos.posX, pos.posY);

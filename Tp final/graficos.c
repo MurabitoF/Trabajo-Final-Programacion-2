@@ -1,7 +1,7 @@
 #include "graficos.h"
 
 ///Funciones de Control de Ventanas
-void getWindowSize(int * col, int * row)
+void getWindowSize(int * col, int * row) //Obtiene el tamaño de la ventana
 {
     CONSOLE_SCREEN_BUFFER_INFO csbi;
 
@@ -13,20 +13,20 @@ void getWindowSize(int * col, int * row)
 
 void limpiarTodaLinea()
 {
-    printf("%c[2K", 27); ///Borra la consola en la linea donde este el cursor
+    printf("%c[2K", 27); //Borra la consola en la linea donde este el cursor
 }
 
 void limpiarLineaDer()
 {
-    printf("%c[K", 27); ///Borra la consola a la derecha del cursor
+    printf("%c[K", 27); //Borra la consola a la derecha del cursor
 }
 
 void limpiarLineaIzq()
 {
-    printf("%c[1K", 27); ///Borra la consola a la izquierda del cursor
+    printf("%c[1K", 27); //Borra la consola a la izquierda del cursor
 }
 
-ventana inicVentana(char texto[], int items)
+ventana inicVentana(char texto[], int items) //Inicializa mi estructura de ventana, tratando de centrar el texto en pantalla
 {
     ventana aux;
     int x = 0, y = 0, posX = 0, posY = 0;
@@ -43,100 +43,72 @@ ventana inicVentana(char texto[], int items)
 }
 
 ///Header y Footer
-void header()
+void header() //Banner superior del sistema
 {
-    int x,y,i,posX = 0,posY = 0;
-    getWindowSize(&x, &y);
+    int i;
+    ventana pos = inicVentana("\0", 0);
 
     system("cls");
     gotoxy(3,0);
     printf("%c", escSupIzq);
-    for(i = 0; i <(x-8); i++)
+    for(i = 0; i <(pos.tamX - 8); i++)
     {
         printf("%c", barraHorizontal);
     }
     printf("%c", escSupDer);
-    posY = whereY() + 1;
-    gotoxy(3,posY);
+    pos.posY = whereY() + 1;
+    gotoxy(3, pos.posY);
     printf("%c", barraVertical);
-    gotoxy((x/2)-(strlen("YOU TECS - TU TIENDA DE TECNOLOGIA")/2), posY);
+    gotoxy((pos.tamX/2) - (strlen("YOU TECS - TU TIENDA DE TECNOLOGIA")/2), pos.posY);
     color(10);
     printf("YOU TECS - TU TIENDA DE TECNOLOGIA");
     color(15);
-    gotoxy(x-4,posY);
+    gotoxy(pos.tamX - 4, pos.posY);
     printf("%c", barraVertical);
-    posY = whereY() + 1;
-    gotoxy(3,posY);
+    pos.posY = whereY() + 1;
+    gotoxy(3, pos.posY);
     printf("%c", escInfIzq);
-    for(i = 0; i <(x-8); i++)
+    for(i = 0; i <(pos.tamX - 8); i++)
     {
         printf("%c", barraHorizontal);
     }
     printf("%c", escInfDer);
 }
 
-void footer()
+void footer() //Banner inferior del sistema
 {
-    int x,y,i,posX = 0,posY = 0;
-    getWindowSize(&x, &y);
-    posY = whereY() + 1;
+    int i;
+    ventana pos = inicVentana("\0", 0);
+    pos.posY = whereY() + 1;
 
-    gotoxy(3,posY);
+    gotoxy(3, pos.posY);
     printf("%c", escSupIzq);
-    for(i = 0; i <(x-8); i++)
+    for(i = 0; i < (pos.tamX - 8); i++)
     {
         printf("%c", barraHorizontal);
     }
     printf("%c", escSupDer);
-    posY = whereY() + 1;
-    gotoxy(3,posY);
+    pos.posY = whereY() + 1;
+    gotoxy(3, pos.posY);
     printf("%c", barraVertical);
-    gotoxy(((x/2)-(strlen("YOU TECS - ASUSPENDER")/2)), posY);
+    gotoxy(((pos.tamX/2)-(strlen("YOU TECS - ASUSPENDER")/2)), pos.posY);
     color(2);
     printf("YOU TECS - ASUSPENDER");
     color(15);
-    gotoxy(x-4,posY);
+    gotoxy(pos.tamX - 4, pos.posY);
     printf("%c", barraVertical);
-    posY = whereY() + 1;
-    gotoxy(3,posY);
+    pos.posY = whereY() + 1;
+    gotoxy(3, pos.posY);
     printf("%c", escInfIzq);
-    for(i = 0; i <(x-8); i++)
+    for(i = 0; i <(pos.tamX - 8); i++)
     {
         printf("%c", barraHorizontal);
     }
     printf("%c", escInfDer);
 }
 
-void loading()
-{
-    int i, x, y, posX = 0, posY = 0, p = 0;
-
-    hidecursor(0);
-    getWindowSize(&x, &y);
-    posX = (x-8)/2 -strlen("CARGANDO");
-    posY = (y-6)/2 - 1;
-
-    while(p < 10)
-    {
-        system("cls");
-        gotoxy(posX, posY);
-        printf("CARGANDO");
-        gotoxy(posX,posY+2);
-
-
-        gotoxy(posX,posY+2);
-        for(i = 0; i < 8; i++)
-        {
-            Sleep(300);
-            printf("%c", 219);
-        }
-        p++;
-    }
-}
-
-
 ///Funciones de lectura
-int leerInt()
+int leerInt() //Lee un entrero y lo devuelve
 {
     int aux = 0;
 
@@ -146,7 +118,7 @@ int leerInt()
 
     return aux;
 }
-float leerfloat()
+float leerfloat() //Lee un numero real y lo devuelve
 {
     float aux = 0;
 
@@ -157,7 +129,7 @@ float leerfloat()
     return aux;
 }
 
-char leerChar()
+char leerChar() //Lee un caracter y lo devuelve
 {
     char aux = 'n';
 
@@ -169,7 +141,7 @@ char leerChar()
     return aux;
 }
 
-char * leerString(int dim)
+char * leerString(int dim) //Lee una cadena de caracteres y lo devuelve
 {
     char * aux = (char *)malloc(sizeof(char) * dim);
 
@@ -181,7 +153,7 @@ char * leerString(int dim)
     return aux;
 }
 
-void pausa()
+void pausa() //Pausa el programa hasta que se precione una tecla
 {
     color(10);
     system("pause");

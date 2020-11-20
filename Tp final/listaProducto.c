@@ -1,27 +1,7 @@
 #include "listaProducto.h"
 #include "clientes.h"
 
-
-nodoListaProducto * pasaArchivoAListaProducto(nodoListaProducto * listaProducto, char nombreArchivo[])
-{
-    stCliente aux;
-    FILE * arch = NULL;
-
-    arch = fopen(nombreArchivo, "rb");
-
-    if(arch != NULL)
-    {
-        while(fread(&aux,sizeof(stProducto),1,arch)>0)
-        {
-            //listaProducto = agregarAlFinalProducto(listaProducto, crearNodoProducto(&aux));
-        }
-        fclose(arch);
-    }
-
-    return listaProducto;
-}
-
-//////////// Funciones Basicas ////////////
+///Funciones Basicas
 
 nodoListaProducto * inicListaProducto()
 {
@@ -87,15 +67,15 @@ nodoListaProducto * agregarOrdenProducto(nodoListaProducto * listaProducto, nodo
     return listaProducto;
 }
 
-//////////// Funciones de Muestra ////////////
+///Funciones de Muestra
 
-void mostrarNodoProducto (nodoListaProducto * aux)
-{
+void mostrarNodoProducto (nodoListaProducto * aux) //Valida que el producto no este eliminado para que no lo muestre en tiempo de ejecucion
+{                                                  // despues de haber sido dado de baja
     if(aux->p.eliminado == 1)
         mostrarProducto(aux->p);
 }
 
-void mostrarListaProducto(nodoListaProducto * aux)
+void mostrarListaProducto(nodoListaProducto * aux) //Muestra los pedidos, si no hay muestra que no hay pedidos
 {
     int x = whereX();
     nodoListaProducto * seg = aux;
@@ -114,7 +94,7 @@ void mostrarListaProducto(nodoListaProducto * aux)
     }
 }
 
-//////////// Funciones de Borrado de Datos ////////////
+///Funciones de Borrado de Datos
 
 nodoListaProducto * borrarProductoId (nodoListaProducto * listaProducto, int id)
 {
@@ -167,6 +147,12 @@ nodoListaProducto * borrarListaProducto (nodoListaProducto * listaProducto)
 
 ///Funciones contar productos comprados
 
+/*
+ El nucleo del sistema de recomendaciones, contarCategorias recive un arreglo de int en el que cada posiscion
+ se corresponde con el arreglo constante que contiene las categorias. Basicamente cuenta la categoria de los
+ productos que compro el cliente y va sumando en el arreglo.
+ Queriamos usar un switch para comparar pero en C los switch no funcionan con strings.
+*/
 void contarCategorias (nodoListaProducto * listaProductos, int comprasProducto[7])
 {
     char categorias[15];
@@ -176,52 +162,42 @@ void contarCategorias (nodoListaProducto * listaProductos, int comprasProducto[7
     while (seg)
     {
         strcpy(categorias, seg->p.categoria);
-        if (strcmp(categorias ,"Televisores") == 0)
-            {
-                comprasProducto [0] = comprasProducto [0] + 1;
-            } else
-            {
-                if (strcmp(categorias ,"Computadoras") == 0)
-                    {
-                        comprasProducto [1] = comprasProducto [1] + 1;
-                    } else
-                    {
-                        if (strcmp(categorias ,"Celulares") == 0)
-                            {
-                                comprasProducto [2] = comprasProducto [2] + 1;
-                            } else
-                            {
-                                if (strcmp(categorias ,"Accesorios") == 0)
-                                    {
-                                        comprasProducto [3] = comprasProducto [3] + 1;
-                                    } else
-                                    {
-                                        if (strcmp(categorias ,"Heladeras") == 0)
-                                            {
-                                                comprasProducto [4] = comprasProducto [4] + 1;
-                                            } else
-                                            {
-                                                if (strcmp(categorias ,"Aires") == 0)
-                                                    {
-                                                        comprasProducto [5] = comprasProducto [5] + 1;
-                                                    } else
-                                                    {
-                                                        if (strcmp(categorias ,"Cocina") == 0)
-                                                            {
-                                                                comprasProducto [6] = comprasProducto [6] + 1;
-                                                            }
-                                                    }
-                                            }
-                                    }
-                            }
-                    }
-            }
-            seg = seg->sig;
+        if (strcmp(categorias,"Televisores") == 0)
+        {
+            comprasProducto [0] = comprasProducto [0] + 1;
         }
+        else if (strcmp(categorias,"Computadoras") == 0)
+        {
+            comprasProducto [1] = comprasProducto [1] + 1;
+        }
+
+        else if (strcmp(categorias,"Celulares") == 0)
+        {
+            comprasProducto [2] = comprasProducto [2] + 1;
+        }
+        else if (strcmp(categorias,"Accesorios") == 0)
+        {
+            comprasProducto [3] = comprasProducto [3] + 1;
+        }
+        else if (strcmp(categorias,"Heladeras") == 0)
+        {
+            comprasProducto [4] = comprasProducto [4] + 1;
+        }
+        else if (strcmp(categorias,"Aires") == 0)
+        {
+            comprasProducto [5] = comprasProducto [5] + 1;
+        }
+        else if (strcmp(categorias,"Cocina") == 0)
+        {
+            comprasProducto [6] = comprasProducto [6] + 1;
+        }
+    }
+    seg = seg->sig;
+
     return comprasProducto;
 }
 
-int buscaMayor(int comprasProducto[])
+int buscaMayor(int comprasProducto[]) //Busca el mayor de mi arreglo y devuelve su posicion, la que usaremos para recomendar los productos
 {
     int may = 0;
     int i;
@@ -233,7 +209,7 @@ int buscaMayor(int comprasProducto[])
     return may;
 }
 
-float cuentaPrecios (nodoListaProducto * listaProducto)
+float cuentaPrecios (nodoListaProducto * listaProducto) //Saca el total del precio de la lista de productos del cliente
 {
     nodoListaProducto * seg = listaProducto;
     float precio;

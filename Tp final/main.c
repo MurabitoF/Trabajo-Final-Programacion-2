@@ -661,7 +661,7 @@ void menuModificarProducto(nodoArbolProducto * arbolProductos)
 }
 
 ///Subprogramas
-void subprogramaHacerPedido(nodoListaClientes * nodoCliente, nodoArbolProducto * arbolProductos)
+void subprogramaHacerPedido(nodoListaClientes * nodoCliente, nodoArbolProducto * arbolProductos) //Sub programa muestra los productos ordenados por id y registra la "compra"
 {
     nodoArbolProducto * nodoProducto = inicArbol();
     int idProd = 0, aux = 0;
@@ -689,7 +689,7 @@ void subprogramaHacerPedido(nodoListaClientes * nodoCliente, nodoArbolProducto *
     agregarProductoListaClientes(nodoCliente, nodoCliente->cliente.idCliente, nodoProducto->producto);
 }
 
-void subProgramaModificarCliente(nodoListaClientes * nodoCliente, char nombreArchivo[], int admin)
+void subProgramaModificarCliente(nodoListaClientes * nodoCliente, char nombreArchivo[], int admin) //Sub programa que modifica el cliente
 {
     stCliente aux;
     aux =  modificarCliente(nodoCliente->cliente, admin);
@@ -698,7 +698,7 @@ void subProgramaModificarCliente(nodoListaClientes * nodoCliente, char nombreArc
 
 }
 
-void subProgramaModificarProducto(nodoArbolProducto * arbol, char nombreArchivo[])
+void subProgramaModificarProducto(nodoArbolProducto * arbol, char nombreArchivo[]) //Sub programa para modificar un pedido
 {
     stProducto aux;
     aux =  modificarProducto(arbol->producto);
@@ -706,7 +706,7 @@ void subProgramaModificarProducto(nodoArbolProducto * arbol, char nombreArchivo[
     registrarProductoModificado(nombreArchivo, aux);
 }
 
-nodoListaClientes *subProgramaBajaPedidos(nodoListaClientes *clientes, nodoArbolProducto *productos, char nombreArchivo[])
+nodoListaClientes *subProgramaBajaPedidos(nodoListaClientes *clientes, nodoArbolProducto *productos, char nombreArchivo[]) //Sub programa para descargar los pedidos a la lista de clientes
 {
     nodoListaClientes *seg = clientes;
 
@@ -761,7 +761,7 @@ void fechaHora(char * fecha[]) //Devuelve la fecha y la hora del sistema.
     strftime(fecha,20,formato,tlocal);
 }
 
-int validarString(char palabra[], int dim)
+int validarString(char palabra[], int dim) //Valida que mi string no tenga mas caracteres que lo permitido
 {
     int flag = 0;
 
@@ -773,7 +773,7 @@ int validarString(char palabra[], int dim)
     return flag;
 }
 
-void muestraRecomendados(nodoListaClientes *clientes, nodoArbolProducto *arbolProductos)
+void muestraRecomendados(nodoListaClientes *clientes, nodoArbolProducto *arbolProductos) //Muestra productos recomendados segun las compras del cliente
 {
     ventana pos = inicVentana("=====|Productos Recomendados|=====", 0);
     int masVendido = 0, aux = 0;
@@ -797,7 +797,7 @@ void muestraRecomendados(nodoListaClientes *clientes, nodoArbolProducto *arbolPr
     pausa();
 }
 
-nodoListaProducto * bajarPedidos(char nombreArchivo[], int idCliente, nodoArbolProducto *productos, nodoListaProducto *listaPedidos)
+nodoListaProducto * bajarPedidos(char nombreArchivo[], int idCliente, nodoArbolProducto *productos, nodoListaProducto *listaPedidos) //Descarga pedidos al cliente
 {
 
 
@@ -824,7 +824,7 @@ nodoListaProducto * bajarPedidos(char nombreArchivo[], int idCliente, nodoArbolP
     return aux;
 }
 
-char * encriptarPass(char pass[20])
+char * encriptarPass(char pass[20]) //Encripta la contraseña con una key
 {
     int i;
 

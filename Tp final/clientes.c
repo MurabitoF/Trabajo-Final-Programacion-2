@@ -3,7 +3,7 @@
 
 //////////// Funciones de carga ////////////
 
-stCliente crearCliente(char nombreArchivo[])
+stCliente crearCliente(char nombreArchivo[]) //Crea un cliente tomando los datos por teclado
 {
     ventana pos = inicVentana("=====|Nuevo Usuario|=====", 5);
     pos.posX = pos.posX - 2;
@@ -150,7 +150,7 @@ void mostrarCliente(stCliente client)
 }
 
 ///Funciones de Archivos
-void registrarCliente(char nombreArchivo[], stCliente cliente)
+void registrarCliente(char nombreArchivo[], stCliente cliente) //Registra un cliente en el archivo
 {
     FILE *arch = NULL;
 
@@ -163,9 +163,8 @@ void registrarCliente(char nombreArchivo[], stCliente cliente)
     }
 }
 
-void registrarClienteModificado(char nombreArchivo[], stCliente cliente)
+void registrarClienteModificado(char nombreArchivo[], stCliente cliente) //Registra un cliente modificado, se posiciona usando la id y sobreescribe los datos
 {
-    int flag = 0;
     stCliente aux;
     FILE * arch = NULL;
 
@@ -181,7 +180,7 @@ void registrarClienteModificado(char nombreArchivo[], stCliente cliente)
 }
 
 ///Funciones de modificación
-stCliente modificarCliente(stCliente cliente, int admin)
+stCliente modificarCliente(stCliente cliente, int admin) //Modifica un cliente usando una variable auxiliar.
 {
     int op = 0;
     char opcion = 'n';

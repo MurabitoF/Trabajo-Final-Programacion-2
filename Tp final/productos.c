@@ -1,8 +1,8 @@
 #include "productos.h"
 
-//////////// Funciones de carga ////////////
+///Funciones de carga
 
-stProducto crearProducto(char nombreArchivo[])
+stProducto crearProducto(char nombreArchivo[]) //Toma valores por teclado y crea un producto
 {
     stProducto product;
     ventana pos = inicVentana("=====|Nuevo Producto|=====", 5);
@@ -94,10 +94,8 @@ void registrarProducto(char nombreArchivo[], stProducto prod)  //Registra un pro
     }
 }
 
-//////////// Funciones de descarga ////////////
-
-void registrarProductoModificado(char nombreArchivo[], stProducto prod)
-{
+void registrarProductoModificado(char nombreArchivo[], stProducto prod) //Registra un producto modificado, se posiciona por el id del producto
+{                                                                       //y reescribe los datos
     FILE * arch = NULL;
 
     arch = fopen(nombreArchivo, "rb+");
@@ -126,7 +124,7 @@ void mostrarProducto(stProducto product)
 }
 
 ///Funciones de modificacion
-stProducto modificarProducto(stProducto producto)
+stProducto modificarProducto(stProducto producto) //Modifica un producto usando una variable auxiliar
 {
     stProducto aux = producto;
     int op = 0;
@@ -246,7 +244,7 @@ stProducto modificarProducto(stProducto producto)
 }
 
 //////////// Funciones de Archivos ////////////
-void pasarArchivoArray(stProducto arrayProducto[], char nombreArchivo[], int dim)
+void pasarArchivoArray(stProducto arrayProducto[], char nombreArchivo[], int dim) //Descarga los datos a un arreglo para poder cargar el arbol de forma desordenada.
 {
     int i = 0;
     stProducto aux;

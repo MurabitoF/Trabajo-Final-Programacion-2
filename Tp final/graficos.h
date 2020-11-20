@@ -16,6 +16,9 @@
 #define escInfDer 188
 
 ///Estructura de posicion en ventana
+/*
+La estructura que utilizaremos para posicionar el cursor y mostrar por pantalla
+*/
 typedef struct
 {
     int tamX; //Tamaño maximo en x de la ventana
