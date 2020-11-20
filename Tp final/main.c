@@ -151,6 +151,7 @@ void menuLogin(nodoListaClientes * listaClientes, nodoArbolProducto * arbolProdu
 void menuPrincipalClientes(nodoListaClientes * nodoCliente, nodoArbolProducto * arbolProductos)
 {
     int op = 0, mostrar = 0, aux = 0;
+    char modificar = 'n';
     ventana pos = inicVentana("======|Hola!          |======", 5);
 
     do
@@ -176,6 +177,7 @@ void menuPrincipalClientes(nodoListaClientes * nodoCliente, nodoArbolProducto * 
             header();
             gotoxy(pos.posX, 3);
             mostrarListaProducto(nodoCliente->listaProductos);
+            printf("El total de los pedidos es: $%.2f\n", nodoCliente->costoTotalDelPedido);
             aux = whereY();
             if(whereY() <= pos.tamY - 4)
                 gotoxy(0, pos.tamY - 4);
@@ -184,7 +186,20 @@ void menuPrincipalClientes(nodoListaClientes * nodoCliente, nodoArbolProducto * 
             pausa();
             break;
         case 3:
-            subProgramaModificarCliente(nodoCliente, A_Clientes, 0);
+            header();
+            gotoxy(pos.posX, pos.posY);
+            color(10);
+            printf("=====|Datos del cliente|=====\n");
+            color(15);
+            gotoxy(pos.posX, whereY());
+            mostrarCliente(nodoCliente->cliente);
+            printf("Desea modificar los datos? (s/n): ");
+            gotoxy(0, pos.tamY - 4);
+            footer();
+            gotoxy(pos.posX + strlen("Desea modificar los datos? (s/n): "), pos.posY + 8);
+            modificar = leerChar();
+            if(modificar == 's')
+                subProgramaModificarCliente(nodoCliente, A_Clientes, 0);
             break;
         case 4:
             muestraRecomendados(nodoCliente, arbolProductos);
@@ -672,6 +687,7 @@ void subprogramaHacerPedido(nodoListaClientes * nodoCliente, nodoArbolProducto *
     idProd = leerInt();
 
     nodoProducto = buscarNodoPorId(arbolProductos, idProd);
+    nodoCliente->costoTotalDelPedido += nodoProducto->producto.precio;
     agregarProductoListaClientes(nodoCliente, nodoCliente->cliente.idCliente, nodoProducto->producto);
 }
 
@@ -760,16 +776,29 @@ int validarString(char palabra[], int dim)
 
 void muestraRecomendados(nodoListaClientes *clientes, nodoArbolProducto *arbolProductos)
 {
-    int masVendido = 0;
+    ventana pos = inicVentana("=====|Productos Recomendados|=====", 0);
+    int masVendido = 0, aux = 0;
     int arrayCat[7]={0};
+    pos.posY = 3;
 
     contarCategorias(clientes->listaProductos, arrayCat);
     masVendido = buscaMayor(arrayCat);
+    header();
+    gotoxy(pos.posX, pos.posY);
+    color(10);
+    printf("=====|Productos Recomendados|=====\n");
+    color(15);
+    gotoxy(pos.posX, whereY());
     mostrarPorCategoria(arbolProductos, categorias[masVendido]);
+    aux = whereY();
+    if(whereY() <= pos.tamY - 4)
+        gotoxy(0, pos.tamY -4);
+    footer();
+    gotoxy(pos.posX, aux);
     pausa();
 }
 
-nodoListaProducto *bajarPedidos(char nombreArchivo[], int idCliente, nodoArbolProducto *productos, nodoListaProducto *listaPedidos)
+nodoListaProducto * bajarPedidos(char nombreArchivo[], int idCliente, nodoArbolProducto *productos, nodoListaProducto *listaPedidos)
 {
 
 

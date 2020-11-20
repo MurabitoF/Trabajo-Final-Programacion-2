@@ -365,7 +365,7 @@ stCliente modificarCliente(stCliente cliente, int admin)
             color(15);
             gotoxy(0, pos.tamY - 4);
             footer();
-            gotoxy(pos.posX + (strlen("Esta seguro que quiere darse de baja?(s/n): ")/2) + 1, pos.posY + 4);
+            gotoxy(pos.posX + (strlen("Esta seguro que quiere darse de baja?(s/n): ")/2) + 5, pos.posY + 4);
             opcion = leerChar();
             if(opcion == 's')
             {
@@ -388,7 +388,7 @@ stCliente modificarCliente(stCliente cliente, int admin)
                 color(15);
                 gotoxy(0, pos.tamY - 4);
                 footer();
-                gotoxy(pos.posX + strlen("Esta seguro que quiere hacer admin a este usuario?(s/n): ")/2 + 1, pos.posY + 4);
+                gotoxy(pos.posX + strlen("Esta seguro que quiere hacer admin a este usuario?(s/n): ")/2 + 5, pos.posY + 4);
                 opcion = leerChar();
                 if(opcion == 's')
                 {

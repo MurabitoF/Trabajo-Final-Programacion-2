@@ -24,7 +24,7 @@ stProducto crearProducto(char nombreArchivo[])
     gotoxy(0, pos.tamY - 4);
     footer();
     gotoxy(pos.posX + strlen("Categoria del producto: "), pos.posY + 1);
-    strcpy(product.nombre, leerString());
+    strcpy(product.nombre, leerString(30));
     while (validarString(product.nombre,30))
     {
         gotoxy(pos.posX, pos.posY + 6);
@@ -34,10 +34,10 @@ stProducto crearProducto(char nombreArchivo[])
         color(10);
         gotoxy(pos.posX + strlen("Categoria del producto: "), pos.posY + 1);
         limpiarLineaDer();
-        strcpy(product.nombre, leerString());
+        strcpy(product.nombre, leerString(30));
     }
     gotoxy(pos.posX + strlen("Categoria del producto: "), pos.posY + 2);
-    strcpy(product.marca, leerString());
+    strcpy(product.marca, leerString(20));
     while (validarString(product.marca,20))
     {
         gotoxy(pos.posX, pos.posY + 6);
@@ -47,10 +47,10 @@ stProducto crearProducto(char nombreArchivo[])
         color(10);
         gotoxy(pos.posX + strlen("Categoria del producto: "), pos.posY + 2);
         limpiarLineaDer();
-        strcpy(product.marca, leerString());
+        strcpy(product.marca, leerString(20));
     }
     gotoxy(pos.posX + strlen("Categoria del producto: "), pos.posY + 3);
-    strcpy(product.categoria, leerString());
+    strcpy(product.categoria, leerString(15));
     while (validarString(product.categoria, 15))
     {
         gotoxy(pos.posX, pos.posY + 6);
@@ -60,7 +60,7 @@ stProducto crearProducto(char nombreArchivo[])
         color(10);
         gotoxy(pos.posX + strlen("Categoria del producto: "), pos.posY + 3);
         limpiarLineaDer();
-        strcpy(product.categoria, leerString());
+        strcpy(product.categoria, leerString(15));
     }
     gotoxy(pos.posX + strlen("Categoria del producto: "), pos.posY + 4);
     product.precio = leerfloat();
