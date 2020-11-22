@@ -349,7 +349,7 @@ void generarPedidos(nodoListaClientes * lista, char nombreArchivo[]) //Carga en 
 void subProgramaMostrarCliente(nodoListaClientes * nodoCliente, ventana pos) //Muestra un Cliente y sus pedidos
 {
     header();
-    gotoxy(pos.posX, pos.posY);
+    gotoxy(pos.posX, 3);
     mostrarNodoCliente(nodoCliente);
     gotoxy(pos.posX, whereY());
     printf("Pedidos: \n");

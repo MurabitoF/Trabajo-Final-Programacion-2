@@ -541,9 +541,9 @@ void menuBusquedaProducto(nodoArbolProducto * arbolProductos)
                 header();
                 gotoxy(pos.posX, pos.posY);
                 mostrarNodoArbolProd(prodEncontrado);
-                gotoxy(0, pos.posY - 4);
+                gotoxy(0, pos.tamY - 4);
                 footer();
-                gotoxy(pos.posX, pos.posY + 5);
+                gotoxy(pos.posX, pos.posY + 6);
                 pausa();
             }
             else
@@ -593,7 +593,7 @@ void menuBusquedaProducto(nodoArbolProducto * arbolProductos)
                 mostrarNodoArbolProd(prodEncontrado);
                 gotoxy(0, pos.tamY - 4);
                 footer();
-                gotoxy(pos.posX, pos.posY + 5);
+                gotoxy(pos.posX, pos.posY + 6);
                 pausa();
             }
             else
@@ -618,7 +618,7 @@ void menuBusquedaProducto(nodoArbolProducto * arbolProductos)
                 mostrarNodoArbolProd(prodEncontrado);
                 gotoxy(0, pos.tamY - 4);
                 footer();
-                gotoxy(pos.posX, pos.posY + 5);
+                gotoxy(pos.posX, pos.posY + 6);
                 pausa();
             }
             else
