@@ -355,8 +355,10 @@ void subProgramaMostrarCliente(nodoListaClientes * nodoCliente, ventana pos) //M
     printf("Pedidos: \n");
     if(nodoCliente->listaProductos)
     {
-        gotoxy(pos.posX, 3);
+        gotoxy(pos.posX, whereY());
         mostrarListaProducto(nodoCliente->listaProductos);
+        gotoxy(pos.posX, whereY());
+        printf("El total de los pedidos es: $%.2f\n", nodoCliente->costoTotalDelPedido);
     }
     else
     {

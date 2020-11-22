@@ -240,7 +240,7 @@ void menuPrincipalAdminG()
     gotoxy(x,whereY());
     printf("[ 5 ] Dar de alta producto\n");
     gotoxy(x,whereY());
-    printf("[ 6 ] Mostrar lista de pedidos\n");
+    printf("[ 6 ] Mostrar lista de productos\n");
     gotoxy(x,whereY());
     printf("[ 7 ] Buscar un producto\n");
     gotoxy(x,whereY());
