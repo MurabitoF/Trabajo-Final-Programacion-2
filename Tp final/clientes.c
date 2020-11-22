@@ -269,12 +269,10 @@ stCliente modificarCliente(stCliente cliente, int admin) //Modifica un cliente u
         case 4:
             header();
             gotoxy(pos.posX + 5, pos.posY + 4);
-            printf("Contrase%ca actual: %s\n", enie,aux.password);
-            gotoxy(pos.posX + 5, whereY());
             printf("Nueva contrase%ca: ",enie);
             gotoxy(0, pos.tamY - 4);
             footer();
-            gotoxy(pos.posX + 5 + strlen("Nueva contrasena: "), pos.posY +5);
+            gotoxy(pos.posX + 5 + strlen("Nueva contrasena: "), pos.posY + 4);
             strcpy(aux.password, leerString(20));
             strcpy(aux.password, encriptarPass(aux.password));
             while (validarString(aux.password,20))
@@ -284,7 +282,7 @@ stCliente modificarCliente(stCliente cliente, int admin) //Modifica un cliente u
                 color(12);
                 printf("Error! Contrase%ca muy larga", enie);
                 color(10);
-                gotoxy(pos.posX + 5 + strlen("Nueva contrasena: "), pos.posY + 5);
+                gotoxy(pos.posX + 5 + strlen("Nueva contrasena: "), pos.posY + 4);
                 limpiarLineaDer();
                 strcpy(aux.password, leerString(20));
                 strcpy(aux.password, encriptarPass(aux.password));
