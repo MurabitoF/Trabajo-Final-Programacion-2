@@ -86,23 +86,23 @@
 	"clientes.h"
 	"listaProducto.h"
 
-1605563397 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\arbolproducto.c
+1605828908 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\arbolproducto.c
 	"arbolProducto.h"
 
-1605565966 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\arbolproducto.h
+1605828908 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\arbolproducto.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"productos.h"
 
-1605565123 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\productos.h
+1605828908 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\productos.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"graficos.h"
 	"gotoxy.h"
 
-1605563397 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\graficos.h
+1605909110 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\graficos.h
 	<stdlib.h>
 	<stdio.h>
 	<windows.h>
@@ -110,10 +110,10 @@
 
 1491399896 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\gotoxy.h
 
-1605563397 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\clientes.c
+1605909110 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\clientes.c
 	"clientes.h"
 
-1605563397 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\clientes.h
+1605828908 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\clientes.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -124,27 +124,27 @@
 	<stdlib.h>
 	<windows.h>
 
-1605563397 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\graficos.c
+1605910575 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\graficos.c
 	"graficos.h"
 
-1605563692 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaclientes.c
+1605909110 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaclientes.c
 	"listaClientes.h"
 	"listaProducto.h"
 
-1605563397 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaclientes.h
+1605828908 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaclientes.h
 	<stdio.h>
 	<stdlib.h>
 	"clientes.h"
 	"listaProducto.h"
 
-1605563533 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaproducto.h
+1605909110 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaproducto.h
 	<stdio.h>
 	<stdlib.h>
 	"productos.h"
 	"pedidos.h"
 	"arbolProducto.h"
 
-1605563398 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\pedidos.h
+1605828920 f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\pedidos.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -152,11 +152,11 @@
 	"clientes.h"
 	"productos.h"
 
-1605563746 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaproducto.c
+1605909110 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\listaproducto.c
 	"listaProducto.h"
 	"clientes.h"
 
-1605565511 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\main.c
+1605910575 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\main.c
 	<stdio.h>
 	<stdlib.h>
 	"productos.h"
@@ -167,9 +167,9 @@
 	"arbolProducto.h"
 	"gotoxy.h"
 
-1605559628 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\pedidos.c
+1605828920 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\pedidos.c
 	"pedidos.h"
 
-1605565399 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\productos.c
+1605910575 source:f:\utn\programación y laboratorio\tp final\trabajo-final-programacion-2\tp final\productos.c
 	"productos.h"
 
